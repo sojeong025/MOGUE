@@ -2,6 +2,7 @@
   <div>
     <h1>MovieDetail</h1>
     <p>{{ movie.title }}</p>
+    <p v-for="review in reviews" :key="review.id">{{ review.content }}</p>
   </div>
 </template>
 
@@ -14,6 +15,7 @@ export default {
   data() {
     return {
       movie: Object,
+      reviews: Object,
     }
   },
   created() {
@@ -22,7 +24,8 @@ export default {
       url: `${API_URL}/movies/${this.$route.params.id}`
     })
     .then((res) => {
-      this.movie = res.data
+      this.movie = res.data.movie
+      this.reviews = res.data.reviews
     })
     .catch(err => console.log(err))
   }
