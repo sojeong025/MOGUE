@@ -2,7 +2,7 @@
   <div>
     <h1>RecommendList</h1>
     <RecommendListItem
-    v-for="movie in movies" :key="movie.id" />
+    v-for="movie in movies" :key="movie.id" :movie="movie"/>
   </div>
 </template>
 
@@ -20,7 +20,7 @@ export default {
   data(){
     return {
       movies: [],
-      page: Number,
+      page: 1,
     }
   },
   created(){
@@ -30,10 +30,10 @@ export default {
     getRecommends(){
       axios({
         method: 'get',
-        url: `${API_URL}/recommends/${this.page}`
+        url: `${API_URL}/movies/recommends/${this.page}`
       })
       .then((res) => {
-        this.recommends = res.data
+        this.movies = res.data
       })
       .catch(err => console.log(err))
     }

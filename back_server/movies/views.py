@@ -21,7 +21,7 @@ def recommend_list(request, page):
 def movie_detail(request, movie_pk):
     movie = get_object_or_404(Movie, id=movie_pk)
     print(1)
-    reviews = get_list_or_404(Review, movie_id=movie_pk)
+    reviews = Review.objects.filter(movie_id=movie_pk)
     print(1)
     movie_serializer = MovieSerializer(movie)
     review_serializer = ReviewSerializer(reviews, many=True)
