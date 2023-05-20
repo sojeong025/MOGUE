@@ -1,11 +1,22 @@
+from django.contrib.auth.models import User
 from rest_framework import serializers
-from .models import User
+from django.contrib.auth import get_user_model
 
 class UserSerializer(serializers.ModelSerializer):
-    nickname = serializers.CharField(max_length=50)
-    email = serializers.EmailField(max_length=254)
-    profile_img = serializers.ImageField(required=False, allow_empty_file=True)
+    password = serializers.CharField(write_only=True)
+    
+    class Meta:
+        model = get_user_model()
+        fields = ('pk', 'username', 'password', 'nickname', 'profile_img')
+
+class UserDetailSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = '__all__'
+        fields = ('pk', 'username', 'nickname', 'profile_img')
+
+class UserListSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = User
+        fields = ('pk', 'username', 'nickname', 'profile_img')

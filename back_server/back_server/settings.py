@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'rest_framework',
     "corsheaders",
     'rest_framework.authtoken',
+    'rest_framework_jwt',
     'dj_rest_auth',
     'django.contrib.sites',
     'allauth',

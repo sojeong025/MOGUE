@@ -1,16 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-
-# Create your models here.
-
-# class WatchProviders(models.Model):
-#     logo_path = models.TextField()
-#     provider_name = models.CharField(max_length=50)
+from django.conf import settings
 
 class User(AbstractUser):
-    first_name = None
-    last_name = None
-    email = models.EmailField(max_length=254)
-    followings = models.ManyToManyField('self', symmetrical=False, related_name='followers', blank=True)
-    nickname = models.CharField(max_length=50)
+    nickname = models.CharField(max_length=15, blank=False, null=False)
+    followings = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='followers')
     profile_img = models.ImageField(null=True, blank=True, upload_to='profile_imgs/')
