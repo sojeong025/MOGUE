@@ -13,11 +13,12 @@ import MovieView from '@/views/movies/MovieView'
 import MovieDetailView from '@/views/movies/MovieDetailView'
 import CollectionDetailView from '@/views/movies/CollectionDetailView'
 
+
 // 3.Community Router
 import CommunityView from '@/views/community/CommunityView'
 import EditorArticleDetailView from '@/views/community/EditorArticleDetailView'
 import UserArticleDetailView from '@/views/community/UserArticleDetailView'
-
+import UserArticleCreateView from '@/views/community/UserArticleCreateView'
 
 
 Vue.use(VueRouter)
@@ -72,6 +73,11 @@ const routes = [
     path: '/community/user_articles/:id',
     name: 'userarticledetail',
     component: UserArticleDetailView
+  },
+  {
+    path: '/community/create',
+    name: 'articlecreate',
+    component: UserArticleCreateView
   }
 ]
 

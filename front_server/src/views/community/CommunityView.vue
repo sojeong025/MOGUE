@@ -1,7 +1,8 @@
 <template>
   <div>
     <h1>Community</h1>
-    <EditorArticleList/>
+    <router-link :to="{ name: 'articlecreate' }">[CREATE]</router-link>
+    <EditorArticleList/><hr>
     <UserArticleList/>
   </div>
 </template>
@@ -12,7 +13,7 @@ import UserArticleList from '@/components/UserArticleList'
 
 export default {
   name: 'CommunityView',
-  component: {
+  components: {
     EditorArticleList,
     UserArticleList,
   }

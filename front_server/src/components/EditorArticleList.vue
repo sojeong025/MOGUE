@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>EditorArticleList</h1>
+    <h2>EditorArticleList</h2>
     <EditorArticleListItem
     v-for="editor_article in editor_articles" :key="editor_article.id" :editor_article="editor_article"/>
   </div>
