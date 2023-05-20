@@ -10,40 +10,38 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
+        ('movies', '0001_initial'),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Movie',
+            name='EditorArticle',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('title', models.CharField(max_length=100)),
-                ('release_date', models.DateField()),
-                ('overview', models.TextField()),
-                ('popularity', models.FloatField()),
-                ('runtime', models.IntegerField()),
-                ('vote_count', models.FloatField()),
-                ('poster_path', models.CharField(max_length=200)),
+                ('thumbnail', models.TextField()),
+                ('rawHTML', models.TextField()),
             ],
         ),
         migrations.CreateModel(
-            name='Review',
-            fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('content', models.TextField()),
-                ('star', models.IntegerField()),
-                ('movie', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='movies.movie')),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
-            ],
-        ),
-        migrations.CreateModel(
-            name='Collection',
+            name='UserArticle',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('title', models.CharField(max_length=50)),
-                ('thumbnail', models.ImageField(blank=True, null=True, upload_to='collection_thumbnails/')),
-                ('movies', models.ManyToManyField(to='movies.Movie', verbose_name='collections')),
+                ('content', models.TextField()),
+                ('img', models.ImageField(blank=True, null=True, upload_to='article_image/')),
+                ('movie', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='user_articles', to='movies.movie')),
+                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='user_articles', to=settings.AUTH_USER_MODEL)),
+            ],
+        ),
+        migrations.CreateModel(
+            name='Comment',
+            fields=[
+                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('content', models.TextField()),
+                ('article', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='comments', to='community.userarticle')),
+                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='comments', to=settings.AUTH_USER_MODEL)),
             ],
         ),
     ]
