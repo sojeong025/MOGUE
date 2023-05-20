@@ -14,8 +14,8 @@
         <button @click="logout">Logout</button>
       </div>
     </nav>
-    community
-    movie
+    <router-link :to="{ name: 'community' }"> community </router-link>
+    <router-link :to="{ name: 'movie' }"> movie </router-link>
     search
     <router-view @login="this.$store.state.isLogin=true"/>
   </div>
@@ -48,4 +48,5 @@ export default {
   margin: 0px;
   padding: 0px;
 }
+
 </style>
