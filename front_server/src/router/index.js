@@ -15,6 +15,8 @@ import CollectionDetailView from '@/views/movies/CollectionDetailView'
 
 // 3.Community Router
 import CommunityView from '@/views/community/CommunityView'
+import EditorArticleDetailView from '@/views/community/EditorArticleDetailView'
+import UserArticleDetailView from '@/views/community/UserArticleDetailView'
 
 
 
@@ -60,6 +62,16 @@ const routes = [
     path: '/community',
     name: 'community',
     component: CommunityView
+  },
+  {
+    path: '/community/editor_articles/:id',
+    name: 'editorarticledetail',
+    component: EditorArticleDetailView
+  },
+  {
+    path: '/community/user_articles/:id',
+    name: 'userarticledetail',
+    component: UserArticleDetailView
   }
 ]
 
