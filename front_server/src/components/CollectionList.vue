@@ -29,9 +29,10 @@ export default {
     getCollections(){
       axios({
         method: 'get',
-        url: `${API_URL}/collections/`
+        url: `${API_URL}/movies/collections/`
       })
       .then((res) => {
+        console.log(res)
         this.collections = res.data
       })
       .catch(err => console.log(err))
