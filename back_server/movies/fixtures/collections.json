@@ -1,0 +1,10 @@
+[
+  {
+    "model": "movies.collection",
+    "id": 0,
+    "fields": {
+      "title": "겨울에 보기 좋은 영화",
+      "thumbnail": "/dlGyzCxbBQK1U2O5o31Z1hB6erc.jpg"
+    }
+  }
+]

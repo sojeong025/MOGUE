@@ -1,0 +1,12 @@
+[
+  {
+    "model": "movies.review",
+    "pk": 1,
+    "fields": {
+      "content": "이 영화 개꿀잼 ㅋㅋ",
+      "star": 5,
+      "user_id": 1,
+      "movie_id": 38
+    }
+  }
+]

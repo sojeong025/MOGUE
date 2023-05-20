@@ -1,0 +1,34 @@
+[
+  {
+    "model": "movies.collection_movies",
+    "pk": 0,
+    "fields": {
+      "collection_id": 1,
+      "movie_id": 38
+    }
+  },
+  {
+    "model": "movies.collection_movies",
+    "pk": 1,
+    "fields": {
+      "collection_id": 1,
+      "movie_id": 109445
+    }
+  },
+  {
+    "model": "movies.collection_movies",
+    "pk": 2,
+    "fields": {
+      "collection_id": 1,
+      "movie_id": 411
+    }
+  },
+  {
+    "model": "movies.collection_movies",
+    "pk": 3,
+    "fields": {
+      "collection_id": 1,
+      "movie_id": 675
+    }
+  }
+]
