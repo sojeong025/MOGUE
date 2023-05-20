@@ -29,7 +29,7 @@ export default {
       content : null,
       img : null,
       method: 'post',
-      url: `${API_URL}/community/user_articles/create`,
+      url: `${API_URL}/community/user_articles/create/`,
     }
   },
   methods: {
@@ -49,6 +49,7 @@ export default {
     formData.append('title', title)
     formData.append('content', content)
     formData.append('img', this.img)
+    formData.append('user', this.$localStorage.user)
 
     axios({
       method: this.method,
@@ -68,15 +69,6 @@ export default {
       this.img = event.target.files[0]
     },
   },
-  // created() {
-  //   console.log(this.$route.params)
-  //   const article = this.$route.params.user_article
-  //   this.title = article.title
-  //   this.content = article.content
-  //   this.img = article.img
-  //   this.method = 'put'
-  //   this.url = `${API_URL}/api/v2/community/user_article/${article.id}`
-  // }
 }
 </script>
 

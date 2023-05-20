@@ -10,8 +10,17 @@ export default new Vuex.Store({
   getters: {
   },
   mutations: {
+    SET_LOGIN(state, isLogin) {
+      state.isLogin=isLogin
+    }
   },
   actions: {
+    login() {
+      this.commit('SET_LOGIN', true)
+    },
+    logout() {
+      this.commit('SET_LOGIN', false)
+    }
   },
   modules: {
   }

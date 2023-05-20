@@ -9,7 +9,7 @@ class EditorArticle(models.Model):
 
 class UserArticle(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='user_articles', on_delete=models.CASCADE)
-    movie = models.ForeignKey(Movie, related_name='user_articles', on_delete=models.CASCADE)
+    movie = models.ForeignKey(Movie, related_name='user_articles', blank=True, on_delete=models.CASCADE)
     title = models.CharField(max_length=50)
     content = models.TextField()
     img = models.ImageField(null=True, blank=True, upload_to='article_image/')

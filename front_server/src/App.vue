@@ -17,7 +17,7 @@
     <router-link :to="{ name: 'community' }"> community </router-link>
     <router-link :to="{ name: 'movie' }"> movie </router-link>
     search
-    <router-view @login="this.$store.state.isLogin=true"/>
+    <router-view/>
   </div>
 </template>
 
@@ -26,7 +26,6 @@ export default {
   name: 'App',
   data() {
     return {
-      isLogin: false,
     }
   },
   methods: {

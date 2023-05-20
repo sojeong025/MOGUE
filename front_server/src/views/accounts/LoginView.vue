@@ -32,8 +32,8 @@ export default {
       .then(res => {
         console.log(res.data)
         localStorage.setItem('token', res.data.token)
-        localStorage.setItem('user', res.data)
-        this.$emit('login')
+        localStorage.setItem('user', this.user.username)
+        this.$store.dispatch('login')
         this.$router.push({ name: 'home' })
       })
     }
