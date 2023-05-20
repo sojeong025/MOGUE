@@ -11,14 +11,37 @@
         <router-link :to="{ name: 'login' }"> Login </router-link>
         <router-link :to="{ name: 'signup' }"> Signup </router-link>
         <router-link :to="{ name: 'profile' }"> Profile </router-link>
+        <button @click="logout">Logout</button>
       </div>
     </nav>
     community
     movie
     search
-    <router-view/>
+    <router-view @login="this.$store.state.isLogin=true"/>
   </div>
 </template>
+
+<script>
+export default {
+  name: 'App',
+  data() {
+    return {
+      isLogin: false,
+    }
+  },
+  methods: {
+    logout() {
+      this.isLogin = false
+      localStorage.removeItem('token')
+      localStorage.removeItem('user')
+      if (this.$router.name !== 'home') {
+        this.$router.push({ name: 'home' })
+      }
+    }
+  }
+}
+</script>
+
 
 <style>
 * {

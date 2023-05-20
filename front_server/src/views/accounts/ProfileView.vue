@@ -6,7 +6,10 @@
 
 <script>
 export default {
-  name: 'ProfileView'
+  name: 'ProfileView',
+  created() {
+    console.log(localStorage['user_id'])
+  }
 }
 </script>
 

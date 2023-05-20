@@ -10,9 +10,9 @@ from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 from django.contrib.auth import get_user_model, update_session_auth_hash
 from .models import User
 from .serializers import UserSerializer
-from movies.models import Movie, Review
+# from movies.models import Movie, Review
 # from movies.serializers import MovieSerializer, ReviewSerializer
-from community.models import Community, Ceview
+# from community.models import Community, Ceview
 # from community.serializers import CommunitySerializer, CeviewSerializer
 
 
