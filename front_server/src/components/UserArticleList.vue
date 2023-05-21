@@ -2,7 +2,7 @@
   <div>
     <h2>UserArticle</h2>
     <UserArticleListItem
-    v-for="user_article in user_articles" :key="user_article.id" :user_article="user_article"/>
+    v-for="user_article in user_articles" :key="user_article.id" :user_article="user_article" @delete="article_delete"/>
   </div>
 </template>
 
@@ -35,8 +35,11 @@ export default {
         this.user_articles = res.data
       })
       .catch(err => console.log(err))
+    },
+    delete(user_article) {
+      this.user_article.pop(user_article)
     }
-  }
+  },
 }
 </script>
 

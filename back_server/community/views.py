@@ -76,7 +76,7 @@ def manage_user_article(request, user_article_pk):
     if request.user.id == user_article.user_id:
         print(1)
         if request.method == 'PUT':
-            serializer = UserArticleSerializer(user_article, data=request.data)
+            serializer = UserArticleSerializer(instance=user_article, data=request.data)
             if serializer.is_valid(raise_exception=True):
                 serializer.save()
                 return Response(serializer.data, status=status.HTTP_200_OK)
@@ -98,10 +98,11 @@ def user_comments(request):
 
 @api_view(['POST'])
 @permission_classes([AllowAny])
-def create_comment(request, article_pk):
+def create_comment(request, user_article_pk):
+    article = UserArticle.objects.get(user_article_pk)
     serializer = CommentSerializer(data=request.data)
     if serializer.is_valid(raise_exception=True):
-        serializer.save(user=request.user, article=article_pk)
+        serializer.save(user=request.user, article=user_article_pk)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 

@@ -30,7 +30,7 @@ export default {
       title : null,
       content : null,
       img : null,
-      method: 'post',
+      method: this.$route.params.method,
       url: `${API_URL}/community/user_articles/create/`,
     }
   },
@@ -44,30 +44,58 @@ export default {
         content: this.content,
         img: this.img
       }
+      console.log(formData.user)
       if (formData.title && formData.content) {
-        axios({
-          method: 'post',
-          url: `${API_URL}/community/user_articles/create/`,
-          data: formData,
-          headers: {
-            'Content-Type': 'multipart/form-data',
-            Authorization: `JWT ${token}`
-          }
-        })
-        .then(res => {
-          console.log(res)
-          this.$router.push({ name: 'userarticledetail', params: {id: res.data.id, user_article: res.data}})
-        })
-        .catch(err => {
-          console.log(err)
-          console.log('실패')
-        })
+        console.log(this.method)
+        if (this.method === 'post') {
+          axios({
+            method: 'post',
+            url: `${API_URL}/community/user_articles/create/`,
+            data: formData,
+            headers: {
+              'Content-Type': 'multipart/form-data',
+              Authorization: `JWT ${token}`
+            }
+          })
+          .then(res => {
+            console.log(res)
+            this.$router.push({ name: 'userarticledetail', params: {id: res.data.id, user_article: res.data}})
+          })
+          .catch(err => {
+            console.log(err)
+            console.log('실패')
+          })
+        } else if (this.method === 'put') {
+          axios({
+            method: 'put',
+            url: `${API_URL}/community/user_articles/${this.$route.params.user_article.id}/manage/`,
+            data: formData,
+            headers: {
+              'Content-Type': 'multipart/form-data',
+              Authorization: `JWT ${token}`
+            }
+          })
+          .then(res => {
+            console.log(res)
+            this.$router.push({ name: 'userarticledetail', params: {id: res.data.id, user_article: res.data}})
+          })
+          .catch(err => {
+            console.log(err)
+            console.log('실패')
+          })
+        }
       }
     },
     handleImgChange(event) {
       this.img = event.target.files[0]
     },
   },
+  created() {
+    if (this.$route.params.method === 'put') {
+      this.title = this.$route.params.user_article.title
+      this.content = this.$route.params.user_article.content
+    }
+  }
 }
 </script>
 
