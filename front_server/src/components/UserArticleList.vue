@@ -7,6 +7,9 @@
 </template>
 
 <script>
+import axios from 'axios'
+const API_URL = 'http://127.0.0.1:8000'
+
 import UserArticleListItem from '@/components/UserArticleListItem'
 
 export default {
@@ -14,9 +17,24 @@ export default {
   components: {
     UserArticleListItem,
   },
-  computed: {
-    user_articles(){
-      return this.$store.state.user_articles
+  data() {
+    return {
+      user_articles: [],
+    }
+  },
+  created() {
+    this.getUserArticles()
+  },
+  methods: {
+    getUserArticles(){
+      axios({
+        method: 'get',
+        url: `${API_URL}/community/user_articles`
+      })
+      .then((res) => {
+        this.user_articles = res.data
+      })
+      .catch(err => console.log(err))
     }
   }
 }

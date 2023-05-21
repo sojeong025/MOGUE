@@ -40,8 +40,8 @@ export default {
       const formData = {
         user: jwtDecode(token).user_id, // 초기값은 null로 설정합니다.
         movie: 38,
-        title: '제목',
-        content: '내용',
+        title: this.title,
+        content: this.content,
         img: this.img
       }
       if (formData.title && formData.content) {

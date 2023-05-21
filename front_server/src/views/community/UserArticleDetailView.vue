@@ -9,9 +9,9 @@
       <p>제목 : {{ user_article?.title }}</p>
       <img v-if="user_article?.img" :src="`http://127.0.0.1:8000${user_article?.img}`" alt="img" width="100px" height="100px">
       <p>내용 : {{ user_article?.content }}</p>
-      <!-- <p>작성시간 : {{ user_article?.created_at }}</p> -->
-      <!-- <router-link :to="{ name: 'articlecreate', params: { user_article: user_article } }"><button>수정</button></router-link>
-      <button @click="deleteUserArticle">삭제</button> -->
+
+      <button>수정</button>
+      <button @click="deleteUserArticle">삭제</button>
       </div>
     <!-- <div class="comment">
       <form id="comment-form" @keyup.enter="createComment" @submit.prevent="createComment">
@@ -30,6 +30,7 @@
 <script>
 import axios from 'axios'
 const API_URL = 'http://127.0.0.1:8000'
+const token = localStorage.getItem('token')
 
 export default {
   name: 'UserArticleDetailView',
@@ -42,36 +43,36 @@ export default {
     }
   },
   created(){
-    this.method = 'get'
     this.getUserArticleDetail()
     // this.getCommentList()
   },
   methods: {
     getUserArticleDetail() {
       axios({
-        method: this.method,
+        method: 'get',
         url: `${API_URL}/community/user_articles/${this.$route.params.id}`,
         headers: {
-          Authorization: `Token ${this.$store.state.token}`
+          Authorization: `JWT ${token}`
         }
       })
       .then((res) => {
-        if (res.status === 204) {
-          this.$router.push({name: 'community'})
-        } else {
-          this.user_article = res.data
-        }
+        this.user_article = res.data
       })
-      .catch((err) => {
-        if (err.response.status === 400) {
-          alert('니꺼 아니다')
-        }
-      })
+      .catch(err => console.log(err))
     },
-    // deleteUserArticle() {
-    //   this.method = 'delete'
-    //   this.getUserArticleDetail()
-    // },
+    deleteUserArticle() {
+      axios({
+        method: 'delete',
+        url: `${API_URL}/community/user_articles/${this.$route.params.id}/manage`,
+        headers: {
+          Authorization: `JWT ${token}`
+        }
+      })
+      .then(() =>{
+        this.$router.push({ name: 'community' })
+      })
+      .catch(err => console.log(err))
+    },
   //   getCommentList(){
   //     axios({
   //       method: 'get',
