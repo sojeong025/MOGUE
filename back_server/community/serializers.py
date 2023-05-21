@@ -2,7 +2,7 @@ from rest_framework import serializers
 from .models import EditorArticle, UserArticle, Comment
 from django.contrib.humanize.templatetags.humanize import naturaltime
 from django.utils.timezone import now
-
+from accounts.serializers import UserSerializer
 class EditorArticleSerializer(serializers.ModelSerializer):
 
     class Meta:
@@ -10,11 +10,10 @@ class EditorArticleSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 class UserArticleSerializer(serializers.ModelSerializer):
-
+    user = UserSerializer(read_only=True)
     class Meta:
         model = UserArticle
         fields = "__all__"
-        read_only_fields = ('user',)
 
 class CommentSerializer(serializers.ModelSerializer):
 

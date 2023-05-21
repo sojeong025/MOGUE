@@ -5,21 +5,26 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    isLogin: false
+    isLogin: false,
+    token: null,
   },
   getters: {
   },
   mutations: {
     SET_LOGIN(state, isLogin) {
       state.isLogin=isLogin
+    },
+    SAVE_TOKEN(state, token) {
+      state.token = token;
     }
   },
   actions: {
-    login() {
-      this.commit('SET_LOGIN', true)
+    login({ commit }, token) {
+      commit('SAVE_TOKEN', token);
     },
-    logout() {
-      this.commit('SET_LOGIN', false)
+    // 로그아웃 시 토큰 제거
+    logout({ commit }) {
+      commit('SAVE_TOKEN', null);
     }
   },
   modules: {

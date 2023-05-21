@@ -19,7 +19,9 @@
 
 <script>
 import axios from 'axios'
+import jwtDecode from "jwt-decode"
 const API_URL = 'http://127.0.0.1:8000'
+const token = this.$store.state.token
 
 export default {
   name: 'ArticleCreateView',
@@ -34,36 +36,31 @@ export default {
   },
   methods: {
     createArticle() {
-      const title = this.title
-      const content = this.content
-
-    if (!title) {
-      alert('제목 입력')
-      return
-    } else if (!content) {
-      alert('내용 입력')
-      return
-    }
-
-    const formData = new FormData()
-    formData.append('title', title)
-    formData.append('content', content)
-    formData.append('img', this.img)
-    formData.append('user', this.$localStorage.user)
-
-    axios({
-      method: this.method,
-      url : this.url,
-      data: formData,
-      headers:{
-        'Content-Type': 'multipart/form-data',
-        Authorization: `Token ${this.$store.state.token}`
+      const formData = {
+        user: jwtDecode(token).user_id, // 초기값은 null로 설정합니다.
+        movie: 38,
+        title: '제목',
+        content: '내용',
+        img: this.img
       }
-    })
-    .then((res) => {
-      this.$router.push({name: 'userarticledetail', params: {id: res.data.id, user_article: res.data} })
-    })
-    .catch((err) => console.log(err))
+      if (formData.title && formData.content) {
+        axios({
+          method: 'post',
+          url: `${API_URL}/community/user_articles/create/`,
+          data: formData,
+          headers: {
+            Authorization: `JWT ${token}`
+          }
+        })
+        .then(res => {
+          console.log(res)
+          console.log('성공')
+        })
+        .catch(err => {
+          console.log(err)
+          console.log('실패')
+        })
+      }
     },
     handleImgChange(event) {
       this.img = event.target.files[0]

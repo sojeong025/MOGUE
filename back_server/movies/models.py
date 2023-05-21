@@ -20,4 +20,3 @@ class Collection(models.Model):
     title = models.CharField(max_length=50)
     thumbnail = models.ImageField(null=True, blank=True, upload_to='collection_thumbnails/')
     movies = models.ManyToManyField(Movie, verbose_name='collections')
-

@@ -26,14 +26,12 @@ export default {
     login() {
       axios({
         method: 'post',
-        url: 'http://127.0.0.1:8000/accounts/api-token-auth/',
+        url: 'http://127.0.0.1:8000/accounts/login/',
         data: this.user
       })
       .then(res => {
-        console.log(res.data)
-        localStorage.setItem('token', res.data.token)
-        localStorage.setItem('user', this.user.username)
-        this.$store.dispatch('login')
+        const token = res.data.token;
+        this.$store.dispatch('login', token)
         this.$router.push({ name: 'home' })
       })
     }

@@ -62,8 +62,8 @@ def user_article_detail(request, user_article_pk):
 @permission_classes([AllowAny])
 def create_user_article(request):
     serializer = UserArticleSerializer(data=request.data)
-    print(request.user)
     if serializer.is_valid(raise_exception=True):
+        print(1)
         serializer.save(user=request.user)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
