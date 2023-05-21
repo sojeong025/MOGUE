@@ -4,8 +4,8 @@
     <router-link :to="{ name :'community'}">[Community]</router-link>
     <div class="container">
       <p>글 번호 : {{ user_article?.id }}</p>
-      <p>작성자 : {{ user_article?.nickname}}</p>
-      <!-- <p>작성시간 : {{ user_article?.created_at }}</p> -->
+      <p>작성자 : {{ user_article?.user.nickname}}</p>
+      <p>작성시간 : {{ user_article?.created_at }}</p>
       <p>제목 : {{ user_article?.title }}</p>
       <img v-if="user_article?.img" :src="`http://127.0.0.1:8000${user_article?.img}`" alt="img" width="100px" height="100px">
       <p>내용 : {{ user_article?.content }}</p>

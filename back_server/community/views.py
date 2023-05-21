@@ -46,15 +46,16 @@ def user_articles(request):
 def user_article_detail(request, user_article_pk):
     user_article = get_object_or_404(UserArticle, pk=user_article_pk)
     comments = Comment.objects.all().filter(pk=user_article_pk)
-
     user_article_serializer = UserArticleSerializer(user_article)
-    comments_serializer = CommentSerializer(comments)
-
-    context = {
-        'user_article': user_article_serializer.data,
-        'comments': comments_serializer.data,
-    }
-
+    if comments:
+        comments_serializer = CommentSerializer(comments)
+        
+        context = {
+            'user_article': user_article_serializer.data,
+            'comments': comments_serializer.data,
+        }
+    else:
+        context = user_article_serializer.data
     return Response(context, status=status.HTTP_200_OK)
 
 
