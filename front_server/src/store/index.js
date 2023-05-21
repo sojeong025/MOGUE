@@ -15,7 +15,7 @@ export default new Vuex.Store({
       state.isLogin=isLogin
     },
     SAVE_TOKEN(state, token) {
-      state.token = token;
+      localStorage.setItem('token', token)
     }
   },
   actions: {

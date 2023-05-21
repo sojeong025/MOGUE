@@ -37,6 +37,13 @@ export default {
         this.$router.push({ name: 'home' })
       }
     }
+  },
+  created(){
+    if (localStorage.getItem('token')) {
+      console.log('로그인 돼있음')
+    } else {
+      console.log('로그인 안돼있음')
+    }
   }
 }
 </script>

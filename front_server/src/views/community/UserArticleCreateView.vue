@@ -21,7 +21,7 @@
 import axios from 'axios'
 import jwtDecode from "jwt-decode"
 const API_URL = 'http://127.0.0.1:8000'
-const token = this.$store.state.token
+
 
 export default {
   name: 'ArticleCreateView',
@@ -36,6 +36,7 @@ export default {
   },
   methods: {
     createArticle() {
+      const token = localStorage.getItem('token')
       const formData = {
         user: jwtDecode(token).user_id, // 초기값은 null로 설정합니다.
         movie: 38,
@@ -49,12 +50,13 @@ export default {
           url: `${API_URL}/community/user_articles/create/`,
           data: formData,
           headers: {
+            'Content-Type': 'multipart/form-data',
             Authorization: `JWT ${token}`
           }
         })
         .then(res => {
           console.log(res)
-          console.log('성공')
+          this.$router.push({ name: 'userarticledetail', params: {id: res.data.id, user_article: res.data}})
         })
         .catch(err => {
           console.log(err)

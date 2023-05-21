@@ -1,7 +1,8 @@
 <template>
   <div>
     <h1>Community</h1>
-    <router-link :to="{ name: 'articlecreate' }">[CREATE]</router-link>
+    <router-link :to="{ name: 'articlecreate' }" v-if="token">[CREATE]</router-link>
+    <router-link :to="{ name: 'login' }" v-else>[CREATE]</router-link>
     <EditorArticleList/><hr>
     <UserArticleList/>
   </div>
@@ -13,6 +14,11 @@ import UserArticleList from '@/components/UserArticleList'
 
 export default {
   name: 'CommunityView',
+  data() {
+    return{
+      token: localStorage.getItem('token')
+    }
+  },
   components: {
     EditorArticleList,
     UserArticleList,
