@@ -26,6 +26,7 @@ def signup(request):
 	# 1-2. 패스워드 일치 여부 체크
     if password != password_confirmation:
         return Response({'error': '비밀번호가 일치하지 않습니다.'}, status=status.HTTP_400_BAD_REQUEST)
+    
 	# 2. UserSerializer를 통해 데이터 직렬화
     serializer = UserSerializer(data=request.data)
     serializer.nickname = nickname
@@ -37,7 +38,6 @@ def signup(request):
         user.save()
         # password는 직렬화 과정에는 포함 되지만 → 표현(response)할 때는 나타나지 않는다. (wrtie_only)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
-
 
 # @api_view(['GET'])
 # @authentication_classes([JSONWebTokenAuthentication])

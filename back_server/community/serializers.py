@@ -10,13 +10,26 @@ class EditorArticleSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 class UserArticleSerializer(serializers.ModelSerializer):
+    created_at = serializers.SerializerMethodField()
     user = UserSerializer(read_only=True)
+
+    def get_created_at(self, obj):
+        time_difference = naturaltime(obj.created_at)
+        time_difference = time_difference.replace(" ", "")    
+        time_difference = time_difference.replace("전", " 전")    
     class Meta:
         model = UserArticle
         fields = "__all__"
 
 class CommentSerializer(serializers.ModelSerializer):
+    user = UserSerializer(read_only=True)
+    article = UserArticleSerializer(read_only=True)
+    created_at = serializers.SerializerMethodField()
 
-    class Mets:
+    def get_created_at(self, obj):
+        time_difference = naturaltime(obj.created_at)
+        time_difference = time_difference.replace(" ", "")    
+        time_difference = time_difference.replace("전", " 전")   
+    class Meta:
         model = Comment
         fields = "__all__"

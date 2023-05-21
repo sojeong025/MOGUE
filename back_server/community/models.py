@@ -13,9 +13,11 @@ class UserArticle(models.Model):
     title = models.CharField(max_length=50)
     content = models.TextField()
     img = models.ImageField(null=True, blank=True, upload_to='article_image/')
+    created_at = models.DateTimeField(auto_now_add=True)
     
 
 class Comment(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='comments', on_delete=models.CASCADE)
     article = models.ForeignKey(UserArticle, related_name='comments', on_delete=models.CASCADE)
     content = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)

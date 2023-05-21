@@ -63,7 +63,6 @@ def user_article_detail(request, user_article_pk):
 def create_user_article(request):
     serializer = UserArticleSerializer(data=request.data)
     if serializer.is_valid(raise_exception=True):
-        print(1)
         serializer.save(user=request.user)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
@@ -71,12 +70,12 @@ def create_user_article(request):
 @api_view(['PUT', 'DELETE'])
 @permission_classes([IsAuthenticated])
 def manage_user_article(request, user_article_pk):
-    user_article = get_object_or_404(pk=user_article_pk)
+    user_article = get_object_or_404(UserArticle, pk=user_article_pk)
 
     if request.user == user_article.user_id:
         if request.method == 'PUT':
             serializer = UserArticleSerializer(user_article, data=request.data)
-            if serializer.is_valid():
+            if serializer.is_valid(raise_exception=True):
                 serializer.save()
                 return Response(serializer.data, status=status.HTTP_200_OK)
             
@@ -85,3 +84,40 @@ def manage_user_article(request, user_article_pk):
             return Response("삭제되었습니다.", status=status.HTTP_204_NO_CONTENT)
     else:
         return Response("권한이 없습니다", status=status.HTTP_403_FORBIDDEN)
+
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def user_comments(request):
+    comments = Comment.objects.all().filter(user=request.user)
+    serializer = CommentSerializer(comments, many=True)
+    return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+@api_view(['POST'])
+@permission_classes([AllowAny])
+def create_comment(request, article_pk):
+    serializer = CommentSerializer(data=request.data)
+    if serializer.is_valid(raise_exception=True):
+        serializer.save(user=request.user, article=article_pk)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+
+@api_view(['PUT', 'DELETE'])
+@permission_classes([IsAuthenticated])
+def manage_comment(request, comment_pk):
+    comment = get_object_or_404(Comment, pk=comment_pk)
+
+    if request.user == comment.user_id:
+        if request.method == 'PUT':
+            serializer = CommentSerializer(comment, data=request.data)
+            if serializer.is_valid(raise_exception=True):
+                serializer.save()
+                return Response(serializer.data, status=status.HTTP_200_OK)
+        
+        elif request.method == 'DELETE':
+            comment.delete()
+            return Response('삭제되었습니다', status=status.HTTP_204_NO_CONTENT)
+        
+    else:
+        return Response('권한이 없습니다', status=status.HTTP_403_FORBIDDEN)
