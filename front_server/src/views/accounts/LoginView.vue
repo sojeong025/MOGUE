@@ -32,7 +32,7 @@ export default {
       .then(res => {
         const token = res.data.token;
         this.$store.dispatch('login', token)
-        this.$router.push({ name: 'home' })
+        this.$router.go(-1)
       })
     }
   }

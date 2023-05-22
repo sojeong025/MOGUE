@@ -39,13 +39,13 @@ def signup(request):
         # password는 직렬화 과정에는 포함 되지만 → 표현(response)할 때는 나타나지 않는다. (wrtie_only)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
-# @api_view(['GET'])
-# @authentication_classes([JSONWebTokenAuthentication])
-# @permission_classes([IsAuthenticated])
-# def profile(request, user_pk):
-#     # 유저 정보
-#     person = get_object_or_404(User, pk=user_pk)
-#     serializer = UserSerializer(person)
+@api_view(['GET'])
+@authentication_classes([JSONWebTokenAuthentication])
+@permission_classes([IsAuthenticated])
+def profile(request, user_pk):
+    # 유저 정보
+    person = get_object_or_404(User, pk=user_pk)
+    serializer = UserSerializer(person)
 
 #     # 유저가 좋아요 누른 영화
 #     likeMoive = Movie.objects.filter(like_users=user_pk)
@@ -72,15 +72,15 @@ def signup(request):
 #     likeCommunity = Community.objects.filter(like_users=user_pk)
 #     likecomserializer = CommunitySerializer(likeCommunity, many=True)
 
-#     context = {
-#         'userInfo': serializer.data,
+    context = {
+        'userInfo': serializer.data,
 #         'userLikeMovies': likeserializer.data,
 #         'reviewInMovies': reserializer.data,
 #         'userCreateCommunity': comserializer.data,
 #         'userLikeCommunity': likecomserializer.data,
 #         'userFavoriteMovies': favoriteserializer.data,
-#     }
-#     return Response(context)
+    }
+    return Response(context)
 
 
 @api_view(['DELETE'])
