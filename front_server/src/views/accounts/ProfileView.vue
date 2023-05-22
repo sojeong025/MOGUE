@@ -2,7 +2,7 @@
   <div> 
     <h1>Profile</h1>
     <div class="profile-left">
-      <p>{{user.username}}님의 프로필</p>
+      <p>{{user.nickname}}님의 프로필</p>
       <p>{{user.profile_img}} 지금은 이미지 없음</p>
 
       <div v-if="itsMe">
@@ -17,12 +17,12 @@
         </div>
       </div>
 
-      <router-link :to="{ name: 'follow', params: {id: user.id, user: user} }">
+      <router-link :to="{ name: 'follow', params: { id: user.id }, query: { followers: followers, followings: followings } }">
         <span class="follower-number">
           팔로워 : {{ followings.length }}
         </span>
       </router-link>
-      <router-link :to="{ name: 'follow', params: {id: user.id, user: user} }">
+      <router-link :to="{ name: 'follow', params: { id: user.id }, query: { followers: followers, followings: followings } }">
         <span class="following-number">
           팔로잉 : {{ followers.length }}
         </span>
