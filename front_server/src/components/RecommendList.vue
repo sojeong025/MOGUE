@@ -50,6 +50,9 @@ export default {
 <style>
   #recommend-list{
     display: flex;
+    align-items: flex-end;
+    height: 300px;
+    display: flex;
     margin-top: 20px;
     overflow: auto;
     white-space: nowrap;

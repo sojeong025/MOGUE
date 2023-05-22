@@ -6,5 +6,37 @@
       "title": "겨울에 보기 좋은 영화",
       "thumbnail": "/dlGyzCxbBQK1U2O5o31Z1hB6erc.jpg"
     }
+  },
+  {
+    "model": "movies.collection",
+    "id": 1,
+    "fields": {
+      "title": "겨울에 보기 좋은 영화",
+      "thumbnail": "/dlGyzCxbBQK1U2O5o31Z1hB6erc.jpg"
+    }
+  },
+  {
+    "model": "movies.collection",
+    "id": 2,
+    "fields": {
+      "title": "겨울에 보기 좋은 영화",
+      "thumbnail": "/dlGyzCxbBQK1U2O5o31Z1hB6erc.jpg"
+    }
+  },
+  {
+    "model": "movies.collection",
+    "id": 3,
+    "fields": {
+      "title": "겨울에 보기 좋은 영화",
+      "thumbnail": "/dlGyzCxbBQK1U2O5o31Z1hB6erc.jpg"
+    }
+  },
+  {
+    "model": "movies.collection",
+    "id": 4,
+    "fields": {
+      "title": "겨울에 보기 좋은 영화",
+      "thumbnail": "/dlGyzCxbBQK1U2O5o31Z1hB6erc.jpg"
+    }
   }
 ]

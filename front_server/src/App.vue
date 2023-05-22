@@ -64,6 +64,7 @@ export default {
   * {
     margin: 0px;
     padding: 0px;
+    word-break: break-all;
   }
 
   *::-webkit-scrollbar{

@@ -1,6 +1,5 @@
 <template>
-  <div>
-    <h1>CollectionList</h1>
+  <div id="collection-list">
     <CollectionListItem
     v-for="collection in collections" :key="collection.id" :collection="collection" />
   </div>
@@ -41,5 +40,9 @@ export default {
 </script>
 
 <style>
-
+  #collection-list {
+    width: 1200px;
+    display: flex;
+    flex-wrap: wrap;
+  }
 </style>

@@ -6,8 +6,9 @@
       <video src="/notebook.mp4" class="video"
       type="video/mp4" autoplay muted loop></video>
     </div>
-    <div id="collection-list">
-      <RecommendList/>
+    <RecommendList/>
+    <div id="collection-section">
+      <h1>CollectionList</h1>
       <CollectionList/>
     </div>
   </div>
@@ -52,4 +53,10 @@ export default {
     background: linear-gradient(to bottom, transparent, #ffffff);
   }
 
+  #collection-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
 </style>
