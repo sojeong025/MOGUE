@@ -6,6 +6,7 @@ import HomeView from '@/views/HomeView'
 import LoginView from '@/views/accounts/LoginView'
 import SignupView from '@/views/accounts/SignupView'
 import ProfileView from '@/views/accounts/ProfileView'
+import FollowView from '@/views/accounts/FollowView'
 
 
 // 2.Movie Router
@@ -20,6 +21,8 @@ import EditorArticleDetailView from '@/views/community/EditorArticleDetailView'
 import UserArticleDetailView from '@/views/community/UserArticleDetailView'
 import UserArticleCreateView from '@/views/community/UserArticleCreateView'
 
+// 4. Search Router
+import SearchView from '@/views/search/SearchView'
 
 Vue.use(VueRouter)
 
@@ -43,6 +46,11 @@ const routes = [
     path: '/profile/:id',
     name: 'profile',
     component: ProfileView
+  },
+  {
+    path: '/profile/:id/follow',
+    name: 'follow',
+    component: FollowView
   },
   {
     path: '/movie',
@@ -78,6 +86,11 @@ const routes = [
     path: '/community/create',
     name: 'articlecreate',
     component: UserArticleCreateView
+  },
+  {
+    path: '/search',
+    name: 'search',
+    component: SearchView
   }
 ]
 
