@@ -10,7 +10,7 @@
         </div>
         <router-link :to="{ name: 'login' }"> Login </router-link>
         <router-link :to="{ name: 'signup' }"> Signup </router-link>
-        <router-link :to="{ name: 'profile' }"> Profile </router-link>
+        <router-link :to="{ name: 'profile', params: { id: this.user_id } }"> Profile </router-link>
         <button @click="logout">Logout</button>
       </div>
     </nav>
@@ -22,10 +22,14 @@
 </template>
 
 <script>
+import jwtDecode from "jwt-decode"
+const token = localStorage.getItem('token')
+
 export default {
   name: 'App',
   data() {
     return {
+      user_id: jwtDecode(token).user_id
     }
   },
   methods: {

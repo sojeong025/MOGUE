@@ -1,7 +1,10 @@
 <template>
-  <div>
+  <div> 
     <h1>Profile</h1>
-    <p>{{ nickname }}</p>
+    <div class="profile-left">
+      <p>{소정.nickname}님의 프로필</p>
+      <p>{프로필 사진}</p>
+    </div>
     <!-- <button @click="follow" class="follow">Follow</button>
     <button @click="follow" class="follow">Unfollow</button> -->
   </div>
@@ -26,23 +29,23 @@ export default {
   },
   data(){
     return{
-      userData: null,
-      userId: null,
-      nickname: null,
-      username: null,
-      follower: 0,
-      following: 0,
+      // userData: null,
+      // userId: null,
+      // nickname: null,
+      // username: null,
+      // follower: 0,
+      // following: 0,
     }
   },
   methods: {
     getUserProfile(){
       const user_id = jwtDecode(token).user_id
-      const userId = this.$route.params.user_id
+      const userId = this.$route.params.id
       console.log(user_id)
       console.log(userId)
       axios({
         method: 'get',
-        url: `${API_URL}/accounts/profile/${this.$route.params.user_id}`,
+        url: `${API_URL}/accounts/profile/${user_id}/`,
         headers: {
           Authorization: `JWT ${token}`
         }
@@ -65,5 +68,9 @@ export default {
 </script>
 
 <style>
-
+.profile-left {
+  border: 1px solid orange;
+  margin: 20px;
+  height: 200px;
+}
 </style>
