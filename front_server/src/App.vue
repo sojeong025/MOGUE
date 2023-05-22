@@ -8,13 +8,13 @@
             <h1>LOGO</h1>
           </router-link>
         </div>
-        <div v-if="!isLogin">
-          <router-link :to="{ name: 'login' }"> Login </router-link>
-          <router-link :to="{ name: 'signup' }"> Signup </router-link>
-        </div>
-        <div v-else>
+        <div v-if="checkLogin">
           <router-link :to="{ name: 'profile', params: { id: user_id } }"> Profile </router-link>
           <button @click="logout">Logout</button>
+        </div>
+        <div v-else>
+          <router-link :to="{ name: 'login' }"> Login </router-link>
+          <router-link :to="{ name: 'signup' }"> Signup </router-link>
         </div>
       </div>
     </nav>
@@ -36,16 +36,18 @@ export default {
   data() {
     return {
       user_id: jwtDecode(token).user_id,
+      isLogin: false
     }
   },
+
   methods: {
     logout() {
-      this.isLogin = false
+      localStorage.setItem('isLogin', false)
       localStorage.removeItem('token')
       if (this.$router.name !== 'home') {
         this.$router.push({ name: 'home' })
       }
-    }
+    },
   },
   created(){
     if (localStorage.getItem('token')) {
@@ -53,12 +55,7 @@ export default {
     } else {
       console.log('로그인 안돼있음')
     }
-
-    if (localStorage.getItem('token')) {
-      this.isLogin = true
-    } else {
-      this.isLogin = false
-    }
+    this.checkLogin()
   }
 }
 </script>
