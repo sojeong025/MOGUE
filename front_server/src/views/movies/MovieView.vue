@@ -1,15 +1,20 @@
 <template>
   <div id="movie">
-    <div id="home-video">
+    <div id="movie-headers">
+      <div id="home-video">
         <div class="top"></div>
         <div class="bottom"></div>
-      <video src="/notebook.mp4" class="video"
-      type="video/mp4" autoplay muted loop></video>
+
+      </div>
     </div>
-    <RecommendList/>
-    <div id="collection-section">
-      <h1>CollectionList</h1>
-      <CollectionList/>
+    <div id="movie-body">
+      <div id="recommend-section">
+        <RecommendList/>
+      </div>
+      <div id="collection-section">
+        <h1>CollectionList</h1>
+        <CollectionList/>
+      </div>
     </div>
   </div>
 </template>
@@ -58,5 +63,8 @@ export default {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    margin-top: 50px;
   }
+
+
 </style>

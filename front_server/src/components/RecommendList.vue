@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="recommend-container">
     <h1>요즘 뜨는 영화</h1>
     <div id="recommend-list">
       <RecommendListItem
@@ -48,6 +48,11 @@ export default {
 </script>
 
 <style>
+  #recommend-container {
+    margin-top: -160px;
+    margin-left: 30px;
+  }
+
   #recommend-list{
     display: flex;
     align-items: flex-end;

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>HomeView</h1>
+      <video src="/notebook.mp4" class="video" type="video/mp4" autoplay muted loop></video>
   </div>
 </template>
 
