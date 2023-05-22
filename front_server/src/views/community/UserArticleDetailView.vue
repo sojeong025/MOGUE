@@ -4,7 +4,7 @@
     <router-link :to="{ name :'community'}">[Community]</router-link>
     <div class="container">
       <p>글 번호 : {{ user_article?.id }}</p>
-      <p>작성자 : {{ user_article?.user.nickname}}</p>
+      <p>작성자 : {{ user.nickname }}</p>
       <p>작성시간 : {{ user_article?.created_at }}</p>
       <p>제목 : {{ user_article?.title }}</p>
       <img v-if="user_article?.img" :src="`http://127.0.0.1:8000${user_article?.img}`" alt="img" width="100px" height="100px">
@@ -14,9 +14,9 @@
       <button @click="deleteUserArticle">삭제</button>
       </div>
     <div class="comment">
-      <form id="comment-form" @keyup.enter="createComment" @submit.prevent="createComment">
+      <form id="comment-form" @submit.prevent="createComment">
         <label for="content"></label>
-        <textarea id="content" cols="30" rows="10" v-model="content"></textarea>
+        <input id="text" cols="30" rows="10" v-model="content">
         <input type="submit" value="작성">
       </form>
     </div>
@@ -40,13 +40,11 @@ export default {
       user_article : Object,
       user: Object,
       content : null,
-      // method: null,
       comments : [],
     }
   },
   created(){
     this.getUserArticleDetail()
-    // this.getCommentList()
   },
   methods: {
     getUserArticleDetail() {
@@ -58,8 +56,8 @@ export default {
         }
       })
       .then((res) => {
-        this.user_article = res.data
-        this.user = res.data.user
+        this.user_article = res.data.user_article
+        this.user = res.data.user_article.user
         this.comments = res.data.comments
       })
       .catch(err => console.log(err))
@@ -85,12 +83,12 @@ export default {
     createComment(){
       const content = this.content
       const formData = {
-        user: jwtDecode(token).user_id, 
-        article: this.user_article.id,
         content: this.content,
+        article: this.user_article.id,
+        user: jwtDecode(token).user_id, 
       }
       if (!content) {
-        alert('내용 입력')
+        alert('내용을 입력하세요')
         return
       }
       axios({
@@ -101,22 +99,25 @@ export default {
           Authorization: `JWT ${token}`
         } 
       })
-      .then((res) => {
-        this.comments.push(res.data)
+      .then(() => {
+        this.getUserArticleDetail()
         this.content = ''
       })
       .catch(err => console.log(err))
     },
-  //   deleteComment(comment_id){
-  //     axios({
-  //       method: 'delete',
-  //       url: `${API_URL}/community/comment/${comment_id}`,
-  //     })
-  //     .then((res) => {
-  //       this.comments.pop(res.data)
-  //     })
-  //     .catch(err => console.log(err))
-  //   },
+    deleteComment(comment_id){
+      axios({
+        method: 'delete',
+        url: `${API_URL}/community/comment/${comment_id}/`,
+        headers: {
+          Authorization: `JWT ${token}`
+        } 
+      })
+      .then(() => {
+        this.getUserArticleDetail()
+      })
+      .catch(err => console.log(err))
+    },
   }
 }
 </script>
