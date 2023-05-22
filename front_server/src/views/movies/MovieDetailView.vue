@@ -1,8 +1,13 @@
 <template>
   <div>
-    <h1>MovieDetail</h1>
-    <p>{{ movie.title }}</p>
-    <p v-for="review in reviews" :key="review.id">{{ review.content }}</p>
+    <div id="movie-section">
+      <img id="poster-img" :src="`https://image.tmdb.org/t/p/w780/${movie.poster_path}`" alt="poster">
+      <p>{{ movie.title }}</p>
+      <p>{{ movie.overview }}</p>
+    </div>
+    <div id="review-section">
+      <p v-for="review in reviews" :key="review.id">{{ review.content }}</p>
+    </div>
   </div>
 </template>
 
@@ -24,6 +29,7 @@ export default {
       url: `${API_URL}/movies/${this.$route.params.id}`
     })
     .then((res) => {
+      console.log(res)
       this.movie = res.data.movie
       this.reviews = res.data.reviews
     })
@@ -32,6 +38,10 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+  #poster-img {
+    display: flex;
+    width: 300px;
+    height: 480px;
+  }
 </style>

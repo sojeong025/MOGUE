@@ -5,18 +5,24 @@
       <div id="nav1">
         <div id="logo-container">
           <router-link :to="{ name: 'home' }">
-            Logo
+            <h1>LOGO</h1>
           </router-link>
         </div>
-        <router-link :to="{ name: 'login' }"> Login </router-link>
-        <router-link :to="{ name: 'signup' }"> Signup </router-link>
-        <router-link :to="{ name: 'profile', params: { id: user_id } }"> Profile </router-link>
-        <button @click="logout">Logout</button>
+        <div v-if="!isLogin">
+          <router-link :to="{ name: 'login' }"> Login </router-link>
+          <router-link :to="{ name: 'signup' }"> Signup </router-link>
+        </div>
+        <div v-else>
+          <router-link :to="{ name: 'profile', params: { id: user_id } }"> Profile </router-link>
+          <button @click="logout">Logout</button>
+        </div>
       </div>
     </nav>
-    <router-link :to="{ name: 'community' }"> community </router-link>
-    <router-link :to="{ name: 'movie' }"> movie </router-link>
-    search
+    <div id="nav2">
+      <router-link :to="{ name: 'community' }"> community </router-link>
+      <router-link :to="{ name: 'movie' }"> movie </router-link>
+      search
+    </div>
     <router-view/>
   </div>
 </template>
@@ -29,14 +35,13 @@ export default {
   name: 'App',
   data() {
     return {
-      user_id: jwtDecode(token).user_id
+      user_id: jwtDecode(token).user_id,
     }
   },
   methods: {
     logout() {
       this.isLogin = false
       localStorage.removeItem('token')
-      localStorage.removeItem('user')
       if (this.$router.name !== 'home') {
         this.$router.push({ name: 'home' })
       }
@@ -48,15 +53,48 @@ export default {
     } else {
       console.log('로그인 안돼있음')
     }
+
+    if (localStorage.getItem('token')) {
+      this.isLogin = true
+    } else {
+      this.isLogin = false
+    }
   }
 }
 </script>
 
 
 <style>
-* {
-  margin: 0px;
-  padding: 0px;
-}
+  * {
+    margin: 0px;
+    padding: 0px;
+  }
+
+  *::-webkit-scrollbar{
+      display: none;
+  }
+
+  #app {
+    font-size: 18px;
+    text-decoration: none;
+  }
+
+  a {
+    font-size: 18px;
+    text-decoration: none;
+  }
+
+  #nav1 {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    font-size: 18px;
+  }
+
+  #nav2 {
+    display: flex;
+    justify-content: space-between;
+    font-size: 18px;
+  }
 
 </style>

@@ -1,7 +1,8 @@
 <template>
-  <div>
-    <h1>Movie</h1>
-    <div id="main-video">
+  <div id="movie">
+    <div id="home-video">
+        <div class="top"></div>
+        <div class="bottom"></div>
       <video src="/notebook.mp4" class="video"
       type="video/mp4" autoplay muted loop></video>
     </div>
@@ -27,7 +28,28 @@ export default {
 </script>
 
 <style>
-.video {
-  height: 500px;
-}
+  .video {
+    width: 100%;
+  }
+
+  #home-video {
+    position: relative;
+  }
+
+  #home-video .top {
+    position: absolute;
+    top: 0%;
+    width: 100%;
+    height: 60px;
+    background: linear-gradient(to top, transparent, #ffffff);
+  }
+
+  #home-video .bottom {
+    position: absolute;
+    bottom: 0%;
+    width: 100%;
+    height: 60px;
+    background: linear-gradient(to bottom, transparent, #ffffff);
+  }
+
 </style>

@@ -1,10 +1,11 @@
 <template>
   <div>
-    <h3>CollectionListItem</h3>
-    <img :src="`https://image.tmdb.org/t/p/w500/${collection.thumbnail}`" alt="thumbnail">
-    <router-link :to="{ name: 'collectiondetail', params: {id: collection.id, collection: collection} }">
-      {{ collection.title }}
-    </router-link>
+      <div id="collection-item">
+        <router-link :to="{ name: 'collectiondetail', params: {id: collection.id, collection: collection} }">
+          <img :src="`http://127.0.0.1:8000/media/겨울.png`" alt="thumbnail">
+          <p>{{ collection.title }}</p>
+        </router-link>
+      </div>
   </div>
 </template>
 
@@ -18,5 +19,9 @@ export default {
 </script>
 
 <style>
-
+  #collection-item {
+    width: 280px;
+    margin: 20px;
+    
+  }
 </style>
