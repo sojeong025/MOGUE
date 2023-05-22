@@ -5,6 +5,9 @@
       <p>{{user.nickname}}님의 프로필</p>
       <p>{{user.profile_img}} 지금은 이미지 없음</p>
 
+      <!-- 해야 함 -->
+      <button>회원 정보 수정</button>
+
       <div v-if="itsMe">
         <span class="itsme">안보이게하기</span>
       </div>
@@ -16,7 +19,7 @@
           <span @click="follow" class="follow">팔로우</span>
         </div>
       </div>
-      
+
       <router-link :to="{ name: 'follow', params: {  id: this.$route.params.id } }">
         <span class="follower-number">
           팔로워 : {{ followers.length }}
@@ -28,6 +31,8 @@
         </span>
       </router-link>
     </div>
+
+    <!-- 해야 함 -->
     <div class="profile-right">
       <div class="favorite-movie">
         <p>{{ user.nickname }}님이 좋아하는 영화 목록</p>
@@ -37,7 +42,26 @@
         <p>{{ user.nickname }}님이 보고싶은 영화 목록</p>
         <span>1card</span> <span>2card</span> <span>3card</span> <span>4card</span> <span>5card</span> 
       </div>
+      <div class="watched-movie">
+        <p>{{ user.nickname }}님이 시청한 영화 목록</p>
+        <span>1card</span> <span>2card</span> <span>3card</span> <span>4card</span> <span>5card</span> 
+      </div>
     </div>
+
+    <div class="profile-bottom">
+      <div class="write-article">
+        <p>{{ user.nickname }}님이 작성한 article</p>
+        <span>1card</span> <span>2card</span> <span>3card</span> <span>4card</span> <span>5card</span> 
+      </div>
+
+      <div class="my-ott">
+        <p><span>{{ user.nickname }}님이 구독중인 서비스</span> <span><button>수정</button></span></p>
+        <span>1card</span> <span>2card</span> <span>3card</span> <span>4card</span> <span>5card</span> 
+      </div>
+    </div>
+
+
+
   </div>
 </template>
 
@@ -165,6 +189,10 @@ export default {
   border: 2px solid fuchsia;
   margin: 10px;
 }
+.watched-movie{
+  border: 2px solid orange;
+  margin: 10px;
+}
 .follow{
   margin: 10px;
   cursor: pointer;
@@ -183,5 +211,9 @@ export default {
 }
 .itsme{
   visibility: hidden;
+}
+.profile-bottom {
+  border: 2px solid blue;
+  margin: 20px;
 }
 </style>
