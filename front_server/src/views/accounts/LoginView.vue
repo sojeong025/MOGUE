@@ -32,6 +32,7 @@ export default {
       .then(res => {
         const token = res.data.token;
         this.$store.dispatch('login', token)
+        console.log(this.$router.pop)
         this.$router.go(-1)
       })
     }

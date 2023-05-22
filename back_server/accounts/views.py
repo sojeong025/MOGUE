@@ -1,5 +1,5 @@
 from django.http.response import HttpResponse
-from django.shortcuts import redirect, render, get_object_or_404
+from django.shortcuts import redirect, render, get_object_or_404, get_list_or_404
 from rest_framework import serializers, status
 from rest_framework import permissions
 from rest_framework.decorators import api_view, permission_classes, authentication_classes
@@ -44,9 +44,14 @@ def signup(request):
 @permission_classes([IsAuthenticated])
 def profile(request, user_pk):
     # 유저 정보
-    person = get_object_or_404(User, pk=user_pk)
-    serializer = UserSerializer(person)
+    user = get_object_or_404(User, pk=user_pk)
+    user_serializer = UserSerializer(user)
 
+    followers = user.followers.all()
+    followers_serializer = UserSerializer(followers, many=True)
+
+    followings = user.followings.all()
+    followings_serializer = UserSerializer(followings, many=True)
 #     # 유저가 좋아요 누른 영화
 #     likeMoive = Movie.objects.filter(like_users=user_pk)
 #     likeserializer = MovieSerializer(likeMoive, many=True)
@@ -73,13 +78,16 @@ def profile(request, user_pk):
 #     likecomserializer = CommunitySerializer(likeCommunity, many=True)
 
     context = {
-        'userInfo': serializer.data,
+        'user': user_serializer.data,
+        'followers': followers_serializer.data,
+        'followings': followings_serializer.data,
 #         'userLikeMovies': likeserializer.data,
 #         'reviewInMovies': reserializer.data,
 #         'userCreateCommunity': comserializer.data,
 #         'userLikeCommunity': likecomserializer.data,
 #         'userFavoriteMovies': favoriteserializer.data,
     }
+
     return Response(context)
 
 

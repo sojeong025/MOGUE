@@ -10,7 +10,7 @@
         </div>
         <router-link :to="{ name: 'login' }"> Login </router-link>
         <router-link :to="{ name: 'signup' }"> Signup </router-link>
-        <router-link :to="{ name: 'profile', params: { id: this.user_id } }"> Profile </router-link>
+        <router-link :to="{ name: 'profile', params: { id: user_id } }"> Profile </router-link>
         <button @click="logout">Logout</button>
       </div>
     </nav>
