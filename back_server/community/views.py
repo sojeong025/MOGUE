@@ -47,15 +47,11 @@ def user_article_detail(request, user_article_pk):
     user_article = get_object_or_404(UserArticle, pk=user_article_pk)
     comments = Comment.objects.filter(article_id=user_article_pk)
     user_article_serializer = UserArticleSerializer(user_article)
-    if comments:
-        comments_serializer = CommentSerializer(comments, many=True)
-        
-        context = {
-            'user_article': user_article_serializer.data,
-            'comments': comments_serializer.data,
-        }
-    else:
-        context = { 'user_article': user_article_serializer.data }
+    comments_serializer = CommentSerializer(comments, many=True)    
+    context = {
+        'user_article': user_article_serializer.data,
+        'comments': comments_serializer.data,
+    }
     return Response(context, status=status.HTTP_200_OK)
 
 
@@ -74,7 +70,6 @@ def manage_user_article(request, user_article_pk):
     user_article = get_object_or_404(UserArticle, pk=user_article_pk)
     print(request.user, user_article.user_id)
     if request.user.id == user_article.user_id:
-        print(1)
         if request.method == 'PUT':
             serializer = UserArticleSerializer(instance=user_article, data=request.data)
             if serializer.is_valid(raise_exception=True):
@@ -110,7 +105,6 @@ def create_comment(request, user_article_pk):
 @permission_classes([IsAuthenticated])
 def manage_comment(request, comment_pk):
     comment = get_object_or_404(Comment, pk=comment_pk)
-    print(comment.user)
 
     if request.user == comment.user:
         if request.method == 'PUT':

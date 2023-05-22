@@ -1,8 +1,13 @@
 <template>
   <div>
-    <h1>RecommendList</h1>
-    <RecommendListItem
-    v-for="movie in movies" :key="movie.id" :movie="movie"/>
+    <h1>요즘 뜨는 영화</h1>
+    <div id="recommend-list">
+      <RecommendListItem
+      id="recommend-list-item"
+      v-for="movie in movies" 
+      :key="movie.id" 
+      :movie="movie"/>
+    </div>
   </div>
 </template>
 
@@ -42,5 +47,14 @@ export default {
 </script>
 
 <style>
+  #recommend-list{
+    display: flex;
+    margin-top: 20px;
+    overflow: auto;
+    white-space: nowrap;
+  }
 
+  #recommend-list::-webkit-scrollbar{
+    display: none; 
+}
 </style>

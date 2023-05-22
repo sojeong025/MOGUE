@@ -2,7 +2,7 @@
   <div>
     <h2>UserArticle</h2>
     <UserArticleListItem
-    v-for="user_article in user_articles" :key="user_article.id" :user_article="user_article" @delete="article_delete"/>
+    v-for="user_article in user_articles" :key="user_article.id" :user_article="user_article"/>
   </div>
 </template>
 

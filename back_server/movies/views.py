@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_list_or_404, get_object_or_404
+from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework.decorators import api_view, permission_classes, authentication_classes
@@ -22,9 +23,7 @@ def recommend_list(request, page):
 @permission_classes([AllowAny])
 def movie_detail(request, movie_pk):
     movie = get_object_or_404(Movie, id=movie_pk)
-    print(1)
     reviews = Review.objects.filter(movie_id=movie_pk)
-    print(1)
     movie_serializer = MovieSerializer(movie)
     review_serializer = ReviewSerializer(reviews, many=True)
     context = {
@@ -41,6 +40,7 @@ def collection_list(request):
     serializer = CollectionSerializer(collections, many=True)
     return Response(serializer.data)
 
+
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def collection_detail(request, collection_id):
@@ -56,3 +56,33 @@ def collection_detail(request, collection_id):
     }
     
     return Response(context)
+
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def create_review(request, movie_pk):
+    movie = Movie.objects.get(Movie, pk=movie_pk)
+    serializer = ReviewSerializer(data=request.data)
+    if serializer.is_valid(raise_exception=True):
+        serializer.save(user=request.user, movie=movie)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+
+@api_view(['PUT', 'DELETE'])
+@permission_classes([IsAuthenticated])
+def manage_review(request, review_pk):
+    review = get_object_or_404(Review, pk=review_pk)
+
+    if request.user == review.user:
+        if request.method == 'PUT':
+            serializer = ReviewSerializer(review, data=request.data)
+            if serializer.is_valid(raise_exception=True):
+                serializer.save()
+                return Response(serializer.data, status=status.HTTP_200_OK)
+            
+        elif request.method == 'DELETE':
+            review.delete()
+            return Response('삭제되었습니다', status=status.HTTP_204_NO_CONTENT)
+        
+    else:
+        return Response('권한이 없습니다', status=status.HTTP_403_FORBIDDEN)
