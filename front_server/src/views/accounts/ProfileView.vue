@@ -16,25 +16,25 @@
           <span @click="follow" class="follow">팔로우</span>
         </div>
       </div>
-
-      <router-link :to="{ name: 'follow', params: { id: user.id }, query: { followers: followers, followings: followings } }">
+      
+      <router-link :to="{ name: 'follow', params: {  id: this.$route.params.id } }">
         <span class="follower-number">
-          팔로워 : {{ followings.length }}
+          팔로워 : {{ followers.length }}
         </span>
       </router-link>
-      <router-link :to="{ name: 'follow', params: { id: user.id }, query: { followers: followers, followings: followings } }">
+      <router-link :to="{ name: 'follow', params: {  id: this.$route.params.id } }">
         <span class="following-number">
-          팔로잉 : {{ followers.length }}
+          팔로잉 : {{ followings.length }}
         </span>
       </router-link>
     </div>
     <div class="profile-right">
       <div class="favorite-movie">
-        <p>{user.nickname}님이 좋아하는 영화 목록</p>
+        <p>{{ user.nickname }}님이 좋아하는 영화 목록</p>
         <span>1card</span> <span>2card</span> <span>3card</span> <span>4card</span> <span>5card</span> 
       </div>
       <div class="wish-movie">
-        <p>{user.nickname}님이 보고싶은 영화 목록</p>
+        <p>{{ user.nickname }}님이 보고싶은 영화 목록</p>
         <span>1card</span> <span>2card</span> <span>3card</span> <span>4card</span> <span>5card</span> 
       </div>
     </div>
@@ -52,6 +52,7 @@ const API_URL = 'http://127.0.0.1:8000'
 export default {
   name: 'ProfileView',
   created() {
+    this.getFollowData()
     if (localStorage.getItem('token')) {
       this.getUserProfile()
     } else {
@@ -130,10 +131,10 @@ export default {
         const list = res.data.followers.filter(user => user.pk === user_id)
         console.log(list.length)
         if (list.length) {
-          this.isFollow = !this.isFollow
+          this.isFollow = true
           console.log('팔로우 중임', this.isFollow)
         } else {
-          this.isFollow = !this.isFollow
+          this.isFollow = false
           console.log('팔로우 취소함', this.isFollow)
         }
         this.followers = res.data.followers

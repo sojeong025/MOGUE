@@ -6,7 +6,10 @@
       <h3>Followers:</h3>
       <ul>
         <li v-for="follower in followers" :key="follower.id">
-          {{ follower.nickname }}
+          <router-link :to="{ name: 'profile', params: {id: follower.pk } }">
+            {{ follower.profile_img }}
+            {{ follower.nickname }}
+          </router-link>
         </li>
       </ul>
     </div>
@@ -15,26 +18,50 @@
       <h3>Following:</h3>
       <ul>
         <li v-for="following in followings" :key="following.id">
-          {{ following.nickname }}
+          <router-link :to="{ name: 'profile', params: {id: following.pk } }">
+            {{ following.profile_img }}
+            {{ following.nickname }}
+          </router-link>
         </li>
       </ul>
     </div>
-
   </div>
 </template>
 
 <script>
+import axios from 'axios'
+const token = localStorage.getItem('token')
+const API_URL = 'http://127.0.0.1:8000'
+
 export default {
   name: 'FollowView',
-  props: ['followers', 'followings'],
+  data(){
+    return{
+      followers: [],
+      followings: [],
+    }
+  },
+  methods: {
+    getFollowData(){
+    const profile_id = this.$route.params.id
+    axios({
+      method: 'get',
+      url: `${API_URL}/accounts/${profile_id}/follow_list/`,
+      headers: {
+        Authorization: `JWT ${token}`
+        }
+      })
+      .then((res) => {
+        this.followers = res.data.followers
+        this.followings = res.data.followings
+        // console.log(res.data.followings)
+        // console.log(res.data.followers)
+      })
+    }
+  },
   created() {
-    const followers = this.$route.query.followers;
-    const followings = this.$route.query.followings;
-
-    // followers와 followings 데이터를 사용하여 원하는 작업 수행
-    console.log(followers);
-    console.log(followings);
-  }
+    this.getFollowData()
+  },
 }
 </script>
 
