@@ -2,7 +2,7 @@
   <div>
     <div id="movie-section">
       <img id="poster-img" :src="`https://image.tmdb.org/t/p/w780/${movie.poster_path}`" alt="poster">
-      <p>{{ movie.title }}</p>
+      <h1>{{ movie.title }}</h1>
       <p>{{ movie.overview }}</p>
     </div>
     <div id="review-section">
@@ -43,5 +43,9 @@ export default {
     display: flex;
     width: 300px;
     height: 480px;
+  }
+
+  #movie-section {
+    
   }
 </style>

@@ -13,18 +13,24 @@ export default new Vuex.Store({
   mutations: {
     SET_LOGIN(state, isLogin) {
       state.isLogin=isLogin
-    },
-    SAVE_TOKEN(state, token) {
-      localStorage.setItem('token', token)
     }
   },
   actions: {
     login({ commit }, token) {
-      commit('SAVE_TOKEN', token);
+      localStorage.setItem('token', token)
+      commit('SET_LOGIN', true)
     },
     // 로그아웃 시 토큰 제거
     logout({ commit }) {
-      commit('SAVE_TOKEN', null);
+      localStorage.removeItem('token')
+      commit('SET_LOGIN', false)
+    },
+    checkLogin({ commit }) {
+      if (localStorage.getItem('token')) {
+        commit('SET_LOGIN', true)
+      } else {
+        commit('SET_LOGIN', false)
+      }
     }
   },
   modules: {

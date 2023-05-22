@@ -35,11 +35,6 @@ export default {
         console.log(this.$router.pop)
         this.$router.go(-1)
       })
-      if (localStorage.getItem('token')) {
-        this.isLogin = true
-      } else {
-        this.isLogin = false
-      }
     }
   }
 }
