@@ -11,10 +11,16 @@ from .models import Movie, Review, Collection
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def recommend_list(request, page):
-    print(request.user)
-    print(type(request.user))
     movies = get_list_or_404(Movie)
-    movies = sorted(movies, key=lambda x : x.popularity)[page:15+page]
+    movies = sorted(movies, key=lambda x : x.popularity, reverse=True)[page:15+page]
+    serializer = MovieSerializer(movies, many=True)
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def all_movies(request):
+    movies = get_list_or_404(Movie)
     serializer = MovieSerializer(movies, many=True)
     return Response(serializer.data)
 
