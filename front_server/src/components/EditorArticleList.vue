@@ -1,8 +1,10 @@
 <template>
   <div>
-    <h2>EditorArticleList</h2>
     <EditorArticleListItem
-    v-for="editor_article in editor_articles" :key="editor_article.id" :editor_article="editor_article"/>
+      v-for="editor_article in editor_articles"
+      :key="editor_article.id"
+      :editor_article="editor_article"
+    />
   </div>
 </template>
 
@@ -22,20 +24,20 @@ export default {
       editor_articles: [],
     }
   },
-  created() {
-    this.getEditorArticles()
-  },
   methods: {
-    getEditorArticles(){
+    getEditorArticles() {
       axios({
         method: 'get',
         url: `${API_URL}/community/editor_articles`
       })
-      .then((res) => {
-        this.editor_articles = res.data
-      })
-      .catch(err => console.log(err))
+        .then((res) => {
+          this.editor_articles = res.data
+        })
+        .catch(err => console.log(err))
     }
+  },
+  created(){
+    this.getEditorArticles()
   }
 }
 </script>
