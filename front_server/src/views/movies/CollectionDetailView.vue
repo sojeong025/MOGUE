@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="collection-detail">
     <h1>{{ collection.title }}</h1>
     <div id="collection-movie-list">
       <div id="collection-movie-item" v-for="movie in movies" :key="movie.id" :movie="movie">
@@ -39,6 +39,10 @@ export default {
 </script>
 
 <style>
+  #collection-detail {
+    margin-top: 130px;
+  }
+
   #collection-movie-list {
     display: flex;
   }

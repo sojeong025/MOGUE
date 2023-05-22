@@ -1,10 +1,10 @@
 <template>
-  <div>
+  <div id="login-section">
     <h1>Login Page</h1>
-    <form @submit.prevent="login">
-      <input type="text" v-model="user.username"> <br>
-      <input type="password" v-model="user.password">
-      <input type="submit" value="로그인">
+    <form id="login-form" @submit.prevent="login">
+      <input type="text" v-model="user.username" placeholder="ID">
+      <input type="password" v-model="user.password" placeholder="PW">
+      <input type="submit" value="LOGIN">
     </form>
   </div>
 </template>
@@ -41,5 +41,17 @@ export default {
 </script>
 
 <style>
+  #login-section {
+    margin: 130px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
+  #login-form {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 </style>

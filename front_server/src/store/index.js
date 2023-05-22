@@ -7,12 +7,16 @@ export default new Vuex.Store({
   state: {
     isLogin: false,
     token: null,
+    textWhite: false,
   },
   getters: {
   },
   mutations: {
     SET_LOGIN(state, isLogin) {
       state.isLogin=isLogin
+    },
+    TEXT_WHITE(state, textWhite) {
+      state.textWhite = textWhite
     }
   },
   actions: {
@@ -30,6 +34,13 @@ export default new Vuex.Store({
         commit('SET_LOGIN', true)
       } else {
         commit('SET_LOGIN', false)
+      }
+    },
+    checkTextWhite({ commit }, name) {
+      if (name === 'home') {
+        commit('TEXT_WHITE', true)
+      } else {
+        commit('TEXT_WHITE', false)
       }
     }
   },

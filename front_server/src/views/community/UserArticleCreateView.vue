@@ -103,6 +103,7 @@ export default {
 .write-page {
   padding: 0px;
   margin: 50px auto;
+  margin-top: 130px;
   width: 800px;
   height: 800px;
   border: 1px solid black;

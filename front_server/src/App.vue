@@ -1,27 +1,41 @@
 <template>
   <div id="app">
     <!-- nav바 구현 -->
-    <nav>
-      <div id="nav1">
-        <div id="logo-container">
-          <router-link :to="{ name: 'home' }">
-            <h1>LOGO</h1>
-          </router-link>
+    <div id="nav-container">
+      <nav>
+        <div id="nav1">
+          <div id="logo-container">
+            <div class="nav-item">
+              <router-link :to="{ name: 'home' }" >
+                <h1 :class="{ 'textWhite': this.$store.state.textWhite }">LOGO</h1>
+              </router-link>
+            </div>
+          </div>
+          <div v-if="this.$store.state.isLogin">
+            <router-link :to="{ name: 'profile', params: { id: user_id } }" :class="{ 'textWhite': this.$store.state.textWhite }"> Profile </router-link>
+            <span id="logout" :class="{ 'textWhite': this.$store.state.textWhite }" @click="logout">Logout</span>
+          </div>
+          <div class="login-form" v-else>
+            <span class="nav-item">
+              <router-link :to="{ name: 'login' }" :class="{ 'textWhite': this.$store.state.textWhite }"> Login </router-link>
+            </span>
+            <span class="nav-item">
+              <router-link :to="{ name: 'signup' }" :class="{ 'textWhite': this.$store.state.textWhite }"> Signup </router-link>
+            </span>
+          </div>
         </div>
-        <div v-if="this.$store.state.isLogin">
-          <router-link :to="{ name: 'profile', params: { id: user_id } }"> Profile </router-link>
-          <button @click="logout">Logout</button>
+      </nav>
+      <div id="nav2">
+        <div class="nav-item">
+          <router-link :to="{ name: 'community' }" :class="{ 'textWhite': this.$store.state.textWhite }"> community </router-link>
         </div>
-        <div v-else>
-          <router-link :to="{ name: 'login' }"> Login </router-link>
-          <router-link :to="{ name: 'signup' }"> Signup </router-link>
+        <div class="nav-item">
+          <router-link :to="{ name: 'movie' }" :class="{ 'textWhite': this.$store.state.textWhite }"> movie </router-link>
+        </div>
+        <div class="nav-item">
+          <router-link :to="{ name: 'search' }" :class="{ 'textWhite': this.$store.state.textWhite }">search</router-link>
         </div>
       </div>
-    </nav>
-    <div id="nav2">
-      <router-link :to="{ name: 'community' }"> community </router-link>
-      <router-link :to="{ name: 'movie' }"> movie </router-link>
-      <router-link :to="{ name: 'search' }">search</router-link>
     </div>
     <router-view/>
   </div>
@@ -36,9 +50,9 @@ export default {
   data() {
     return {
       user_id: jwtDecode(token).user_id,
+      textWhite: false,
     }
   },
-
   methods: {
     logout() {
       localStorage.removeItem('token')
@@ -55,6 +69,7 @@ export default {
       console.log('로그인 안돼있음')
     }
     this.$store.dispatch('checkLogin')
+    this.$store.dispatch('checkTextWhite')
   }
 }
 </script>
@@ -77,8 +92,20 @@ export default {
   }
 
   a {
-    font-size: 18px;
+    font-size: 26px;
     text-decoration: none;
+    color: black;
+  }
+
+  #logout {
+    cursor: pointer;
+  }
+
+  #nav-container{
+    position: fixed;
+    top: 0%;
+    width: 100vw;
+    z-index: 1000;  
   }
 
   #nav1 {
@@ -92,6 +119,21 @@ export default {
     display: flex;
     justify-content: space-between;
     font-size: 18px;
+    margin-top: 10px;
   }
 
+  .textWhite {
+    color: #ffffff;
+  }
+
+  .nav-item {
+    display: flex;
+    justify-content: center;
+    width: 150px;
+  }
+
+  .login-form {
+    display: flex;
+    width: 302px;
+  }
 </style>

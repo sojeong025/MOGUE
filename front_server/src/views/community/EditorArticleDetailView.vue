@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="editor-article-detail">
     <h1>EditorArticleDetail</h1>
     <router-link :to="{ name:'community' }">[community]</router-link>
     <div v-if="editor_article">
@@ -38,5 +38,7 @@ export default {
 </script>
 
 <style>
-
+  #editor-article-detail {
+    margin-top: 130px;
+  }
 </style>

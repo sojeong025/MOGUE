@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="community-section">
     <h1>Community</h1>
     <router-link :to="{ name: 'articlecreate', params: { method: 'post'} }" v-if="token">[CREATE]</router-link>
     <router-link :to="{ name: 'login' }" v-else>[CREATE]</router-link>
@@ -27,5 +27,7 @@ export default {
 </script>
 
 <style>
-  
+  #community-section {
+    margin-top: 130px;
+  }
 </style>

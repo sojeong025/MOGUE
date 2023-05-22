@@ -2,7 +2,7 @@
     <router-link id="recommend-list-item" :to="{ name : 'moviedetail', params : { id: movie.id, movie: movie } }">
       <div id="poster">
         <div id="movie-title">
-          <h3>{{ movie.title }} </h3>
+          <h5>{{ movie.title }} </h5>
           <p id="runtime">{{ movie.runtime }}분</p>
           <p id="recommend_overview">{{ movie.overview.slice(0, 66) }}...</p>
         </div>

@@ -50,6 +50,7 @@ export default {
   #movie-section {
     display: flex;
     align-items: flex-end;
+    margin-top: 130px;
   }
 
   #movie-runtime {

@@ -1,11 +1,6 @@
 <template>
   <div id="movie">
     <div id="movie-headers">
-      <div id="home-video">
-        <div class="top"></div>
-        <div class="bottom"></div>
-
-      </div>
     </div>
     <div id="movie-body">
       <div id="recommend-section">
@@ -64,6 +59,11 @@ export default {
     justify-content: space-between;
     align-items: center;
     margin-top: 50px;
+  }
+
+  #recommend-section {
+    margin-top: 130px;
+    margin-left: 30px;
   }
 
 

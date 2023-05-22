@@ -48,10 +48,6 @@ export default {
 </script>
 
 <style>
-  #recommend-container {
-    margin-top: -160px;
-    margin-left: 30px;
-  }
 
   #recommend-list{
     display: flex;

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="follow-section">
     <h1>Follow 정보</h1>
     
     <div>
@@ -66,5 +66,7 @@ export default {
 </script>
 
 <style>
-
+  #follow-section {
+    margin-top: 130px;
+  }
 </style>
