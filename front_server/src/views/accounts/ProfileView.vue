@@ -17,8 +17,16 @@
         </div>
       </div>
 
-      <span class="follower-number">팔로워 : {{ followings.length }}</span>
-      <span class="following-number">팔로잉 : {{ followers.length }}</span>
+      <router-link :to="{ name: 'follow', params: {id: user.id, user: user} }">
+        <span class="follower-number">
+          팔로워 : {{ followings.length }}
+        </span>
+      </router-link>
+      <router-link :to="{ name: 'follow', params: {id: user.id, user: user} }">
+        <span class="following-number">
+          팔로잉 : {{ followers.length }}
+        </span>
+      </router-link>
     </div>
     <div class="profile-right">
       <div class="favorite-movie">
