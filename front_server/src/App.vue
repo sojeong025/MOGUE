@@ -21,7 +21,7 @@
     <div id="nav2">
       <router-link :to="{ name: 'community' }"> community </router-link>
       <router-link :to="{ name: 'movie' }"> movie </router-link>
-      search
+      <router-link :to="{ name: 'search' }">search</router-link>
     </div>
     <router-view/>
   </div>
