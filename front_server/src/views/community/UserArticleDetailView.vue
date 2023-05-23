@@ -183,10 +183,10 @@ export default {
 .user-article-left p {
   margin-bottom: 6px;
   color: #3f3e3e;
-  font-size: 14px
+  font-size: 16px
 }
 .user-article-left p .writer {
-  font-size: 14px;
+  font-size: 16px;
   color: #f3a806;
 }
 .article{

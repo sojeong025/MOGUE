@@ -16,7 +16,7 @@
       <div id="article-form-right" >
         <div class="content">
           <h3>Content</h3><br>
-          <textarea id="content" cols="52" rows="15" v-model="content" placeholder="기사 내용을 작성하세요"></textarea><br>
+          <textarea id="content" cols="60" rows="15" v-model="content" placeholder="기사 내용을 작성하세요"></textarea><br>
         </div>
           <input type="submit" id="submit" value="SUBMIT">
       </div>
@@ -195,13 +195,16 @@ export default {
     justify-content: space-between;
 }
 #article-form-right h3{
-  margin: 50px 50px 10px;
+  margin: 50px 70px 10px;
 }
 #article-form-right textarea{
-  margin-left: 50px;
-  font-size: 25px;
+  margin-left: 70px;
+  font-size: 20px;
   border: 0;
   resize: none;
+  line-height: 35px;
+  white-space: pre-line;
+  word-break: keep-all;
 }
 #article-form-right textarea:focus {
   outline: none;
