@@ -63,7 +63,6 @@ export default {
 
   #recommend-section {
     margin-top: 130px;
-    margin-left: 30px;
   }
 
 

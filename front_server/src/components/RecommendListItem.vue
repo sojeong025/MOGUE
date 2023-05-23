@@ -27,7 +27,7 @@ export default {
     flex-direction: column;
     align-items: center;
     text-decoration: none;
-    margin-right: 20px;
+    margin-right: 30px;
   }
 
   #movie-title {
@@ -37,8 +37,8 @@ export default {
     white-space: normal;
     padding: 15px;
     position: absolute;
-    width: 150px;
-    height: 235px;
+    width: 200px;
+    height: 320px;
     color: rgba(255, 255, 255, 0);
     background-color: rgba(0, 0, 0, 0);
   }
@@ -53,20 +53,17 @@ export default {
 
   #poster {
     display: flex;
-    align-items: center;
-    width: 180px;
+    align-items: flex-start;
+    width: 230px;
   }
 
   #poster:hover {
-    transition-duration: 10s;
-    height: 295px;
+    height: 368px;
   }
 
   #poster-img {
-    display: flex;
-    align-items: center;
-    width: 180px;
-    height: 265px;
+    width: 230px;
+    height: 350px;
   }
 
 

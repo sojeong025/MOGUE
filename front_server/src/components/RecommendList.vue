@@ -14,6 +14,7 @@
 <script>
 import axios from 'axios'
 const API_URL = 'http://127.0.0.1:8000'
+const _ = require('lodash');
 
 import RecommendListItem from './RecommendListItem'
 
@@ -25,7 +26,7 @@ export default {
   data(){
     return {
       movies: [],
-      page: 1,
+      page: _.sample([0, 1, 2, 3, 4])
     }
   },
   created(){
@@ -48,11 +49,14 @@ export default {
 </script>
 
 <style>
+  #recommend-container{
+    height: 460px;
+  }
 
   #recommend-list{
     display: flex;
     align-items: flex-end;
-    height: 300px;
+    height: 400px;
     display: flex;
     margin-top: 20px;
     overflow: auto;

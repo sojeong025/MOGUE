@@ -105,7 +105,7 @@ export default {
     position: fixed;
     top: 0%;
     width: 100vw;
-    z-index: 1000;  
+    z-index: 1000;
   }
 
   #nav1 {
