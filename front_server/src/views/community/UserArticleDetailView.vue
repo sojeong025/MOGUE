@@ -6,9 +6,11 @@
         <div class="user-article-left">
           <div class="left-up">
           <!-- <router-link :to="{ name :'community'}">[Community]</router-link> -->
-          <p class="number">article number {{ user_article?.id }}</p>
-          <p class="writer">writer <router-link class="writer" :to="{ name: 'profile', params: {id: user.pk} }">{{ user.nickname }}</router-link></p>
-          <p class="date">date {{ user_article?.created_at }}</p>
+          <p class="number">article number. {{ user_article?.id }}</p>
+          <p class="writer">writer</p>
+            <p><router-link class="writer" :to="{ name: 'profile', params: {id: user.pk} }">{{ user.nickname }}</router-link></p>
+          <p class="date">date</p>
+          <p> {{ user_article?.created_at }}</p>
           </div>
           <div class="left-down">
             <button id="button" @click="updateUserArticle">수정</button>
@@ -40,8 +42,8 @@
               <input id="submit" type="submit" value="작성">
             </form>
               
-              <div v-for="comment in comments" :key="comment.id">
-                {{comment.content}} <button @click="deleteComment(comment.id)">X</button>
+              <div class="comment-content" v-for="comment in comments" :key="comment.id">
+                {{comment.content}} <button class="delete-button" @click="deleteComment(comment.id)">X</button>
               </div> 
           </div>
 
@@ -158,8 +160,9 @@ export default {
 .main-container h1{
   text-align: center;
   margin: 15px;
-  color:#3f3f3f
-;}
+  color:#3f3f3f;
+  margin-bottom: 30px;  
+}
 .user-article{
   display: flex;
   flex-direction: column;
@@ -198,7 +201,7 @@ export default {
   flex: 3;
 }
 .user-article-right img {
-  width: 240px;
+  width: 500px;
   height: 100%;
   /* outline: none; */
 }
@@ -247,5 +250,14 @@ export default {
   margin-right:5px;
   color: white;
   cursor: pointer;
+}
+.comment-content{
+  margin-top: 20px;
+}
+.comment-content button {
+  width:50px;
+  height: 30px;
+  margin-left: 20px;
+  background-color: #3f3e3e;
 }
 </style>

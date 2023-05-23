@@ -5,11 +5,11 @@
     </div>
     <div id="movie-body">
       <div id="recommend-section">
-        <h1>요즘 뜨는 영화</h1>
+        <h1>TODAY'S MOVIE</h1>
         <RecommendList/>
       </div>
       <div class="yellow">
-        <h1>무슨 영화?</h1>
+        <h1>HOW ABOUT THIS?</h1>
         <RecommendList/>
       </div>
       <div id="collection-section">

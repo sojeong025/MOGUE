@@ -1,8 +1,8 @@
 <template>
   <div id="editor-article-detail">
     <div class="editor-article-left">
-      <h3>일단 자리 잡기</h3>
-      <h5>뭐적지?</h5>
+      <h3>영화 기사</h3>
+      <h5>number. {{editor_article.id}}</h5>
     </div>
     <div class="editor-article-center">
 
@@ -20,14 +20,10 @@
 
     <div class="editor-article-right">
       <h3>더 볼만한 기사</h3>
-      <div v-for="article in editor_articles" :key="article.id" class="thumbnail-title" @click="getEditorArticleDetail">
-        <router-link :to="{ name: 'editorarticledetail', params: { id: article.id, article: article } }">
-          <div class="thumbnail">
+      <div v-for="article in editor_articles" :key="article.id" @click="getEditorArticleDetail">
+        <router-link class="thumbnail-title" :to="{ name: 'editorarticledetail', params: { id: article.id, article: article } }">
             <img :src="article.thumbnail" width="130px" height="120px" alt="thumbnail">
-          </div>
-          <div class="title">
             <h4 class="title">{{ article.title }}</h4>
-          </div>
         </router-link>
       </div>
     </div>
@@ -92,11 +88,16 @@ export default {
   /* border: 1px solid black; */
 }
 .editor-article-left h3{
-  font-size: 18px;
+  font-size: 15px;
   padding: 10px 0;
 }
+.editor-article-left h5{
+  color: #626464;
+  font-size: 12px;
+  font-weight: 300;
+}
 .editor-article-center {
-  flex:2;
+  flex:2.5;
   /* border: 1px solid black; */
   margin: 0 50px 0;
 }
@@ -122,12 +123,13 @@ export default {
 .thumbnail-title{
   margin-bottom: 20px ;
   display: flex;
-  align-items: center;
-  flex-direction: row;
 }
 .title{
-  font-size: 15px;
+  font-size: 17px;
   font-weight: 400;
-  margin-left:10px
+  margin-left:10px;
+  align-self: center;
+  line-height: 30px;
+  word-break: keep-all;
 }
 </style>

@@ -1,14 +1,11 @@
 <template>
   <div class="header">
-    <h2>UserArticle</h2>
     <div class="main-container">
       <div class="card" v-for="user_article in user_articles" :key="user_article.id">
         <router-link :to="{ name: 'userarticledetail', params: {id: user_article.id, user_article: user_article} }">
-          <img v-if="user_article?.img" :src="`http://127.0.0.1:8000${user_article?.img}`" alt="img" width="500px" height="500px">
-          <p>제목: {{ user_article.title }}</p>
+          <img class="user-article-img" v-if="user_article?.img" :src="`http://127.0.0.1:8000${user_article?.img}`" alt="img" width="500px" height="500px">
+          <p class="user-article-title">{{ user_article.title }}</p>
         </router-link>
-        <p>내용: {{ user_article.content }}</p>
-        <hr>
       </div>
     </div>
   </div>
@@ -46,11 +43,19 @@ export default {
 <style scoped>
 .main-container {
   display: flex;
-  flex-direction: row;
-  font-family: 'SUITE-Regular';
 }
-
 .card {
   flex: 1;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.user-article-title{
+  text-align: center;
+}
+.user-article-img{
+  width:400px;
+  height:400px;
 }
 </style>

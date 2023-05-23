@@ -112,7 +112,6 @@ export default {
     display: flex;
     align-items: center;
     padding: 10px;
-    width: 230px;
     height: 20px;
     border: 1px solid #bbb;
     border-radius: 8px;

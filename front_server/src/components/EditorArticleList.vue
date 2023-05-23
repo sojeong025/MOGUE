@@ -1,21 +1,38 @@
 <template>
-  <div class="editor-article-list">
+<div class="swiper-container">
+  <swiper
+    class="swiper"
+    :options="swiperOption">
+    <swiper-slide v-for="editor_article in this.editor_articles" :key="editor_article.id">
+
     <ul class="editor-articles">
-      <li class="editor-article" v-for="editor_article in editor_articles" :key="editor_article.id">
+      <!-- <li class="editor-article" v-for="editor_article in editor_articles" :key="editor_article.id"> -->
         <div class="card">
           <router-link :to="{ name: 'editorarticledetail', params: { id: editor_article.id, editor_article: editor_article } }">
-            <img :src="editor_article.thumbnail" class="card-img" alt="thumbnail">
+            <img :src="editor_article.thumbnail" width="300px" height="300px" class="card-img" alt="thumbnail">
             <div class="card-content">
               <h5 class="card-title"><span>{{ editor_article.title }}</span></h5>
             </div>
           </router-link>
         </div>
-      </li>
+      <!-- </li> -->
     </ul>
-  </div>
+    </swiper-slide>
+    <div
+        class="swiper-pagination"
+        slot="pagination"
+        >
+    </div>
+    <div class="swiper-button-prev" slot="button-prev"></div>
+    <div class="swiper-button-next" slot="button-next"></div>
+    </swiper>
+</div>
 </template>
 
 <script>
+import { Swiper, SwiperSlide } from "vue-awesome-swiper";
+import "swiper/css/swiper.css";
+
 import axios from 'axios'
 const API_URL = 'http://127.0.0.1:8000'
 
@@ -24,7 +41,21 @@ export default {
   data() {
     return {
       editor_articles: [],
+      swiperOption: { 
+      slidesPerView: 4, 
+      spaceBetween: 15, 
+      centerInsufficientSlides: true, 
+
+      navigation: { 
+        nextEl: '.swiper-button-next', 
+        prevEl: '.swiper-button-prev' 
+    } 
+  },
     }
+  },
+  components: {
+      Swiper,
+      SwiperSlide
   },
   methods: {
     getEditorArticles() {
@@ -32,7 +63,7 @@ export default {
         method: 'get',
         url: `${API_URL}/community/editor_articles/random/`,
         params: {
-          count: 9,
+          count: 15,
         }
       })
       .then((res) => {
@@ -73,5 +104,13 @@ li {
   flex-basis: 150px;
   margin: 0 10px;
 }
-
+.card-title{
+  font-size: 15px;
+  line-height: 20px;
+  word-break: keep-all;
+}
+.card-img:hover {
+  transform: scale(1.03);
+  transition: .3s ease-in-out;
+}
 </style>

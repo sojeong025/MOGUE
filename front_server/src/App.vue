@@ -27,13 +27,13 @@
       </nav>
       <div id="nav2">
         <div class="nav-item">
-          <router-link :to="{ name: 'community' }" :class="{ 'textWhite': this.$store.state.textWhite }"> community </router-link>
+          <router-link :to="{ name: 'community' }" :class="{ 'textWhite': this.$store.state.textWhite }"> COMMUNITY </router-link>
         </div>
         <div class="nav-item">
-          <router-link :to="{ name: 'movie' }" :class="{ 'textWhite': this.$store.state.textWhite }"> movie </router-link>
+          <router-link :to="{ name: 'movie' }" :class="{ 'textWhite': this.$store.state.textWhite }"> MOVIE </router-link>
         </div>
         <div class="nav-item">
-          <router-link :to="{ name: 'search' }" :class="{ 'textWhite': this.$store.state.textWhite }">search</router-link>
+          <router-link :to="{ name: 'search' }" :class="{ 'textWhite': this.$store.state.textWhite }">SEARCH</router-link>
         </div>
       </div>
     </div>
@@ -158,7 +158,7 @@ export default {
     justify-content: space-between;
     font-size: 18px;
     font-weight: 600;
-    margin: 10px 20px 0px;
+    margin: 10px 30px 0px;
   }
 
   .textWhite {

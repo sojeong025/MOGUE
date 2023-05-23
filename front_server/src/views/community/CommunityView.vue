@@ -6,11 +6,13 @@
     <div class="content-section">
       <div class="editor-article-section">
         <EditorArticleList/>
+        <div class="box"></div>
       </div>
-      <hr>
+        <div class="write-article">
+          <router-link :to="{ name: 'articlecreate', params: { method: 'post'} }" v-if="token">Write Your Article</router-link>
+          <router-link :to="{ name: 'login' }" v-else>Write Your Article</router-link>
+        </div>
       <div class="user-article-section">
-        <router-link :to="{ name: 'articlecreate', params: { method: 'post'} }" v-if="token">[게시글 작성]</router-link>
-        <router-link :to="{ name: 'login' }" v-else>[게시글 작성]</router-link>
         <UserArticleList/>
       </div>
     </div>
@@ -51,19 +53,32 @@ export default {
   padding: 20px 50px 10px;
 }
 .content-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  margin: 0px 50px 20px;
 }
 .editor-article-section {
-  display: flex;
   width: 100%;
   padding: 10px;
-  margin-bottom: 20px;
-  background-color: #e8aa23;
+  margin-bottom: 50px;
+  position:relative;
+  text-align: center;
 }
-
+.box{
+  width: 120vw;
+  height: 300px;
+  background-color:#dededc77;
+  position:absolute;
+  top:20%;
+  left:-10%
+}
 .user-article-section {
   padding: 10px;
+}
+.write-article{
+  width: 100%;
+  height: 50px;
+  background-color: #e8aa23;
+  text-align: center;
+  line-height : 50px;
+  font-weight: 700;
 }
 </style>
