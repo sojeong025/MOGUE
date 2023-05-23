@@ -22,7 +22,7 @@ def editor_articles(request):
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def get_random_editor_articles(request):
-    count = int(request.GET.get('count', 5)) 
+    count = int(request.GET.get('count')) 
     total_articles = EditorArticle.objects.count()
     count = min(count, total_articles)
     random_ids = sample(range(1, total_articles + 1), count)

@@ -7,7 +7,7 @@
           <div id="logo-container">
             <div class="nav-item">
               <router-link :to="{ name: 'home' }" >
-                <h1 :class="{ 'textWhite': this.$store.state.textWhite }">LOGO</h1>
+                <p> <img src="/LOGO_remove.png"  width="110px" height="70px" alt="logo"></p>
               </router-link>
             </div>
           </div>
@@ -51,6 +51,10 @@ export default {
     return {
       user_id: jwtDecode(token).user_id,
       textWhite: false,
+      showNav: true,
+      scrollDirection: '',
+      prevScrollPos: window.pageYOffset,
+      navTop: 0
     }
   },
   methods: {
@@ -73,7 +77,7 @@ export default {
   },
   destroyed() {
     this.logout()
-  }
+  },
 }
 </script>
 
@@ -146,14 +150,15 @@ export default {
     width: 100%;
     display: flex;
     justify-content: space-between;
-    font-size: 18px;
+    font-weight: 600;
   }
 
   #nav2 {
     display: flex;
     justify-content: space-between;
     font-size: 18px;
-    margin-top: 10px;
+    font-weight: 600;
+    margin: 10px 20px 0px;
   }
 
   .textWhite {
