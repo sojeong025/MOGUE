@@ -55,15 +55,13 @@ export default {
   #recommend-list{
     /* border: 1px red solid; */
     display: flex;
-    align-items: flex-end;
-    height: 360px;
-    display: flex;
-    margin-top: 20px;
+    align-items: center;
+    height: 450px;
     overflow: auto;
     white-space: nowrap;
   }
 
   #recommend-list::-webkit-scrollbar{
     display: none; 
-}
+  }
 </style>

@@ -14,16 +14,18 @@
           <div id="search-recommend-section" v-if="!searchInput">
             <RecommendList/>
           </div>
-          <router-link id="search-recommend-list-item" :to="{ name : 'moviedetail', params : { id: movie.id, movie: movie } }" v-for="movie in searchResult.slice(0, 5)" :key="movie.id" :class="{ 'focus': index === focus }" @keyup.enter="selectResult(movie.title)">
-            <div id="poster">
-              <div id="search-movie-title">
-                <h5>{{ movie.title }} </h5>
-                <p id="runtime">{{ movie.runtime }}분</p>
-                <p id="recommend_overview">{{ movie.overview.slice(0, 66) }}...</p>
+          <div id="search-recommend-list" v-else>
+            <router-link id="search-recommend-list-item" :to="{ name : 'moviedetail', params : { id: movie.id, movie: movie } }" v-for="movie in searchResult.slice(0, 10)" :key="movie.id" :class="{ 'focus': index === focus }" @keyup.enter="selectResult(movie.title)">
+              <div id="poster">
+                <div id="search-movie-title">
+                  <h5>{{ movie.title }} </h5>
+                  <p id="runtime">{{ movie.runtime }}분</p>
+                  <p id="recommend_overview">{{ movie.overview.slice(0, 66) }}...</p>
+                </div>
+                <img id="poster-img" :src="`https://image.tmdb.org/t/p/w500/${movie.poster_path}`" alt="poster">
               </div>
-              <img id="poster-img" :src="`https://image.tmdb.org/t/p/w500/${movie.poster_path}`" alt="poster">
-            </div>
-          </router-link>
+            </router-link>
+          </div>
           </div>
         </div>
       </div>
@@ -82,15 +84,12 @@ export default {
 </script>
 
 <style>
-  #search-section {
-  }
-    
   #search-headers{
     display: flex;
     flex-direction: column;
     align-content: space-between;
     width: 100%px;
-    margin-top: 80px;
+    margin-top: 50px;
     margin-left: 50px;
   }
 
@@ -98,7 +97,7 @@ export default {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
     position: relative;
     width: 300px;
   }
@@ -111,9 +110,8 @@ export default {
 
   #search-input {
     display: flex;
+    align-items: center;
     padding: 10px;
-    margin-top: 10px;
-    margin-bottom: 45px;
     width: 230px;
     height: 20px;
     border: 1px solid #bbb;
@@ -128,9 +126,9 @@ export default {
 
   #search-result{
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     width: 100vw;
-    height: 400px;
+    height: 450px;
   }
 
   #search-result-item{
@@ -149,24 +147,32 @@ export default {
   #search-recommend-section {
     display: flex;
     align-items: flex-end;
-    height: 440px;
+    height: 450px;
     display: flex;
     margin-top: 20px;
     overflow: auto;
     white-space: nowrap;
   }
 
-  #search-recommend-list-item {
+  #search-recommend-list {
     display: flex;
+    align-items: center;
+    height: 450px;
+    overflow: auto;
+    white-space: nowrap;
+  }
+
+  #search-recommend-list-item {
     position: relative;
+    display: flex;
     flex-direction: column;
+    align-items: center;
     text-decoration: none;
-    height: 410px;
     margin-right: 30px;
   }
 
   #search-recommend-list-item:hover {
-    height: 422px;
+    height: 420px;
   }
 
   #search-movie-title {

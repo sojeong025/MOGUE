@@ -79,9 +79,4 @@ export default {
     align-items: flex-start;
     width: 230px;
   }
-
-  #poster:hover {
-    height: 368px;
-  }
-
 </style>

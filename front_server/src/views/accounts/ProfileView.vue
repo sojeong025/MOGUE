@@ -1,6 +1,5 @@
 <template>
   <div id="profile-section"> 
-    <h1>Profile</h1>
     <div id="profile-headers">
       <div class="profile-left">
         <div id="profile-img">
@@ -9,10 +8,20 @@
           </router-link>
           <img :src="`http://127.0.0.1:8000${user.profile_img}`" alt="img">
         </div>
-        <p>{{user.nickname}}님의 프로필</p>
-        <div v-if="itsMe">
+        <p class="profile-name">{{user.nickname}}님의 프로필</p>
+        <div class="follow-info">
+          <router-link :to="{ name: 'follow', params: {  id: this.$route.params.id } }">
+            <div class="follow-number">
+              팔로워 : {{ followers.length }}
+            </div>
+          </router-link>
+          <router-link :to="{ name: 'follow', params: {  id: this.$route.params.id } }">
+            <div class="follow-number">
+              팔로잉 : {{ followings.length }}
+            </div>
+          </router-link>
         </div>
-        <div v-else>
+        <div v-if="!itsMe">
           <div v-if="isFollow">
             <span @click="follow" class="follow">언팔로우</span>
           </div>
@@ -23,47 +32,35 @@
       </div>
       <!-- 해야 함 -->
       <div class="profile-right">
-        <router-link :to="{ name: 'follow', params: {  id: this.$route.params.id } }">
-          <span class="follower-number">
-            팔로워 : {{ followers.length }}
-          </span>
-        </router-link>
-        <router-link :to="{ name: 'follow', params: {  id: this.$route.params.id } }">
-          <span class="following-number">
-            팔로잉 : {{ followings.length }}
-          </span>
-        </router-link>
+        <p class="liked-movie-title">{{ user.nickname }}님이 좋아하는 영화 목록</p>
+        <div class="favorite-items">
+          <span>1card</span>
+          <span>2card</span>
+          <span>3card</span> 
+          <span>4card</span> 
+          <span>5card</span> 
+        </div>
       </div>
     </div>
 
+    <div class="profile-body">
+      <div class="profile-right-body">
+        <div class="write-article">
+          <p>{{ user.nickname }}님이 작성한 article</p>
+          <div>1card</div> <div>2card</div> <div>3card</div> <div>4card</div> <div>5card</div> 
+        </div>
 
-      <div class="favorite-movie">
-        <p>{{ user.nickname }}님이 좋아하는 영화 목록</p>
-        <span>1card</span> <span>2card</span> <span>3card</span> <span>4card</span> <span>5card</span> 
-      </div>
-      <div class="wish-movie">
-        <p>{{ user.nickname }}님이 보고싶은 영화 목록</p>
-        <span>1card</span> <span>2card</span> <span>3card</span> <span>4card</span> <span>5card</span> 
-      </div>
-      <div class="watched-movie">
-        <p>{{ user.nickname }}님이 시청한 영화 목록</p>
-        <span>1card</span> <span>2card</span> <span>3card</span> <span>4card</span> <span>5card</span> 
-      </div>
+        <div class="my-ott">
+          <p>
+            <span>{{ user.nickname }}님이 구독중인 서비스</span> <button>수정</button>
+          </p>
+          <div class="my-ott-items">
+          <div>1card</div> <div>2card</div> <div>3card</div> <div>4card</div> <div>5card</div> 
+          </div>
+        </div>
 
-    <div class="profile-bottom">
-      <div class="write-article">
-        <p>{{ user.nickname }}님이 작성한 article</p>
-        <span>1card</span> <span>2card</span> <span>3card</span> <span>4card</span> <span>5card</span> 
-      </div>
-
-      <div class="my-ott">
-        <p><span>{{ user.nickname }}님이 구독중인 서비스</span> <span><button>수정</button></span></p>
-        <span>1card</span> <span>2card</span> <span>3card</span> <span>4card</span> <span>5card</span> 
       </div>
     </div>
-
-
-
   </div>
 </template>
 
@@ -175,26 +172,39 @@ export default {
 <style>
 
 #profile-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   margin-top: 130px;
-  margin-left: 50px;
 }
 
 #profile-headers {
   display: flex;
-  justify-content: start
+  justify-content: start;
+  height: 350px;
 }
 
 .profile-left {
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 2px solid orange;
-  margin: 20px;
-  height: 250px;
+  /* border: 2px solid orange; */
+  width: 380px;
+  height: 410px;
 }
+
 .profile-right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  width: 500px;
   border: 2px solid blue;
-  margin: 20px;
+  margin-bottom: 30px;
+}
+.liked-movie-title{
+  font-size: 25px;
 }
 
 #profile-img {
@@ -202,13 +212,21 @@ export default {
   flex-direction: column;
   position: relative;
   width: 200px;
-  height: 180px;
-  margin-bottom: 35px;
+  height: 200px;
+  margin-bottom: 20px;
+}
+
+#profile-img > img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
 }
 
 #edit-profile {
   position: absolute;
-  left: 80%;
+  left: 5%;
   bottom: 78%;
   z-index: 100;
   border: none;
@@ -219,39 +237,99 @@ export default {
   cursor: pointer;
 }
 
-.favorite-movie{
-  border: 2px solid greenyellow;
-  margin: 10px;
+.favorite-items {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 55px;
 }
+
 .wish-movie {
+  width: 1000px;
   border: 2px solid fuchsia;
-  margin: 10px;
+  margin-bottom: 20px;
 }
 .watched-movie{
+  width: 1000px;
   border: 2px solid orange;
-  margin: 10px;
+  margin-bottom: 20px;
 }
+
+.profile-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 60px;
+  width: 1000px;
+  height: 460px;
+  padding: 20px 800px 0px 800px;
+  background-color: #ffc107;
+}
+
+.write-article{
+  border: 1px solid red;
+  width: 300px;
+}
+
+.my-ott{
+  border: 1px solid white;
+  width: 300px;
+}
+
 .follow{
+  width: 100px;
+  height: 50px;
+  border: 1px red solid;
   margin: 10px;
   cursor: pointer;
   background-color: black;
   color: white
 }
-.follower-number {
-  border: 2px solid blueviolet;
+
+.follow-number {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 120px;
+  height: 60px;
+  /* border: 2px solid blueviolet; */
   border-radius: 20px;
-  margin: 20px;
+  margin: 0px 20px;
 }
-.following-number {
-  border: 2px solid blueviolet;
-  border-radius: 20px;
-  margin: 20px;
-}
+
 .itsme{
   visibility: hidden;
 }
-.profile-bottom {
-  border: 2px solid blue;
-  margin: 20px;
+
+.profile-right-headers {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100vw;
+  height: 100px;
+  margin-bottom: 30px;
 }
+
+.profile-right-body {
+  display: flex;
+  justify-content: space-around;
+  height: 300px;
+  width: 1000px;
+  border: 2px solid blue;
+}
+
+.follow-info {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.profile-name {
+  font-size: 30px;
+  margin-bottom: -10px;
+}
+
+
 </style>

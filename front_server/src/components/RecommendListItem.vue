@@ -46,7 +46,7 @@ export default {
 
   #movie-title:hover{
     position: absolute;
-    bottom: 5%;
+    bottom: 15%;
     transition-duration: 0.2s;
     color: white;
     background-color: rgba(0, 0, 0, 0.795);
@@ -59,7 +59,7 @@ export default {
   }
 
   #poster:hover {
-    height: 368px;
+    height: 410px;
   }
 
   #poster-img {
