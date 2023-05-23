@@ -1,5 +1,5 @@
 <template>
-  <div> 
+  <div id="profile-section"> 
     <h1>Profile</h1>
     <div class="profile-left">
       <p>{{user.nickname}}님의 프로필</p>
@@ -171,6 +171,10 @@ export default {
 </script>
 
 <style>
+
+#profile-section {
+  margin-top: 130px;
+}
 
 .profile-left {
   border: 2px solid orange;
