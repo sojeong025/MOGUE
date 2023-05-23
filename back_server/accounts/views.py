@@ -10,10 +10,10 @@ from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 from django.contrib.auth import get_user_model, update_session_auth_hash
 from .models import User
 from .serializers import UserSerializer, UpdateUserSerializer
-# from movies.models import Movie, Review
-# from movies.serializers import MovieSerializer, ReviewSerializer
-# from community.models import Community, Ceview
-# from community.serializers import CommunitySerializer, CeviewSerializer
+from movies.models import Movie
+from movies.serializers import MovieSerializer
+from community.models import UserArticle
+from community.serializers import UserArticleSerializer
 
 
 @api_view(['POST'])
@@ -52,9 +52,10 @@ def profile(request, user_pk):
 
     followings = user.followings.all()
     followings_serializer = UserSerializer(followings, many=True)
-#     # 유저가 좋아요 누른 영화
-#     likeMoive = Movie.objects.filter(like_users=user_pk)
-#     likeserializer = MovieSerializer(likeMoive, many=True)
+
+    # 유저가 좋아요 누른 영화
+    like_moive = user.liked_movies.all()
+    likeserializer = MovieSerializer(like_moive, many=True)
 
 #     #찜한 영화
 #     movies = Movie.objects.filter(favorite_users__in=[user_pk])
@@ -69,9 +70,9 @@ def profile(request, user_pk):
 #     print(reviewMovie)
 #     reserializer = MovieSerializer(reviewMovie, many=True)
 
-#     # 작성한 게시글
-#     community = Community.objects.filter(user=user_pk)
-#     comserializer = CommunitySerializer(community, many=True)
+    # 작성한 게시글
+    articles = UserArticle.objects.filter(user=user_pk)
+    articles_serializer = UserArticleSerializer(articles, many=True)
 
 #     # 좋아요 누른 게시글
 #     likeCommunity = Community.objects.filter(like_users=user_pk)
@@ -81,9 +82,9 @@ def profile(request, user_pk):
         'user': user_serializer.data,
         'followers': followers_serializer.data,
         'followings': followings_serializer.data,
-#         'userLikeMovies': likeserializer.data,
+        'userLikeMovies': likeserializer.data,
 #         'reviewInMovies': reserializer.data,
-#         'userCreateCommunity': comserializer.data,
+        'userCreateArticles': articles_serializer.data,
 #         'userLikeCommunity': likecomserializer.data,
 #         'userFavoriteMovies': favoriteserializer.data,
     }
@@ -154,20 +155,6 @@ def change_password(request, user_pk):
         return Response(serializer.data)
 
 
-# @api_view(['GET'])
-# @permission_classes([IsAuthenticated])
-# def favorite_list(request, user_pk):
-#     movies = Movie.objects.filter(favorite_users__in=[user_pk])
-#     serializer = MovieSerializer(movies, many=True)
-#     user = User.objects.get(pk=user_pk)
-#     userserializer = UserSerializer(user)
-#     context = {
-#         'movies': serializer.data,
-#         'user': userserializer.data
-#     }
-#     return Response(context)
-
-
 @api_view(['PUT'])
 @permission_classes([IsAuthenticated])
 def update_profile(request, user_pk):
@@ -180,3 +167,4 @@ def update_profile(request, user_pk):
         update_session_auth_hash(request, user)
         user.save()
         return Response(serializer.data)
+    

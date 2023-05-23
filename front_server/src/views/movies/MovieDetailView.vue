@@ -6,6 +6,10 @@
         <h1 id="detail-title">{{ movie.title }} <span id="movie-runtime">{{ movie.runtime }}분</span></h1>
         <p id="detail-overview">{{ movie.overview.slice(0, 150) }}...</p>
       </div>
+      <div class="likeBtn">
+        <button v-if="liked" @click="likeMovie">UnLike</button>
+        <button v-else @click="likeMovie">Like</button>
+      </div>
     </div>
 
     <div id="review-section" class="yellow">
@@ -56,6 +60,7 @@ export default {
       reviews: [],
       content: null,
       rating: 0,
+      liked: false,
     }
   },
   methods: {
@@ -65,9 +70,14 @@ export default {
         url: `${API_URL}/movies/${this.$route.params.id}`,
       })
       .then((res) => {
-        console.log(res)
         this.movie = res.data.movie
         this.reviews = res.data.reviews
+        console.log(res.data.movie)
+        if (res.data.movie.users.includes(jwtDecode(token).user_id)) {
+          this.liked = true
+        } else {
+          this.liked = false
+        }
       })
       .catch(err => console.log(err))
     },
@@ -104,6 +114,24 @@ export default {
       })
       .then(() => {
         this.getMovieDetail()
+      })
+    },
+    likeMovie() {
+      const formData = {
+        user: jwtDecode(token).user_id, // 초기값은 null로 설정합니다.
+        movie: this.movie.id,
+      }
+      axios({
+        method: 'post',
+        url: `http://127.0.0.1:8000/movies/${this.movie.id}/like/`,
+        data: formData,
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          Authorization: `JWT ${token}`
+        }
+      })
+      .then((res) => {
+        this.liked = res.data.liked
       })
     }
   },

@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_list_or_404, get_object_or_404
 from rest_framework import status
+from django.http import JsonResponse
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework.decorators import api_view, permission_classes, authentication_classes
@@ -94,8 +95,18 @@ def manage_review(request, review_pk):
         return Response('권한이 없습니다', status=status.HTTP_403_FORBIDDEN)
 
 
-@api_view(['GET'])
+@api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def like_movie(request, movie_pk):
+    movie = get_object_or_404(Movie, pk=movie_pk)
     user = request.user
-    liked_movies = get_list_or_404(Movie, )
+    if movie.users.filter(pk=user.pk).exists():
+        movie.users.remove(user)
+        liked = False
+    else:
+        movie.users.add(user)
+        liked = True
+    like_status = {
+        'liked': liked
+        }
+    return JsonResponse(like_status)

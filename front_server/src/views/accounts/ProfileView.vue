@@ -33,21 +33,24 @@
       <!-- 해야 함 -->
       <div class="profile-right">
         <p class="liked-movie-title">{{ user.nickname }}님이 좋아하는 영화 목록</p>
-        <div class="favorite-items">
-          <span>1card</span>
-          <span>2card</span>
-          <span>3card</span> 
-          <span>4card</span> 
-          <span>5card</span>
+        <div class="liked-items" v-if="liked_movies.length">
+          <router-link :to="{ name: 'moviedetail', params: { id: liked_movie.id } }" v-for="liked_movie in liked_movies" :key="liked_movie.id" class="liked-item">
+            {{liked_movie.title}}
+          </router-link>
         </div>
+        <p v-else class="no-liked">아직 좋아요한 영화가 없습니다.</p>
       </div>
     </div>
 
     <div class="profile-body">
       <div class="profile-right-body">
-        <div class="write-article">
-          <p>{{ user.nickname }}님이 작성한 article</p>
-          <div>1card</div> <div>2card</div> <div>3card</div> <div>4card</div> <div>5card</div> 
+        <div class="my-articles">
+          <p>{{ user.nickname }}님이 작성한 게시글</p>
+          <div class="my-article" v-if="user_articles.length">
+            <router-link :to="{ name: 'userarticledetail', params: { id: user_article.id } }" v-for="user_article in user_articles" :key="user_article.id" class="my-article-item">
+              {{user_article.title}}
+            </router-link>
+          </div>
         </div>
 
         <div class="my-ott">
@@ -87,6 +90,8 @@ export default {
       user : Object,
       followers: [],
       followings: [],
+      liked_movies: [],
+      user_articles: [],
       isFollow: false,
       itsMe: null,
     }
@@ -115,9 +120,12 @@ export default {
         }
       })
       .then((res) =>{
+        console.log(res)
         this.user = res.data.user
         this.followers = res.data.followers
         this.followings = res.data.followings
+        this.liked_movies = res.data.userLikeMovies
+        this.user_articles = res.data.userCreateArticles
       })
       .catch(err => console.log(err))
     },
@@ -152,7 +160,6 @@ export default {
       })
       .then((res) => {
         const list = res.data.followers.filter(user => user.pk === user_id)
-        console.log(list.length)
         if (list.length) {
           this.isFollow = true
           console.log('팔로우 중임', this.isFollow)
@@ -197,16 +204,42 @@ export default {
 .profile-right {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: start;
-  width: 500px;
-  border: 2px solid blue;
+  width: 300px;
+  padding-left: 50px;
+  /* border: 2px solid blue; */
   margin-bottom: 30px;
+  border-left: 1px solid black;
 }
 
 .liked-movie-title{
-  margin: 20px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  margin-left: 20px;
   font-size: 25px;
+}
+
+.liked-item:hover{
+  background-color: #ffc10785;
+}
+
+.my-articles{
+  font-size: 25px;
+}
+.my-article{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  height: 230px;
+  margin-top: 20px;
+  margin-left: 15px;
+  overflow: auto;
+  white-space: nowrap;
+}
+
+.my-article-item {
+  font-size: 22px;
 }
 
 #profile-img {
@@ -239,11 +272,24 @@ export default {
   cursor: pointer;
 }
 
-.favorite-items {
+.liked-items {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  height: 55px;
+  align-items: flex-start;
+  height: 230px;
+  margin-left: 25px;
+  overflow: auto;
+  white-space: nowrap;
+}
+
+.liked-item {
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+.no-liked {
+  margin-left: 25px;
+  font-size: 20px;
 }
 
 .wish-movie {
@@ -268,10 +314,6 @@ export default {
   background-color: #ffc107;
 }
 
-.write-article{
-  border: 1px solid red;
-  width: 300px;
-}
 
 .my-ott{
   border: 1px solid white;
