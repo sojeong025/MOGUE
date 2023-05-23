@@ -1,11 +1,32 @@
 <template>
-  <div id="login-section">
-    <h1>Login Page</h1>
-    <form id="login-form" @submit.prevent="login">
-      <input type="text" v-model="user.username" placeholder="ID">
-      <input type="password" v-model="user.password" placeholder="PW">
-      <input type="submit" value="LOGIN">
-    </form>
+  <div>
+    <div class="container">
+      <div class="forms-container">
+        <div class="form-control login-form">
+          <form id="login-form" @submit.prevent="login">
+            <h2>Login</h2>
+            <input type="text" placeholder="ID" v-model="user.username" required />
+            <input type="password" placeholder="Password" v-model="user.password" required />
+            <button>Login</button>
+          </form>
+          <span>or login with</span>
+          <div class="socials">
+            <i class="fab fa-facebook-f"></i>
+            <i class="fab fa-google-plus-g"></i>
+            <i class="fab fa-linkedin-in"></i>
+          </div>
+        </div>
+        <div class="intro-control login-intro">
+          <div class="intro-control__inner">
+            <h2>Welcome back!</h2>
+            <p>
+              Welcome back! We are so happy to have you here. It's great to see you again. We hope you had a safe and enjoyable time away.
+            </p>
+          <router-link :to="{name: 'signup'}"><button id="signup-btn">No account yet? Signup.</button></router-link>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -40,18 +61,59 @@ export default {
 }
 </script>
 
-<style>
-  #login-section {
-    margin: 130px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
 
-  #login-form {
-    margin-top: 50px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+<style>
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.forms-container {
+  display: flex;
+  max-width: 800px;
+  width: 100%;
+}
+.login-intro {
+  flex: 1;
+  background-color: #f1f1f1;
+  padding: 40px;
+}
+.login-form {
+  flex: 1;
+  background-color: #fff;
+  padding: 40px;
+  margin-right: 20px;
+}
+.intro-control__inner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+}
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 10px;
+}
+button:hover {
+  background-color: #45a049;
+}
+.socials {
+  display: flex;
+}
 </style>

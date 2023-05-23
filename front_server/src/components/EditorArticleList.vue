@@ -1,10 +1,12 @@
 <template>
-  <div>
-    <EditorArticleListItem
-      v-for="editor_article in editor_articles"
-      :key="editor_article.id"
-      :editor_article="editor_article"
-    />
+  <div class="editor-article-list">
+    <div class="editor-article-row">
+      <EditorArticleListItem
+        v-for="editor_article in editor_articles"
+        :key="editor_article.id"
+        :editor_article="editor_article"
+      />
+    </div>
   </div>
 </template>
 
@@ -43,5 +45,20 @@ export default {
 </script>
 
 <style>
+.editor-article-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
 
+.editor-article-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -10px;
+}
+
+.editor-article-row > .editor-article-list-item {
+  flex: 0 0 calc(33.333% - 40px);
+  margin: 20px;
+}
 </style>

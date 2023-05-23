@@ -1,22 +1,34 @@
 <template>
   <div>
-    <h1>Singup Page</h1>
-    <form id="signup-form" @submit.prevent="signUp">
-      <label for="username"> 아이디 : </label>
-      <input type="text" placeholder="ID" v-model="user.username">
-      <button>중복 확인</button><br>
-
-      <label for="nickname"> 닉네임 : </label>
-      <input type="text" placeholder="nickname" v-model="user.nickname">
-
-      <label for="password"> 비밀번호 : </label>
-      <input type="password" id="password" v-model="user.password"><br>
-
-      <label for="password2"> 비밀번호 확인 : </label>
-      <input type="password" id="password2" v-model="user.passwordConfirmation"><br>
-
-      <input type="submit" value="SignUp">
-    </form>
+    <div class="container">
+      <div class="forms-container">
+        <div class="form-control signup-form">
+          <form id="signup-form" @submit.prevent="signUp">
+            <h2>Signup</h2>
+            <input type="text" placeholder="ID" v-model="user.username" required />
+            <input type="text" placeholder="NickName" v-model="user.nickname" required />
+            <input type="password" placeholder="Password" v-model="user.password" required />
+            <input type="password" placeholder="Confirm password" v-model="user.passwordConfirmation" required />
+            <button>Signup</button>
+          </form>
+          <span>or signup with</span>
+          <div class="socials">
+            <i class="fab fa-facebook-f"></i>
+            <i class="fab fa-google-plus-g"></i>
+            <i class="fab fa-linkedin-in"></i>
+          </div>
+        </div>
+        <div class="intro-control signup-intro">
+          <div class="intro-control__inner">
+            <h2>Come join us!</h2>
+            <p>
+              We are so excited to have you here.If you haven't already, create an account to get access to exclusive offers, rewards, and discounts.
+            </p>
+            <router-link :to="{ name: 'login' }"><button id="signin-btn">Already have an account? Signin.</button></router-link>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -52,5 +64,57 @@ export default {
 </script>
 
 <style>
-
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.forms-container {
+  display: flex;
+  max-width: 800px;
+  width: 100%;
+}
+.signup-intro {
+  flex: 1;
+  background-color: #f1f1f1;
+  padding: 40px;
+}
+.signup-form {
+  flex: 1;
+  background-color: #fff;
+  padding: 40px;
+  margin-right: 20px;
+}
+.intro-control__inner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+}
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 10px;
+}
+button:hover {
+  background-color: #45a049;
+}
+.socials {
+  display: flex;
+}
 </style>
