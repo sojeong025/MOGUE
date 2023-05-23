@@ -80,6 +80,7 @@ export default {
     margin: 0px;
     padding: 0px;
     word-break: break-all;
+    font-family: 'Montserrat', sans-serif;
   }
 
   *::-webkit-scrollbar{
@@ -92,7 +93,7 @@ export default {
   }
 
   a {
-    font-size: 26px;
+    font-size: 24px;
     text-decoration: none;
     color: black;
   }

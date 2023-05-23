@@ -11,8 +11,8 @@
             <input type="password" placeholder="Confirm password" v-model="user.passwordConfirmation" required />
             <button>Signup</button>
           </form>
-          <span>or signup with</span>
           <div class="socials">
+          <!-- <span>or signup with</span> -->
             <i class="fab fa-facebook-f"></i>
             <i class="fab fa-google-plus-g"></i>
             <i class="fab fa-linkedin-in"></i>
@@ -24,7 +24,7 @@
             <p>
               We are so excited to have you here.If you haven't already, create an account to get access to exclusive offers, rewards, and discounts.
             </p>
-            <router-link :to="{ name: 'login' }"><button id="signin-btn">Already have an account? Signin.</button></router-link>
+            <router-link :to="{ name: 'login' }"><button id="signin-btn">Already have an account? Login.</button></router-link>
           </div>
         </div>
       </div>
@@ -63,7 +63,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .container {
   display: flex;
   justify-content: center;
@@ -77,7 +77,7 @@ export default {
 }
 .signup-intro {
   flex: 1;
-  background-color: #f1f1f1;
+  background-color: #faf5db;
   padding: 40px;
 }
 .signup-form {
@@ -96,6 +96,12 @@ export default {
 h2 {
   font-size: 24px;
   margin-bottom: 20px;
+  text-align: center;
+}
+p{
+  word-break: keep-all;
+  margin-bottom: 20px;
+  text-align: center;
 }
 input {
   width: 100%;
@@ -105,14 +111,14 @@ input {
 button {
   width: 100%;
   padding: 10px;
-  background-color: #4CAF50;
+  background-color: #ecd76f;
   color: #fff;
   border: none;
   cursor: pointer;
   border-radius: 10px;
 }
 button:hover {
-  background-color: #45a049;
+  background-color: #e8cd4a;
 }
 .socials {
   display: flex;
