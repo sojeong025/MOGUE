@@ -47,5 +47,7 @@ for page in range(1, 21):
         k += 1
         print(k)
 
+        print(mag_id)
+
 with open("rawHTML_data.json", "w", encoding="utf-8") as w:
     json.dump(total_data, w, indent="\t", ensure_ascii=False)

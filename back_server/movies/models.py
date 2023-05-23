@@ -9,6 +9,7 @@ class Movie(models.Model):
     runtime = models.IntegerField()
     vote_count = models.FloatField()
     poster_path = models.CharField(max_length=200)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='likedMovie')
 
 class Review(models.Model):
     content = models.TextField()

@@ -20,10 +20,14 @@
 
     <div class="editor-article-right">
       <h3>더 볼만한 기사</h3>
-      <div v-for="article in editor_articles" :key="article.id" class="thumbnail-title">
+      <div v-for="article in editor_articles" :key="article.id" class="thumbnail-title" @click="getEditorArticleDetail">
         <router-link :to="{ name: 'editorarticledetail', params: { id: article.id, article: article } }">
-        <div class="thumbnail"><img :src="article.thumbnail" width="130px" height="120px" alt="thumbnail"></div>
-        <div class="title"><h4 class="title">{{ article.title }}</h4></div>
+          <div class="thumbnail">
+            <img :src="article.thumbnail" width="130px" height="120px" alt="thumbnail">
+          </div>
+          <div class="title">
+            <h4 class="title">{{ article.title }}</h4>
+          </div>
         </router-link>
       </div>
     </div>
@@ -40,14 +44,15 @@ export default {
     return {
       editor_article : '',
       editor_articles : [],
+      id: this.$route.params.id,
     }
   },
   created(){
     this.getEditorArticleDetail()
-    this.getEditorArticles()
   },
   methods: {
     getEditorArticleDetail(){
+      this.getEditorArticles()
       axios({
         method: 'get',
         url: `${API_URL}/community/editor_articles/${this.$route.params.id}`,

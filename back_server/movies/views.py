@@ -92,3 +92,10 @@ def manage_review(request, review_pk):
         
     else:
         return Response('권한이 없습니다', status=status.HTTP_403_FORBIDDEN)
+
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def like_movie(request, movie_pk):
+    user = request.user
+    liked_movies = get_list_or_404(Movie, )

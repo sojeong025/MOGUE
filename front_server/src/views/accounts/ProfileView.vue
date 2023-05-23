@@ -38,7 +38,7 @@
           <span>2card</span>
           <span>3card</span> 
           <span>4card</span> 
-          <span>5card</span> 
+          <span>5card</span>
         </div>
       </div>
     </div>
@@ -203,7 +203,9 @@ export default {
   border: 2px solid blue;
   margin-bottom: 30px;
 }
+
 .liked-movie-title{
+  margin: 20px;
   font-size: 25px;
 }
 
