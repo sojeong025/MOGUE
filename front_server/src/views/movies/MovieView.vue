@@ -1,13 +1,18 @@
 <template>
   <div id="movie">
     <div id="movie-headers">
+      <img id="movie-main-image" :src="`http://127.0.0.1:8000/media/자전거배너.jpg`" alt="">
     </div>
     <div id="movie-body">
       <div id="recommend-section">
+        <h1>요즘 뜨는 영화</h1>
+        <RecommendList/>
+      </div>
+      <div class="yellow">
+        <h1>무슨 영화?</h1>
         <RecommendList/>
       </div>
       <div id="collection-section">
-        <h1>CollectionList</h1>
         <CollectionList/>
       </div>
     </div>
@@ -53,16 +58,28 @@ export default {
     background: linear-gradient(to bottom, transparent, #ffffff);
   }
 
+  #movie-body{
+    margin-top: 90px;
+  }
+
   #collection-section {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     margin-top: 50px;
+    width: 100%;
+    height: 1000px;
   }
 
   #recommend-section {
-    margin-top: 130px;
+    margin-top: 50px;
+    margin-left: 50px;
+  }
+
+  #movie-main-image {
+    width: 100%;
+    height: 100%;
   }
 
 

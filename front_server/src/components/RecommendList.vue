@@ -1,6 +1,5 @@
 <template>
   <div id="recommend-container">
-    <h1>요즘 뜨는 영화</h1>
     <div id="recommend-list">
       <RecommendListItem
       id="recommend-list-item"
@@ -50,13 +49,14 @@ export default {
 
 <style>
   #recommend-container{
-    height: 460px;
+    height: 450px;
   }
 
   #recommend-list{
+    /* border: 1px red solid; */
     display: flex;
     align-items: flex-end;
-    height: 400px;
+    height: 360px;
     display: flex;
     margin-top: 20px;
     overflow: auto;

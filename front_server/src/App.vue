@@ -11,7 +11,7 @@
               </router-link>
             </div>
           </div>
-          <div v-if="this.$store.state.isLogin">
+          <div v-if="this.$store.state.isLogin" class="login-part">
             <router-link :to="{ name: 'profile', params: { id: user_id } }" :class="{ 'textWhite': this.$store.state.textWhite }"> Profile </router-link>
             <span id="logout" :class="{ 'textWhite': this.$store.state.textWhite }" @click="logout">Logout</span>
           </div>
@@ -76,6 +76,13 @@ export default {
 
 
 <style>
+  @font-face {
+    font-family: 'SUITE-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+  }
+
   * {
     margin: 0px;
     padding: 0px;
@@ -83,8 +90,22 @@ export default {
     font-family: 'Montserrat', sans-serif;
   }
 
+  h1 {
+    font-size: 40px;
+  }
+
   *::-webkit-scrollbar{
       display: none;
+  }
+
+  .yellow {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: white;
+    padding-top: 40px;
+    padding-left: 50px;
+    background-color: #ffca1c;
   }
 
   #app {
@@ -100,12 +121,14 @@ export default {
 
   #logout {
     cursor: pointer;
+    font-size: 24px;
   }
 
   #nav-container{
     position: fixed;
+    padding: 20px;
     top: 0%;
-    width: 100vw;
+    width: 100%;
     z-index: 1000;
   }
 
@@ -136,5 +159,9 @@ export default {
   .login-form {
     display: flex;
     width: 302px;
+  }
+
+  .login-part {
+    padding-right: 50px;
   }
 </style>

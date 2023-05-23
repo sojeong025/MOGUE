@@ -41,7 +41,7 @@ export default {
 
 <style>
   #collection-list {
-    width: 1300px;
+    width: 1450px;
     display: flex;
     flex-wrap: wrap;
   }

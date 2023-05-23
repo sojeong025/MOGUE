@@ -4,39 +4,39 @@
     "id": 0,
     "fields": {
       "title": "겨울에 보기 좋은 영화",
-      "thumbnail": "/24195836566B2D3A2D.png"
+      "thumbnail": "/겨울 영화.jpg"
     }
   },
   {
     "model": "movies.collection",
     "id": 1,
     "fields": {
-      "title": "겨울에 보기 좋은 영화",
-      "thumbnail": "/24195836566B2D3A2D.png"
+      "title": "감성적인 분위기의 멜로영화",
+      "thumbnail": "/여명10년.jpg"
     }
   },
   {
     "model": "movies.collection",
     "id": 2,
     "fields": {
-      "title": "겨울에 보기 좋은 영화",
-      "thumbnail": "/24195836566B2D3A2D.png"
+      "title": "재즈가 뭐라고 생각하세요?",
+      "thumbnail": "/재즈.jpg"
     }
   },
   {
     "model": "movies.collection",
     "id": 3,
     "fields": {
-      "title": "겨울에 보기 좋은 영화",
-      "thumbnail": "/24195836566B2D3A2D.png"
+      "title": "어디선가 몰려오는 외계무리",
+      "thumbnail": "/외계무리.png"
     }
   },
   {
     "model": "movies.collection",
     "id": 4,
     "fields": {
-      "title": "겨울에 보기 좋은 영화",
-      "thumbnail": "/24195836566B2D3A2D.png"
+      "title": "청춘의 향기가 솔솔",
+      "thumbnail": "/플립.jpg"
     }
   }
 ]
