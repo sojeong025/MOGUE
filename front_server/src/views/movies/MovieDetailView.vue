@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="movie-detail-section">
     <div id="movie-section">
       <img id="poster-img" :src="`https://image.tmdb.org/t/p/w780/${movie.poster_path}`" alt="poster">
       <div id="detail-info">
@@ -7,7 +7,9 @@
         <p id="detail-overview">{{ movie.overview.slice(0,150) }}</p>
       </div>
     </div>
-    <div id="review-section">
+
+    <div id="review-section" class="yellow">
+      <input id="review-input" type="text" placeholder="리뷰를 작성해 보세요">
       <p v-for="review in reviews" :key="review.id">{{ review.content }}</p>
     </div>
   </div>
@@ -41,6 +43,10 @@ export default {
 </script>
 
 <style scoped>
+  #movie-detail-section {
+    margin-top: 140px;
+  }
+
   #poster-img {
     display: flex;
     width: 300px;
@@ -51,6 +57,7 @@ export default {
     display: flex;
     align-items: flex-end;
     margin-top: 130px;
+    margin-left: 35px;
   }
 
   #movie-runtime {
@@ -64,5 +71,17 @@ export default {
 
   #detail-info {
     margin-left: 18px;
+  }
+
+  #review-section {
+    display: flex;
+    border: solid blue 1px;
+    margin-top: 30px;
+    height: 500px;
+  }
+
+  #review-input {
+    width: 400px;
+    height: 35px;
   }
 </style>
