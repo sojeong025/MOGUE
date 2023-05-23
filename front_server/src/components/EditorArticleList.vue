@@ -1,12 +1,14 @@
 <template>
   <div class="editor-article-list">
-    <div class="editor-article-row">
-      <EditorArticleListItem
-        v-for="editor_article in editor_articles"
-        :key="editor_article.id"
-        :editor_article="editor_article"
-      />
-    </div>
+    <ul class="editor-articles">
+      <li class="editor-article">
+        <EditorArticleListItem
+          v-for="editor_article in editor_articles"
+          :key="editor_article.id"
+          :editor_article="editor_article"
+        />
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -47,18 +49,15 @@ export default {
 <style>
 .editor-article-list {
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
+  align-items: center;
 }
-
-.editor-article-row {
+li {
+  list-style-type: none;
+}
+.editor-article {
+  background-color: aqua ;
   display: flex;
-  flex-wrap: wrap;
-  margin: -10px;
-}
-
-.editor-article-row > .editor-article-list-item {
-  flex: 0 0 calc(33.333% - 40px);
-  margin: 20px;
+  justify-content: center;
 }
 </style>

@@ -72,7 +72,7 @@ export default {
 }
 .forms-container {
   display: flex;
-  max-width: 800px;
+  max-width: 1000px;
   width: 100%;
 }
 .signup-intro {
@@ -83,7 +83,7 @@ export default {
 .signup-form {
   flex: 1;
   background-color: #fff;
-  padding: 40px;
+  padding: 20px;
   margin-right: 20px;
 }
 .intro-control__inner {
@@ -104,7 +104,7 @@ p{
   text-align: center;
 }
 input {
-  width: 100%;
+  width: 94%;
   padding: 10px;
   margin-bottom: 15px;
 }

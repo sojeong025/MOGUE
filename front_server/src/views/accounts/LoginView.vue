@@ -54,7 +54,7 @@ export default {
         const token = res.data.token;
         this.$store.dispatch('login', token)
         console.log(this.$router.pop)
-        this.$router.go(-1)
+        this.$router.push({name: 'home'})
       })
     }
   }
@@ -71,7 +71,7 @@ export default {
 }
 .forms-container {
   display: flex;
-  max-width: 800px;
+  max-width: 1000px;
   width: 100%;
 }
 .login-intro {
@@ -103,7 +103,7 @@ p {
   text-align: center;
 }
 input {
-  width: 100%;
+  width: 94%;
   padding: 10px;
   margin-bottom: 15px;
 }
