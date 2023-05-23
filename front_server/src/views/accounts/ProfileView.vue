@@ -215,7 +215,7 @@ export default {
   border-radius: 100px;
   width: 30px;
   height: 30px;
-  background-color: black;
+  background-color: #ffc107;
   cursor: pointer;
 }
 
