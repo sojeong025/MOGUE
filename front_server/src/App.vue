@@ -91,7 +91,7 @@ export default {
     margin: 0px;
     padding: 0px;
     word-break: break-all;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Montserrat', 'sans-serif', 'SUITE-Regular';
   }
 
   h1 {

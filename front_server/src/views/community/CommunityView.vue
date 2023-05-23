@@ -39,6 +39,7 @@ export default {
 #community-section {
   margin-top: 130px;
   text-align: center;
+  font-family: 'SUITE-Regular';
 }
 .header-section {
   display: flex;

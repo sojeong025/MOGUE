@@ -2,13 +2,14 @@
   <div class="write-page">
     <form id="article-form" @submit.prevent="createArticle">
       <div>
-      <h1>게시글 작성</h1>
-        <label for="title">제목 : </label>
-        <input type="text" id="title" v-model="title">
+        <h1>Write Your Article</h1>
+          <label for="title">title </label>
+          <input type="text" id="title" v-model="title">
       </div>
-      <br>
+    </form>
+    <form id="article-form" @submit.prevent="createArticle">
       <div>
-        <label for="content">내용 : </label>
+        <label for="content">content </label>
         <textarea id="content" cols="30" rows="10" v-model="content"></textarea>
         <input type="file" name="img" id="img" @change="handleImgChange" accept="image/*">
         <input type="submit" id="submit" value="작성">
