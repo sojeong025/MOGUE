@@ -67,7 +67,7 @@ def collection_detail(request, collection_id):
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def create_review(request, movie_pk):
-    movie = Movie.objects.get(Movie, pk=movie_pk)
+    movie = Movie.objects.get(pk=movie_pk)
     serializer = ReviewSerializer(data=request.data)
     if serializer.is_valid(raise_exception=True):
         serializer.save(user=request.user, movie=movie)

@@ -6,7 +6,6 @@
         type="text" placeholder="작품명을 검색해보세요." 
         v-model="searchInput" 
         @input="search(searchInput, movies)"
-        @keydown="focusMove"
         >
       </div>
       <div id="search-body">
@@ -14,16 +13,16 @@
           <div id="search-recommend-section" v-if="!searchInput">
             <RecommendList/>
           </div>
-            <router-link id="recommend-list-item" :to="{ name : 'moviedetail', params : { id: movie.id, movie: movie } }" v-for="movie in searchResult.slice(0, 5)" :key="movie.id" :class="{ 'focus': index === focus }" @keyup.enter="selectResult(movie.title)">
-              <div id="poster">
-                <div id="movie-title">
-                  <h5>{{ movie.title }} </h5>
-                  <p id="runtime">{{ movie.runtime }}분</p>
-                  <p id="recommend_overview">{{ movie.overview.slice(0, 66) }}...</p>
-                </div>
-                <img id="poster-img" :src="`https://image.tmdb.org/t/p/w500/${movie.poster_path}`" alt="poster">
+          <router-link id="search-recommend-list-item" :to="{ name : 'moviedetail', params : { id: movie.id, movie: movie } }" v-for="movie in searchResult.slice(0, 5)" :key="movie.id" :class="{ 'focus': index === focus }" @keyup.enter="selectResult(movie.title)">
+            <div id="poster">
+              <div id="search-movie-title">
+                <h5>{{ movie.title }} </h5>
+                <p id="runtime">{{ movie.runtime }}분</p>
+                <p id="recommend_overview">{{ movie.overview.slice(0, 66) }}...</p>
               </div>
-            </router-link>
+              <img id="poster-img" :src="`https://image.tmdb.org/t/p/w500/${movie.poster_path}`" alt="poster">
+            </div>
+          </router-link>
           </div>
         </div>
       </div>
@@ -64,24 +63,6 @@ export default {
       const movieMatchDataList = value ? movies.filter(movie => movie.title.includes(value)) : []
       this.searchResult = movieMatchDataList
     },
-    focusMove(event) {
-      switch (event.keyCode) {
-        case 38:
-          if (this.focus === null) {
-            this.focus = 0
-          } else if (this.focus > 0) {
-            this.focus--
-          }
-          break
-        case 40:
-          if (this.focus === null) {
-            this.focus = 0
-          } else if (this.focus < this.items.length - 1) {
-            this.focus++
-          }
-          break;
-      }
-    },
     selectResult(title) {
       this.searchInput = title
     }
@@ -107,8 +88,10 @@ export default {
   #search-headers{
     display: flex;
     flex-direction: column;
-    width: 800px;
-    margin-bottom: 50px;
+    align-content: space-between;
+    width: 100%px;
+    margin-top: 150px;
+    margin-left: 50px;
   }
 
   #search {
@@ -120,10 +103,17 @@ export default {
     width: 300px;
   }
 
+  #search-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+  }
+
   #search-input {
     display: flex;
     padding: 10px;
     margin-top: 10px;
+    margin-bottom: 45px;
     width: 230px;
     height: 20px;
     border: 1px solid #bbb;
@@ -138,9 +128,9 @@ export default {
 
   #search-result{
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     width: 100vw;
-    height: 370px;
+    height: 400px;
   }
 
   #search-result-item{
@@ -159,10 +149,45 @@ export default {
   #search-recommend-section {
     display: flex;
     align-items: flex-end;
-    height: 380px;
+    height: 440px;
     display: flex;
-    margin-top: 50px;
+    margin-top: 20px;
     overflow: auto;
     white-space: nowrap;
+  }
+
+  #search-recommend-list-item {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    text-decoration: none;
+    height: 410px;
+    margin-right: 30px;
+  }
+
+  #search-recommend-list-item:hover {
+    height: 422px;
+  }
+
+  #search-movie-title {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    white-space: normal;
+    padding: 28px;
+    position: absolute;
+    font-size: 30px;
+    width: 174px;
+    height: 294px;
+    color: rgba(255, 255, 255, 0);
+    background-color: rgba(0, 0, 0, 0);
+  }
+
+  #search-movie-title:hover{
+    position: absolute;
+    bottom: 17%;
+    transition-duration: 0.2s;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.795);
   }
 </style>
