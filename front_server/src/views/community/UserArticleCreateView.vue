@@ -9,7 +9,7 @@
           <div class="filebox">
             <input class="upload-name" disabled v-model="fileName" value="첨부파일" placeholder="첨부파일">
             <label for="file">파일찾기</label>
-            <input type="file" id="file" @change="handleImgChange" accept="image/*">
+            <input type="file" id="file" @change="handleImgChange" accept="image/*" multiple>
           </div>
       </div>
       <hr class="hr2">
@@ -111,7 +111,7 @@ export default {
 }
 </script>
 
-<style s>
+<style scoped>
 .write-page {
   padding: 0px;
   margin: 100px auto;
@@ -127,7 +127,7 @@ export default {
   width: 40%;
 }
 #article-form-left h1 {
-  margin: 50px;
+  margin: 50px 50px 20px;
 }
 #article-form-left hr{
   width: 50%;

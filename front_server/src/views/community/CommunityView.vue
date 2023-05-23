@@ -1,7 +1,7 @@
 <template>
   <div id="community-section">
     <div class="header-section">
-      <h1>Community</h1>
+      <h1>COMMUNITY</h1>
     </div>
     <div class="content-section">
       <div class="editor-article-section">
@@ -39,7 +39,6 @@ export default {
 #community-section {
   margin-top: 180px;
   text-align: center;
-  font-family: 'SUITE-Regular';
   align-items: center;
   justify-content: center;
   word-break: keep-all;

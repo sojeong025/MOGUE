@@ -1,33 +1,56 @@
 <template>
-  <div>
-    <h1>UserArticleDetail</h1>
-    <router-link :to="{ name :'community'}">[Community]</router-link>
-    <div class="container">
-      <p>글 번호 : {{ user_article?.id }}</p>
-      <p>작성자 : <router-link :to="{ name: 'profile', params: {id: user.pk} }">{{ user.nickname }}</router-link></p>
-      <p>작성시간 : {{ user_article?.created_at }}</p>
-      <p>제목 : {{ user_article?.title }}</p>
-      <img v-if="user_article?.img" :src="`http://127.0.0.1:8000${user_article?.img}`" alt="img" width="500px" height="500px">
-      <p>내용 : {{ user_article?.content }}</p>
+<div class="main-container">
+  <h1>{{ user_article?.title }}</h1>
+  <div class="user-article">
+      <div class="user-article-content">
+        <div class="user-article-left">
+          <div class="left-up">
+          <!-- <router-link :to="{ name :'community'}">[Community]</router-link> -->
+          <p class="number">article number {{ user_article?.id }}</p>
+          <p class="writer">writer <router-link class="writer" :to="{ name: 'profile', params: {id: user.pk} }">{{ user.nickname }}</router-link></p>
+          <p class="date">date {{ user_article?.created_at }}</p>
+          </div>
+          <div class="left-down">
+            <button id="button" @click="updateUserArticle">수정</button>
+            <button id="button" @click="deleteUserArticle">삭제</button>
+          </div>
+        </div>
+        
+        <hr class="hr1">
 
-      <button @click="updateUserArticle">수정</button>
-      <button @click="deleteUserArticle">삭제</button>
-      </div>
-    <div class="comment">
-      <form id="comment-form" @submit.prevent="createComment">
-        <label for="content"></label>
-        <input id="text" cols="30" rows="10" v-model="content">
-        <input type="submit" value="작성">
-      </form>
-    </div>
-    <h3>댓글목록</h3>
-    <div v-for="comment in comments" :key="comment.id">
-      {{comment.content}} <button @click="deleteComment(comment.id)">X</button>
-    </div> 
+        <div class="user-article-right">
+          <div class="article">
+            <div class="title">
+            <img v-if="user_article?.img" :src="`http://127.0.0.1:8000${user_article?.img}`" alt="img" width="300px" height="300px">
+            </div>
+            <div class="content">
+            <p>{{ user_article?.content }}</p>
+            <!-- <i class="fa-sharp fa-solid fa-trash"></i> -->
+            </div>
+          </div>
+        </div>
+        </div>
+
+
+          <div class="comment">
+            <span>comment</span>
+            <form id="comment-form" @submit.prevent="createComment">
+              <label for="content"></label>
+              <input id="text" v-model="content" placeholder="댓글을 작성하세요">
+              <input id="submit" type="submit" value="작성">
+            </form>
+              
+              <div v-for="comment in comments" :key="comment.id">
+                {{comment.content}} <button @click="deleteComment(comment.id)">X</button>
+              </div> 
+          </div>
+
+</div>
   </div>
 </template>
 
 <script>
+
 import axios from 'axios'
 import jwtDecode from "jwt-decode"
 const API_URL = 'http://127.0.0.1:8000'
@@ -123,6 +146,106 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+.main-container{
+  margin: 200px auto;
+  width: 1600px;
+  height: 700px;
+  /* text-align: center; */
+  align-items: center;
+  justify-content: center;
+}
+.main-container h1{
+  text-align: center;
+  margin: 15px;
+  color:#3f3f3f
+;}
+.user-article{
+  display: flex;
+  flex-direction: column;
+  word-break: keep-all;
+}
+.user-article-content{
+  display: flex;
+  flex-direction: row;
+    /* align-items: center; */
+  border-top : 1px solid rgb(187, 184, 184);
+  border-bottom : 1px solid rgb(187, 184, 184);
+}
+.user-article-left{
+  margin: 50px;
+  flex: 0.5;
+  margin: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.user-article-left p {
+  margin-bottom: 6px;
+  color: #3f3e3e;
+  font-size: 14px
+}
+.user-article-left p .writer {
+  font-size: 14px;
+  color: #f3a806;
+}
+.article{
+  display: flex;
+  flex-direction: row;
+}
+.user-article-right{
+  display: flex;
+  flex: 3;
+}
+.user-article-right img {
+  width: 240px;
+  height: 100%;
+  /* outline: none; */
+}
+.user-article-right img:hover {
+  transform: scale(1.05);
+  transition: .3s ease-in-out;
+}
+.user-article-right p{
+  margin: 10px;
+  font-size: 19px;
+  line-height: 35px;
+  white-space: pre-line;
+  word-break: keep-all;
+}
+.comment {
+  margin: 20px;
+}
+#text{
+  margin-top: 10px;
+  padding-left: 0px;
+  width: 500px;
+  height: 30px;
+  border-bottom: 2px solid #e8aa23;
+  border :0;
+  font-size: 15px
+;}
+#text:focus{
+  outline: none;
+  border-bottom:  2px solid #e8aa23;
+  background-color: none;
+}
+#submit{
+  margin-left: 8px;
+  width: 60px;
+  height: 35px;
+  background-color: #e8aa23;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+#button{
+  width: 47%;
+  height: 35px;
+  background-color: #e8aa23;
+  border: none;
+  margin-right:5px;
+  color: white;
+  cursor: pointer;
+}
 </style>
