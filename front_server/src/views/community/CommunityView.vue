@@ -2,8 +2,6 @@
   <div id="community-section">
     <div class="header-section">
       <h1>Community</h1>
-      <router-link :to="{ name: 'articlecreate', params: { method: 'post'} }" v-if="token">[CREATE]</router-link>
-      <router-link :to="{ name: 'login' }" v-else>[CREATE]</router-link>
     </div>
     <div class="content-section">
       <div class="editor-article-section">
@@ -11,6 +9,8 @@
       </div>
       <hr>
       <div class="user-article-section">
+      <router-link :to="{ name: 'articlecreate', params: { method: 'post'} }" v-if="token">[게시글 작성]</router-link>
+      <router-link :to="{ name: 'login' }" v-else>[게시글 작성]</router-link>
         <UserArticleList/>
       </div>
     </div>
@@ -52,9 +52,11 @@ export default {
   align-items: center;
 }
 .editor-article-section {
-  width: 40%;
+  display: flex;
+  width: 100%;
   padding: 10px;
   margin-bottom: 20px;
+  background-color: #e8aa23;
 }
 
 .user-article-section {

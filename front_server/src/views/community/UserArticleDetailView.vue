@@ -7,7 +7,7 @@
       <p>작성자 : <router-link :to="{ name: 'profile', params: {id: user.pk} }">{{ user.nickname }}</router-link></p>
       <p>작성시간 : {{ user_article?.created_at }}</p>
       <p>제목 : {{ user_article?.title }}</p>
-      <img v-if="user_article?.img" :src="`http://127.0.0.1:8000${user_article?.img}`" alt="img" width="100px" height="100px">
+      <img v-if="user_article?.img" :src="`http://127.0.0.1:8000${user_article?.img}`" alt="img" width="500px" height="500px">
       <p>내용 : {{ user_article?.content }}</p>
 
       <button @click="updateUserArticle">수정</button>

@@ -12,8 +12,8 @@ from random import sample
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def editor_articles(request):
-    editor_articles = get_list_or_404(EditorArticle)
-    editor_articles = sample(editor_articles, 5)
+    editor_articles = get_list_or_404(EditorArticle)[:6]
+    # editor_articles = sample(editor_articles, 5)
 
     serializer = EditorArticleSerializer(editor_articles, many=True)
 

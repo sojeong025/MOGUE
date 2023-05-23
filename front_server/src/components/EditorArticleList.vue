@@ -1,12 +1,15 @@
 <template>
   <div class="editor-article-list">
     <ul class="editor-articles">
-      <li class="editor-article">
-        <EditorArticleListItem
-          v-for="editor_article in editor_articles"
-          :key="editor_article.id"
-          :editor_article="editor_article"
-        />
+      <li class="editor-article" v-for="editor_article in editor_articles" :key="editor_article.id">
+        <div class="card">
+          <router-link :to="{ name: 'editorarticledetail', params: { id: editor_article.id, editor_article: editor_article } }">
+            <img :src="editor_article.thumbnail" class="card-img" alt="thumbnail">
+            <div class="card-content">
+              <h5 class="card-title"><span>{{ editor_article.title }}</span></h5>
+            </div>
+          </router-link>
+        </div>
       </li>
     </ul>
   </div>
@@ -16,13 +19,8 @@
 import axios from 'axios'
 const API_URL = 'http://127.0.0.1:8000'
 
-import EditorArticleListItem from '@/components/EditorArticleListItem'
-
 export default {
   name: 'EditorArticleList',
-  components: {
-    EditorArticleListItem,
-  },
   data() {
     return {
       editor_articles: [],
@@ -34,30 +32,43 @@ export default {
         method: 'get',
         url: `${API_URL}/community/editor_articles`
       })
-        .then((res) => {
-          this.editor_articles = res.data
-        })
-        .catch(err => console.log(err))
+      .then((res) => {
+        this.editor_articles = res.data
+      })
+      .catch(err => console.log(err))
     }
   },
-  created(){
+  created() {
     this.getEditorArticles()
   }
 }
 </script>
 
-<style>
+<style scoped>
 .editor-article-list {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  width: 100%;
+  font-family: 'SUITE-Regular';
 }
 li {
   list-style-type: none;
 }
 .editor-article {
-  background-color: aqua ;
   display: flex;
+  width: 400px;
   justify-content: center;
+  flex-direction: row;
+
 }
+
+.editor-articles {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.card {
+  flex-basis: 150px;
+  margin: 0 10px;
+}
+
 </style>
