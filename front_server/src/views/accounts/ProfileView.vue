@@ -183,12 +183,12 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 130px;
+  margin-top: 180px;
 }
 
 #profile-headers {
   display: flex;
-  justify-content: start;
+  justify-content: flex-start;
   height: 350px;
 }
 
@@ -205,7 +205,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: start;
+  justify-content: flex-start;
   width: 300px;
   padding-left: 50px;
   /* border: 2px solid blue; */
@@ -214,6 +214,7 @@ export default {
 }
 
 .liked-movie-title{
+  width: 600px;
   margin-top: 10px;
   margin-bottom: 20px;
   margin-left: 20px;
@@ -239,7 +240,16 @@ export default {
 }
 
 .my-article-item {
+  display: flex;
+  align-items: center;
+  height: 30px;
+  padding: 0px 5px;
   font-size: 22px;
+  margin-bottom: 10px;
+}
+
+.my-article-item:hover {
+  background-color: white;
 }
 
 #profile-img {
@@ -284,6 +294,7 @@ export default {
 
 .liked-item {
   font-size: 22px;
+  padding: 0px 5px;
   margin-bottom: 10px;
 }
 
@@ -309,8 +320,8 @@ export default {
   align-items: center;
   margin-left: 60px;
   width: 1000px;
-  height: 460px;
-  padding: 20px 800px 0px 800px;
+  height: 390px;
+  padding: 40px 800px 0px 800px;
   background-color: #ffc107;
 }
 
@@ -359,7 +370,7 @@ export default {
   justify-content: space-around;
   height: 300px;
   width: 1000px;
-  border: 2px solid blue;
+  /* border: 2px solid blue; */
 }
 
 .follow-info {
