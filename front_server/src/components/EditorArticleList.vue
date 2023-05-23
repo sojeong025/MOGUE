@@ -30,7 +30,10 @@ export default {
     getEditorArticles() {
       axios({
         method: 'get',
-        url: `${API_URL}/community/editor_articles`
+        url: `${API_URL}/community/editor_articles/random/`,
+        params: {
+          count: 9,
+        }
       })
       .then((res) => {
         this.editor_articles = res.data

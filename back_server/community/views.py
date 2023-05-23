@@ -12,12 +12,24 @@ from random import sample
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def editor_articles(request):
-    editor_articles = get_list_or_404(EditorArticle)[:10]
+    editor_articles = get_list_or_404(EditorArticle)
     # editor_articles = sample(editor_articles, 5)
 
     serializer = EditorArticleSerializer(editor_articles, many=True)
 
     return Response(serializer.data, status=status.HTTP_200_OK)
+
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def get_random_editor_articles(request):
+    count = int(request.GET.get('count', 5)) 
+    total_articles = EditorArticle.objects.count()
+    count = min(count, total_articles)
+    random_ids = sample(range(1, total_articles + 1), count)
+    random_ids = list(set(random_ids))  # 중복 제거
+    random_articles = EditorArticle.objects.filter(id__in=random_ids)
+    serializer = EditorArticleSerializer(random_articles, many=True)
+    return Response(serializer.data)
 
 
 @api_view(['GET'])
