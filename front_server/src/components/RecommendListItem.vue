@@ -35,10 +35,11 @@ export default {
     flex-direction: column;
     justify-content: space-between;
     white-space: normal;
-    padding: 15px;
+    padding: 28px;
     position: absolute;
-    width: 200px;
-    height: 320px;
+    font-size: 30px;
+    width: 174px;
+    height: 294px;
     color: rgba(255, 255, 255, 0);
     background-color: rgba(0, 0, 0, 0);
   }
