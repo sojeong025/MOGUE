@@ -70,6 +70,9 @@ export default {
     }
     this.$store.dispatch('checkLogin')
     this.$store.dispatch('checkTextWhite')
+  },
+  destroyed() {
+    this.logout()
   }
 }
 </script>
@@ -77,7 +80,7 @@ export default {
 
 <style>
   router-view {
-    transition-duration: 3px;
+    transition-duration: 3s;
   }
 
   @font-face {
@@ -125,6 +128,9 @@ export default {
 
   #logout {
     cursor: pointer;
+    background-color: black;
+    padding: 3px;
+    color: white;
     font-size: 24px;
   }
 

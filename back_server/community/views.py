@@ -68,7 +68,6 @@ def create_user_article(request):
 @permission_classes([IsAuthenticated])
 def manage_user_article(request, user_article_pk):
     user_article = get_object_or_404(UserArticle, pk=user_article_pk)
-    print(request.user, user_article.user_id)
     if request.user.id == user_article.user_id:
         if request.method == 'PUT':
             serializer = UserArticleSerializer(instance=user_article, data=request.data)

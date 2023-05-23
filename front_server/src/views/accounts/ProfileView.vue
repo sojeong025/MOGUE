@@ -1,39 +1,42 @@
 <template>
   <div id="profile-section"> 
     <h1>Profile</h1>
-    <div class="profile-left">
-      <p>{{user.nickname}}님의 프로필</p>
-      <p>{{user.profile_img}} 지금은 이미지 없음</p>
-
-      <!-- 해야 함 -->
-      <button>회원 정보 수정</button>
-
-      <div v-if="itsMe">
-        <span class="itsme">안보이게하기</span>
-      </div>
-      <div v-else>
-        <div v-if="isFollow">
-          <span @click="follow" class="follow">언팔로우</span>
+    <div id="profile-headers">
+      <div class="profile-left">
+        <div id="profile-img">
+          <router-link :to="{ name: 'profile_update', params: { id: this.$route.params.id } }">
+            <button id="edit-profile"></button>
+          </router-link>
+          <img :src="`http://127.0.0.1:8000${user.profile_img}`" alt="img">
+        </div>
+        <p>{{user.nickname}}님의 프로필</p>
+        <div v-if="itsMe">
         </div>
         <div v-else>
-          <span @click="follow" class="follow">팔로우</span>
+          <div v-if="isFollow">
+            <span @click="follow" class="follow">언팔로우</span>
+          </div>
+          <div v-else>
+            <span @click="follow" class="follow">팔로우</span>
+          </div>
         </div>
       </div>
-
-      <router-link :to="{ name: 'follow', params: {  id: this.$route.params.id } }">
-        <span class="follower-number">
-          팔로워 : {{ followers.length }}
-        </span>
-      </router-link>
-      <router-link :to="{ name: 'follow', params: {  id: this.$route.params.id } }">
-        <span class="following-number">
-          팔로잉 : {{ followings.length }}
-        </span>
-      </router-link>
+      <!-- 해야 함 -->
+      <div class="profile-right">
+        <router-link :to="{ name: 'follow', params: {  id: this.$route.params.id } }">
+          <span class="follower-number">
+            팔로워 : {{ followers.length }}
+          </span>
+        </router-link>
+        <router-link :to="{ name: 'follow', params: {  id: this.$route.params.id } }">
+          <span class="following-number">
+            팔로잉 : {{ followings.length }}
+          </span>
+        </router-link>
+      </div>
     </div>
 
-    <!-- 해야 함 -->
-    <div class="profile-right">
+
       <div class="favorite-movie">
         <p>{{ user.nickname }}님이 좋아하는 영화 목록</p>
         <span>1card</span> <span>2card</span> <span>3card</span> <span>4card</span> <span>5card</span> 
@@ -46,7 +49,6 @@
         <p>{{ user.nickname }}님이 시청한 영화 목록</p>
         <span>1card</span> <span>2card</span> <span>3card</span> <span>4card</span> <span>5card</span> 
       </div>
-    </div>
 
     <div class="profile-bottom">
       <div class="write-article">
@@ -174,17 +176,49 @@ export default {
 
 #profile-section {
   margin-top: 130px;
+  margin-left: 50px;
+}
+
+#profile-headers {
+  display: flex;
+  justify-content: start
 }
 
 .profile-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   border: 2px solid orange;
   margin: 20px;
-  height: 200px;
+  height: 250px;
 }
 .profile-right {
   border: 2px solid blue;
   margin: 20px;
 }
+
+#profile-img {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 200px;
+  height: 180px;
+  margin-bottom: 35px;
+}
+
+#edit-profile {
+  position: absolute;
+  left: 80%;
+  bottom: 78%;
+  z-index: 100;
+  border: none;
+  border-radius: 100px;
+  width: 30px;
+  height: 30px;
+  background-color: black;
+  cursor: pointer;
+}
+
 .favorite-movie{
   border: 2px solid greenyellow;
   margin: 10px;

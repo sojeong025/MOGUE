@@ -1,5 +1,6 @@
 <template>
   <div id="search-section">
+      <img id="movie-main-image" :src="`http://127.0.0.1:8000/media/버스.jpg`" alt="">
     <div id="search-headers">
       <div id="search">
         <input id="search-input" 
@@ -82,7 +83,6 @@ export default {
 
 <style>
   #search-section {
-    margin-top: 120px;
   }
     
   #search-headers{
@@ -90,7 +90,7 @@ export default {
     flex-direction: column;
     align-content: space-between;
     width: 100%px;
-    margin-top: 150px;
+    margin-top: 80px;
     margin-left: 50px;
   }
 

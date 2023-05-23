@@ -18,6 +18,6 @@ export default {
 
 <style>
   #home-video {
-    width: 100vw;
+    width: 100%;
   }
 </style>

@@ -9,6 +9,7 @@ urlpatterns = [
     path('login/', obtain_jwt_token),
     # path('profile/', views.profile),
     path('profile/<int:user_pk>/', views.profile),
+    path('profile/<int:user_pk>/update/', views.update_profile),
     path('delete/', views.user_delete),
     path('<int:user_pk>/follow/', views.follow),
     path('<int:user_pk>/follow_list/', views.follow_list),

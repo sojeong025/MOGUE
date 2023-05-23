@@ -107,7 +107,6 @@ export default {
       this.title = this.$route.params.user_article.title
       this.content = this.$route.params.user_article.content
     }
-    
   }
 }
 </script>

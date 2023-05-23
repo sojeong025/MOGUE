@@ -9,7 +9,7 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 from django.contrib.auth import get_user_model, update_session_auth_hash
 from .models import User
-from .serializers import UserSerializer
+from .serializers import UserSerializer, UpdateUserSerializer
 # from movies.models import Movie, Review
 # from movies.serializers import MovieSerializer, ReviewSerializer
 # from community.models import Community, Ceview
@@ -166,3 +166,17 @@ def change_password(request, user_pk):
 #         'user': userserializer.data
 #     }
 #     return Response(context)
+
+
+@api_view(['PUT'])
+@permission_classes([IsAuthenticated])
+def update_profile(request, user_pk):
+    original_user = User.objects.get(pk=user_pk)
+    print(request.data)
+    serializer = UpdateUserSerializer(instance=original_user, data=request.data)
+    
+    if serializer.is_valid(raise_exception=True):
+        user = serializer.save()
+        update_session_auth_hash(request, user)
+        user.save()
+        return Response(serializer.data)

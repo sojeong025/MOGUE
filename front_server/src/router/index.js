@@ -6,6 +6,7 @@ import HomeView from '@/views/HomeView'
 import LoginView from '@/views/accounts/LoginView'
 import SignupView from '@/views/accounts/SignupView'
 import ProfileView from '@/views/accounts/ProfileView'
+import UpdateProfileView from '@/views/accounts/UpdateProfileView'
 import FollowView from '@/views/accounts/FollowView'
 
 
@@ -28,7 +29,7 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/home',
+    path: '/',
     name: 'home',
     component: HomeView
   },
@@ -46,6 +47,11 @@ const routes = [
     path: '/profile/:id',
     name: 'profile',
     component: ProfileView
+  },
+  {
+    path: '/profile/:id/update',
+    name: 'profile_update',
+    component: UpdateProfileView
   },
   {
     path: '/profile/:id/follow',

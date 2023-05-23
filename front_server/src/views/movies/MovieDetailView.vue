@@ -17,7 +17,7 @@
             inactive-color="#21f1ff"
             active-color="#ffffff"
             :star-size=35
-            @rating-selected="setRating"
+            v-model="rating"
           ></star-rating>
         </div>
         <input id="submit-btn" type="submit" value="작성">
@@ -26,7 +26,10 @@
         <div v-for="review in reviews" :key="review.id">
           <div id="reviews">
             <span>{{ review.content }}</span>
-            <span>{{ review.star }}</span>
+            <div>
+            <span>{{ review.star }}</span> |
+            <span id="deleteBtn" @click="deleteReview(review.id)">X</span>
+            </div>
           </div>
           <hr id="review-hr">
         </div>
@@ -40,6 +43,7 @@ import StarRating from 'vue-star-rating'
 import axios from 'axios'
 import jwtDecode from "jwt-decode"
 const API_URL = 'http://127.0.0.1:8000'
+const token = localStorage.getItem('token')
 
 export default {
   name: 'MovieDetailView',
@@ -55,11 +59,19 @@ export default {
     }
   },
   methods: {
-    setRating(rating) {
-      this.rating=rating
+    getMovieDetail() {
+      axios({
+        method: 'get',
+        url: `${API_URL}/movies/${this.$route.params.id}`,
+      })
+      .then((res) => {
+        console.log(res)
+        this.movie = res.data.movie
+        this.reviews = res.data.reviews
+      })
+      .catch(err => console.log(err))
     },
     createReview() {
-      const token = localStorage.getItem('token')
       const formData = {
         user: jwtDecode(token).user_id, // 초기값은 null로 설정합니다.
         movie: this.movie.id,
@@ -76,21 +88,27 @@ export default {
         }
       })
       .then((res) => {
-        console.log(res)
+        this.reviews.push(res.data)
+        this.rating = 0
+        this.content = null
+      })
+    },
+    deleteReview(review_id) {
+      axios({
+        method: 'delete',
+        url: `http://127.0.0.1:8000/movies/reviews/${review_id}/`,
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          Authorization: `JWT ${token}`
+        }
+      })
+      .then(() => {
+        this.getMovieDetail()
       })
     }
   },
   created() {
-    axios({
-      method: 'get',
-      url: `${API_URL}/movies/${this.$route.params.id}`
-    })
-    .then((res) => {
-      console.log(res)
-      this.movie = res.data.movie
-      this.reviews = res.data.reviews
-    })
-    .catch(err => console.log(err))
+    this.getMovieDetail()
   }
 }
     
@@ -142,6 +160,7 @@ export default {
 
   #review-box {
     margin-top: 20px;
+    margin-left: 14px;
   }
 
   #reviews {
@@ -214,5 +233,9 @@ export default {
     background-color: white;
     color:white;
     border: none;
+  }
+
+  #deleteBtn {
+    cursor: pointer;
   }
 </style>
