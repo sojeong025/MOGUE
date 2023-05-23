@@ -37,15 +37,22 @@ export default {
 
 <style>
 #community-section {
-  margin-top: 130px;
+  margin-top: 180px;
   text-align: center;
   font-family: 'SUITE-Regular';
+  align-items: center;
+  justify-content: center;
+  word-break: keep-all;
 }
 .header-section {
   display: flex;
-  justify-content: flex-start;
   align-items: center;
+  justify-content: center;
   padding: 10px;
+}
+.header-section h1 {
+  text-align: center;
+  padding-bottom: 20px;
 }
 .content-section {
   display: flex;
@@ -61,7 +68,6 @@ export default {
 }
 
 .user-article-section {
-  width: 60%;
   padding: 10px;
 }
 </style>

@@ -48,7 +48,6 @@ export default {
   display: flex;
   flex-direction: row;
   font-family: 'SUITE-Regular';
-
 }
 
 .card {

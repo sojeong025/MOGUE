@@ -1,18 +1,24 @@
 <template>
-  <div class="write-page">
-    <form id="article-form" @submit.prevent="createArticle">
-      <div>
+  <div >
+    <form class="write-page" @submit.prevent="createArticle">
+      <div id="article-form-left" >
         <h1>Write Your Article</h1>
-          <label for="title">title </label>
-          <input type="text" id="title" v-model="title">
+          <hr>
+          <h3>title</h3><br>
+          <input type="text" id="title" v-model="title" placeholder="기사 제목을 작성하세요"><br>
+          <div class="filebox">
+            <input class="upload-name" disabled v-model="fileName" value="첨부파일" placeholder="첨부파일">
+            <label for="file">파일찾기</label>
+            <input type="file" id="file" @change="handleImgChange" accept="image/*">
+          </div>
       </div>
-    </form>
-    <form id="article-form" @submit.prevent="createArticle">
-      <div>
-        <label for="content">content </label>
-        <textarea id="content" cols="30" rows="10" v-model="content"></textarea>
-        <input type="file" name="img" id="img" @change="handleImgChange" accept="image/*">
-        <input type="submit" id="submit" value="작성">
+      <hr class="hr2">
+      <div id="article-form-right" >
+        <div class="content">
+          <h3>Content</h3><br>
+          <textarea id="content" cols="52" rows="15" v-model="content" placeholder="기사 내용을 작성하세요"></textarea><br>
+        </div>
+          <input type="submit" id="submit" value="SUBMIT">
       </div>
     </form>
   </div>
@@ -31,6 +37,8 @@ export default {
       title : null,
       content : null,
       img : null,
+      // preview: '',
+      fileName: '첨부파일',
       method: this.$route.params.method,
       url: `${API_URL}/community/user_articles/create/`,
     }
@@ -43,7 +51,8 @@ export default {
         movie: 38,
         title: this.title,
         content: this.content,
-        img: this.img
+        img: this.img,
+        // preview: this.preview,
       }
       console.log(formData.user)
       if (formData.title && formData.content) {
@@ -89,6 +98,8 @@ export default {
     },
     handleImgChange(event) {
       this.img = event.target.files[0]
+      this.fileName = event.target.files[0].name
+      // this.preview = URL.createObjectURL(this.event.target.files[0])
     },
   },
   created() {
@@ -96,21 +107,112 @@ export default {
       this.title = this.$route.params.user_article.title
       this.content = this.$route.params.user_article.content
     }
+    
   }
 }
 </script>
 
-<style>
+<style s>
 .write-page {
   padding: 0px;
-  margin: 50px auto;
-  margin-top: 130px;
-  width: 800px;
-  height: 800px;
-  border: 1px solid black;
-}
-#article-form {
+  margin: 100px auto;
+  margin-top: 150px;
+  width: 1600px;
+  height: 700px;
   display: flex;
-
+  flex-direction: row;
+  box-shadow: 8px 8px 20px #626464;
 }
+#article-form-left {
+  margin: 50px;
+  width: 40%;
+}
+#article-form-left h1 {
+  margin: 50px;
+}
+#article-form-left hr{
+  width: 50%;
+  background-color:#e8aa23;
+  height: 5px;
+  border: 0;
+  margin-left: 50px;
+}
+#article-form-left input#title{
+  margin: 0px 50px 20px;
+  border: 0;
+  width: 400px;
+  height: 30px;
+  padding: 5px;
+  border-bottom:1px solid black;
+  font-size: 25px;
+}
+#article-form-left input#img{
+  margin: 10px 50px 20px;
+}
+.filebox .upload-name {
+    display: inline-block;
+    height: 40px;
+    padding: 0 10px;
+    vertical-align: middle;
+    border: 1px solid #dddddd;
+    margin-left: 50px;
+    width: 50%;
+    color: #999999;
+}
+.filebox label {
+    display: inline-block;
+    padding: 10px 20px;
+    color: #fff;
+    vertical-align: middle;
+    background-color: #999999;
+    cursor: pointer;
+    height: 22px;
+    margin-left: 10px;
+}
+.filebox input[type="file"] {
+    position: absolute;
+    width: 0;
+    height: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+}
+#article-form-left input:focus {
+  outline: none;
+}
+#article-form-left h3 {
+  margin-left: 50px;
+  margin-top: 50px
+}
+.hr2{
+  background-color:#faf5db;
+  width: 2px;
+  border: 0;
+}
+#article-form-right { 
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+#article-form-right h3{
+  margin: 50px 50px 10px;
+}
+#article-form-right textarea{
+  margin-left: 50px;
+  font-size: 25px;
+  border: 0;
+  resize: none;
+}
+#article-form-right textarea:focus {
+  outline: none;
+}
+#submit {
+  margin-bottom: 0;
+  height: 50px;
+  width: 100%;
+  border: 0;
+  background-color :#e8aa23;
+  font-size: 25px;
+} 
 </style>
