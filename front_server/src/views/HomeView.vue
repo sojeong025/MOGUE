@@ -6,7 +6,7 @@
         <router-link class="magazine" :to="{ name: 'movie' }">MOVIE MAGAGINE</router-link>
       </div>
     </div>
-    <video id="home-video" src="/final.mp4" class="video" type="video/mp4" autoplay muted loop></video>
+    <video id="home-video" src="/cut.mp4" class="video" type="video/mp4" autoplay muted loop></video>
   </div>
 </template>
 
@@ -35,7 +35,7 @@ export default {
 }
 
 .main {
-  margin-top: 1000px;
+  margin-top: 720px;
   position: absolute;
   /* z-index: 100; */
   text-align: center;
@@ -43,7 +43,7 @@ export default {
 
 .mogue {
   color: #fff;
-  font-size: 200px;
+  font-size: 150px;
   font-weight: 600;
   transition: 0.5s;
   font-family: 'DM Serif Display', serif;
@@ -57,11 +57,11 @@ export default {
 .magazine{
   color: #fff;
   display: inline-block;
-  font-size: 23px;
+  font-size: 18px;
   border: 2px solid #fff;
   padding: 14px 25px;
   border-radius: 50px;
-  margin: 20px 10px;
+  margin: 10px 10px;
   font-family: 'DM Serif Display', serif;
 }
 
@@ -75,8 +75,8 @@ export default {
   /* align-items: center;
   justify-content: center; */
   z-index: -1;
-  height: 904px;
-  width: 1800px;
+  /* height: 710px; */
+  width: 1440px;
 }
 
 </style>
