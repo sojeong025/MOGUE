@@ -10,18 +10,18 @@
         >
         <div class="otts">
           <div v-for="ott in otts" :key="ott.id">
-            <div class="light-box" @click="filterOtt(ott.id)"></div>
+            <div class="light-box" @click="filterOtt(ott.id)" :class="{ 'selected': isSelected[ott.id]}"></div>
             <img class="ott-item" :src="`https://image.tmdb.org/t/p/w45${ott.logo_path}`" alt="">
           </div>
         </div>
       </div>
       <div id="search-body">
         <div id = "search-result">
-          <div id="search-recommend-section" v-if="!searchInput">
+          <div id="search-recommend-section" v-if="!searchResult.length">
             <RecommendList/>
           </div>
           <div id="search-recommend-list" v-else>
-            <router-link id="search-recommend-list-item" :to="{ name : 'moviedetail', params : { id: movie.id, movie: movie } }" v-for="movie in searchResult.slice(0, 10)" :key="movie.id" :class="{ 'focus': index === focus }" @keyup.enter="selectResult(movie.title)">
+            <router-link id="search-recommend-list-item" :to="{ name : 'moviedetail', params : { id: movie.id, movie: movie } }" v-for="movie in searchResult.slice(0, 10)" :key="movie.id" @keyup.enter="selectResult(movie.title)">
               <div id="poster">
                 <div id="search-movie-title">
                   <h5>{{ movie.title }} </h5>
@@ -47,6 +47,7 @@ import CollectionList from '@/components/CollectionList'
 import RecommendList from '@/components/RecommendList'
 import axios from 'axios'
 const API_URL = 'http://127.0.0.1:8000'
+const token = localStorage.getItem('token')
 
 
 export default {
@@ -55,7 +56,16 @@ export default {
     return {
       movies: [],
       searchResult: [],
+      ottResult: [],
       otts: [],
+      isSelected: {
+        '2': false,
+        '3': false,
+        '8': false,
+        '97': false,
+        '192': false,
+        '337': false,
+      },
       searchInput: "",
       focus: null,
     }
@@ -69,6 +79,15 @@ export default {
       this.$router.go(-1)
     },
     search(wordToMatch, movies) {
+      const isSelected = {
+        '2': false,
+        '3': false,
+        '8': false,
+        '97': false,
+        '192': false,
+        '337': false,
+      }
+      this.isSelected = isSelected
       const value = wordToMatch.trim()
       const movieMatchDataList = value ? movies.filter(movie => movie.title.includes(value)) : []
       this.searchResult = movieMatchDataList
@@ -77,26 +96,45 @@ export default {
       this.searchInput = title
     },
     filterOtt(ott_id) {
-      console.log(ott_id)
+      const isSelected = {
+        '2': false,
+        '3': false,
+        '8': false,
+        '97': false,
+        '192': false,
+        '337': false,
+      }
+      this.isSelected = isSelected
+      this.isSelected[ott_id] = !this.isSelected[ott_id]
+      axios({
+        method: 'get',
+        url: `${API_URL}/movies/otts/${ott_id}/`,
+        headers: {
+          Authorization: `JWT ${token}`
+        }
+      })
+      .then((res) => {
+        this.searchResult=res.data
+      })
     }
   },
     created() {
-    axios({
-      method: 'get',
-      url: `${API_URL}/movies/all_movies`
-    })
-    .then((res) => {
-      this.movies = res.data
-    })
-    .catch(err => console.log(err))
+      axios({
+        method: 'get',
+        url: `${API_URL}/movies/all_movies`
+      })
+      .then((res) => {
+        this.movies = res.data
+      })
+      .catch(err => console.log(err))
 
-    axios({
-      method: 'get',
-      url: 'http://127.0.0.1:8000/movies/otts/',
-    })
-    .then((res) => {
-      this.otts = res.data
-    })
+      axios({
+        method: 'get',
+        url: 'http://127.0.0.1:8000/movies/otts/',
+      })
+      .then((res) => {
+        this.otts = res.data
+      })
   }
 }
 </script>
@@ -239,4 +277,9 @@ export default {
   .light-box:hover {
     background-color: rgba(255, 255, 255, 0.301);
   }
+
+  .selected {
+    background-color: #ffc1074f;
+  }
+
 </style>

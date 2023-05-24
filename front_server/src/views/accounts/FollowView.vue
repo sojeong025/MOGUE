@@ -12,13 +12,8 @@
               <img class="img" :src="`http://127.0.0.1:8000${follower.profile_img}`" alt="follower-profile">
               {{ follower.nickname }}
             </router-link>
-            <div v-if="!itsMe">
-              <div v-if="isFollow">
-                <span @click="follow" class="follow">삭제</span>
-              </div>
-              <div v-else>
-                <span @click="follow" class="follow">삭제</span>
-              </div>
+            <div v-if="itsMe">
+              <span @click="follow" class="follow">삭제</span>
             </div>
           </li>
         </ul>
@@ -27,17 +22,17 @@
       <div class="follwings">
         <h3>팔로잉</h3>
         <ul class="follwings-content">
-          <li v-for="following in followings" :key="following.id">
+          <li v-for="following in followings" :key="following.pk">
             <router-link :to="{ name: 'profile', params: {id: following.pk } }">
               <img class="img" :src="`http://127.0.0.1:8000${following.profile_img}`" alt="following-profile">
               {{ following.nickname }}
             </router-link>
-            <div v-if="!itsMe">
-              <div v-if="isFollow">
-                <span @click="follow" class="follow">언팔로우</span>
+            <div v-if="!itsMe" :follow_id="following.id">
+              <div>
+                <span @click="follow(following.pk)" class="follow">팔로우</span>
               </div>
-              <div v-else>
-                <span @click="follow" class="follow">팔로우</span>
+              <div>
+                <span @click="follow(following.pk)" class="follow">언팔로우</span>
               </div>
             </div>
           </li>
@@ -60,6 +55,7 @@ export default {
     return{
       followers: [],
       followings: [],
+      follow_id: null,
       user: Object,
       itsMe: null,
       
@@ -83,7 +79,6 @@ export default {
     getUserInfo(){
       const user_id = jwtDecode(token).user_id
       const profile_id = this.$route.params.id
-
       const checkId = parseInt(profile_id)
 
       if (user_id === checkId) {
@@ -91,7 +86,6 @@ export default {
       } else {
         this.itsMe = false
       }
-
       axios({
         method: 'get',
         url: `${API_URL}/accounts/profile/${profile_id}/`,
@@ -100,26 +94,22 @@ export default {
         }
       })
       .then((res) =>{
-        console.log(res)
         this.user = res.data.user
-        console.log(res.data.user)
         this.followers = res.data.followers
         this.followings = res.data.followings
       })
       .catch(err => console.log(err))
     },
-    follow(){
-      const profile_id = this.$route.params.id
-      console.log(profile_id)
+    follow(user_id){
+      console.log(user_id)
       axios({
         method: 'post',
-        url: `${API_URL}/accounts/${this.$route.params.id}/follow/`,
+        url: `${API_URL}/accounts/${user_id}/follow/`,
         headers: {
           Authorization: `JWT ${token}`
         }
       })
       .then((res) => {
-        console.log(res)
         this.isFollow = res.data.follow
         this.followers = res.data.followers
         this.followings = res.data.followings

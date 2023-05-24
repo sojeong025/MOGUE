@@ -12,4 +12,5 @@ urlpatterns = [
     path('collections/', views.collection_list),
     path('collections/<int:collection_id>/', views.collection_detail),
     path('otts/', views.get_otts),
+    path('otts/<int:ott_id>/', views.movies_by_ott),
 ]

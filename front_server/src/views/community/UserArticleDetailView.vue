@@ -91,7 +91,7 @@ export default {
     deleteUserArticle() {
       axios({
         method: 'delete',
-        url: `${API_URL}/community/user_articles/${this.$route.params.id}/manage`,
+        url: `${API_URL}/community/user_articles/${this.$route.params.id}/manage/`,
         headers: {
           Authorization: `JWT ${token}`
         }
