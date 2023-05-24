@@ -8,12 +8,12 @@
     <ul class="editor-articles">
       <!-- <li class="editor-article" v-for="editor_article in editor_articles" :key="editor_article.id"> -->
         <div class="card">
-          <router-link :to="{ name: 'editorarticledetail', params: { id: editor_article.id, editor_article: editor_article } }">
-            <img :src="editor_article.thumbnail" width="300px" height="300px" class="card-img" alt="thumbnail">
-            <div class="card-content">
-              <h5 class="card-title"><span>{{ editor_article.title }}</span></h5>
-            </div>
+          <router-link :to="{ name: 'editorarticledetail', params: { id: editor_article.id, editor_article: editor_article } }" class="thumbnail-box">
+            <img :src="editor_article.thumbnail" width="600px" height="300px" class="card-img" alt="thumbnail">
           </router-link>
+          <div class="card-content">
+            <h5 class="card-title"><span>{{ editor_article.title }}</span></h5>
+          </div>
         </div>
       <!-- </li> -->
     </ul>
@@ -84,6 +84,7 @@ export default {
   width: 100%;
   font-family: 'SUITE-Regular';
 }
+
 li {
   list-style-type: none;
 }
@@ -101,14 +102,37 @@ li {
 }
 
 .card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   flex-basis: 150px;
   margin: 0 10px;
 }
 .card-title{
+  margin-top: 16px;
+  margin-left: 25px;
   font-size: 15px;
   line-height: 20px;
+  font-size: 18px;
   word-break: keep-all;
 }
+
+.thumbnail-box {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 270px;
+  height: 270px;
+}
+
+.card-img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .card-img:hover {
   transform: scale(1.03);
   transition: .3s ease-in-out;

@@ -65,7 +65,7 @@ export default {
   text-align: center;
 }
 .box{
-  width: 120vw;
+  width: 103.7vw;
   height: 300px;
   background-color:#dededc77;
   position:absolute;
