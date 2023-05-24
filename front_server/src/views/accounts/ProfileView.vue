@@ -56,7 +56,9 @@
         <div class="my-comment">
           <p>{{ user.nickname }}님이 작성한 댓글</p>
           <div class="my-comment-items">
-            <div class="my-comment-item"></div>
+            <div class="my-comment-item" v-for="comment in user_comments" :key="comment.id">
+              {{ comment.content }}
+            </div>
           </div>
         </div>
 
@@ -76,9 +78,9 @@ const API_URL = 'http://127.0.0.1:8000'
 export default {
   name: 'ProfileView',
   created() {
-    console.log(1)
     this.getFollowData()
     this.getUserProfile()
+    this.getComments()
   },
   data(){
     return{
@@ -87,6 +89,7 @@ export default {
       followings: [],
       liked_movies: [],
       user_articles: [],
+      user_comments: [],
       isFollow: false,
       itsMe: null,
     }
@@ -166,6 +169,18 @@ export default {
         this.followings = res.data.followings
       })
       .catch(err => console.log(err))
+    },
+    getComments(){
+      axios({
+        url: `${API_URL}/community/comment/user_comments/`,
+        method: 'get',
+        headers: {
+          Authorization: `JWT ${token}`
+        }        
+      })
+      .then((res) => {
+        this.user_comments = res.data
+      })
     }
   }
 }
@@ -223,10 +238,11 @@ export default {
 .my-articles{
   display: flex;
   flex-direction: column;
-  align-items: center;
-  width: 300px;
+  align-items: flex-start;
+  width: 500px;
   font-size: 25px;
 }
+
 .my-article{
   display: flex;
   flex-direction: column;
@@ -307,6 +323,7 @@ export default {
   border: 2px solid fuchsia;
   margin-bottom: 20px;
 }
+
 .watched-movie{
   width: 1000px;
   border: 2px solid orange;
@@ -318,18 +335,37 @@ export default {
   flex-direction: column;
   align-items: center;
   width: 1000px;
-  height: 387px;
-  padding: 60px 460px 0px 460px;
+  height: 378px;
+  padding: 60px 300px 0px 620px;
   background-color: #ffde7a;
 }
-
 
 .my-comment{
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   font-size: 25px;
+  width: 500px;
+}
+
+.my-comment-items {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  font-size: 22px;
   width: 300px;
+  margin-top: 20px;
+  margin-left: 16px;
+}
+
+.my-comment-item {
+  margin-bottom: 10px;
+  padding-left: 5px;
+  cursor: pointer;
+}
+
+.my-comment-item:hover {
+  background-color: white;
 }
 
 .follow{
@@ -350,7 +386,7 @@ export default {
   height: 60px;
   /* border: 2px solid blueviolet; */
   border-radius: 20px;
-  margin: 0px 20px;
+  margin: 0px -15px;
 }
 
 .itsme{

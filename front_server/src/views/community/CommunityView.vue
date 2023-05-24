@@ -64,6 +64,7 @@ export default {
   position:relative;
   text-align: center;
 }
+
 .box{
   width: 103.7vw;
   height: 300px;

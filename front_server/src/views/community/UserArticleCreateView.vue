@@ -120,7 +120,7 @@ export default {
   height: 680px;
   display: flex;
   flex-direction: row;
-  box-shadow: 8px 8px 20px #626464;
+  box-shadow: 8px 8px 20px #62646469;
 }
 #article-form-left {
   margin: 50px;

@@ -94,6 +94,11 @@ router-view {
   padding: 0px;
   word-break: break-all;
   font-family: 'Montserrat', 'sans-serif', 'SUITE-Regular';
+  -webkit-user-selct: none;
+  -moz-user-selct: none;
+  -ms-user-selct: none;
+  user-select: none;
+  -webkit-user-drag: none;
 }
 
 *::-webkit-scrollbar{

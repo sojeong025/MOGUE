@@ -73,7 +73,7 @@ export default {
     align-items: center;
     width: 900px;
     margin: 130px auto auto;
-    box-shadow: 8px 8px 20px #626464;
+    box-shadow: 8px 8px 20px #62646465;
     padding: 40px
   }
 
