@@ -9,7 +9,7 @@
       <!-- <li class="editor-article" v-for="editor_article in editor_articles" :key="editor_article.id"> -->
         <div class="card">
           <router-link :to="{ name: 'editorarticledetail', params: { id: editor_article.id, editor_article: editor_article } }">
-            <img :src="`${editor_article.thumbnail}`" width="300px" height="300px" class="card-img" alt="thumbnail">
+            <img :src="editor_article.thumbnail" width="300px" height="300px" class="card-img" alt="thumbnail">
             <div class="card-content">
               <h5 class="card-title"><span>{{ editor_article.title }}</span></h5>
             </div>
@@ -43,7 +43,7 @@ export default {
       editor_articles: [],
       swiperOption: { 
       slidesPerView: 5, 
-      spaceBetween: 10, 
+      spaceBetween: 15, 
       centerInsufficientSlides: true, 
 
       navigation: { 
@@ -110,7 +110,7 @@ li {
   word-break: keep-all;
 }
 .card-img:hover {
-  transform: scale(1.04);
+  transform: scale(1.03);
   transition: .3s ease-in-out;
 }
 </style>
