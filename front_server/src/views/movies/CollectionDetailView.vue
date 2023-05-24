@@ -29,7 +29,7 @@ export default {
   created() {
     axios({
       method: 'get',
-      url: `${API_URL}/movies/collections/${this.$route.params.id}`
+      url: `${API_URL}/movies/collections/${this.$route.params.id}/`
     })
     .then((res) => {
       this.collection = res.data.collection
