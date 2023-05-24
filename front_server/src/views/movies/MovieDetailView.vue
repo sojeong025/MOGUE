@@ -9,8 +9,8 @@
         </div>
       </div>
       <div class="detail-right">
-        <button class="likeBtn" v-if="liked" @click="likeMovie">UnLike</button>
-        <button class="likeBtn" v-else @click="likeMovie">Like</button>
+        <button class="likeBtn" v-if="liked" @click="likeMovie"><font-awesome-icon :icon="['fas', 'heart']" size="lg" :style="{ color: 'red' }" /></button>
+        <button class="likeBtn" v-else @click="likeMovie"><font-awesome-icon :icon="['far', 'heart']" size="lg" :style="{ color: 'red' }" /></button>
         <div class="ott-items">
           <div class="ott-item" v-for="ott in otts" :key="ott.id">
             <img class="ott-item" :src="`https://image.tmdb.org/t/p/w45${ott.logo_path}`" alt="">
