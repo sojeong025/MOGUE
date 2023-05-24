@@ -36,7 +36,7 @@
         </div>
       </div>
     <div id="search-collection-section">
-      <p>이런 컬렉션은 어때요? </p>
+      <h1>COLLECTIONS</h1>
       <CollectionList/>
     </div>
   </div>
