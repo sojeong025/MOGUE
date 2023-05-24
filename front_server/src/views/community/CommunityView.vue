@@ -1,5 +1,8 @@
 <template>
   <div id="community-section">
+    <div class="community-headers">
+      <img class="community-header-img" :src="`http://127.0.0.1:8000/잡지.jpg`" alt="">
+    </div>
     <div class="header-section">
       <h1 class="part-title">| TODAY'S ARTICLES</h1>
     </div>
@@ -37,11 +40,10 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 #community-section {
   display: flex;
   flex-direction: column;
-  margin-top: 180px;
   word-break: keep-all;
 }
 .part-title{
@@ -80,5 +82,9 @@ export default {
   text-align: center;
   line-height : 50px;
   font-weight: 700;
+}
+
+.community-header-img {
+  width: 100vw;
 }
 </style>
