@@ -15,11 +15,9 @@ export default {
   name: 'HomeView',
   created() {
     this.$store.dispatch('checkTextWhite', 'home')
-    this.$store.commit('showNav', false)
   },
   destroyed() {
     this.$store.dispatch('checkTextWhite', 'else')
-    this.$store.commit('showNav', true)
   }
 }
 </script>

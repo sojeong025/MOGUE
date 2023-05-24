@@ -73,12 +73,6 @@ export default {
   destroyed() {
     this.logout()
   },
-  computed: {
-    // computed 속성을 사용하여 네비게이션 바의 표시 여부를 반환합니다.
-    showNav() {
-      return this.$store.state.showNav;
-    }
-  },
 }
 </script>
 
