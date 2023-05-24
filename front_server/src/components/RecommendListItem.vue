@@ -28,6 +28,7 @@ export default {
     align-items: center;
     text-decoration: none;
     margin-right: 30px;
+    box-shadow: 8px 8px 10px 0px rgba(128, 128, 128, 0.432);
   }
 
   #movie-title {

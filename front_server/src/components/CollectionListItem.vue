@@ -26,6 +26,7 @@ export default {
     align-items: center;
     width: 320px;
     margin: 20px;
+    box-shadow: 10px 10px 10px 0px rgba(128, 128, 128, 0.336);
   }
 
   #color-box {
