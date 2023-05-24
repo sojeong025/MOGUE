@@ -51,7 +51,7 @@ export default {
       this.getEditorArticles()
       axios({
         method: 'get',
-        url: `${API_URL}/community/editor_articles/${this.$route.params.id}`,
+        url: `${API_URL}/community/editor_articles/${this.$route.params.id}/`,
       })
       .then((res) => {
         this.editor_article = res.data

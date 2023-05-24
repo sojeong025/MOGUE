@@ -3,17 +3,20 @@
     <form id="update-profile-form" @submit.prevent="updateProfile">
       <h1 class="update-profile-item">Update Profile</h1>
       <hr class="update-profile-underbar">
+
       <div class="nickname-box">
         <h3>Nickname</h3>
       </div>
-      <input class="update-profile-item nickname" type="text" placeholder="NickName" v-model="nickname" required />
+      <input class="update-profile-item nickname" type="text" placeholder="닉네임" v-model="nickname" required />
+
+        <h3>Profile Image</h3>
       <div class="update-profile-filebox">
-        <input class="update-profile-upload-name" disabled v-model="fileName" value="첨부파일" placeholder="첨부파일">
+        <input class="update-profile-upload-name" disabled v-model="fileName" value="프로필 사진" placeholder="프로필 사진">
         <label for="file">파일찾기</label>
-        <input type="file" id="file" @change="handleImgChange" accept="image/*" multiple>
+        <input type="file" id="file" @change="handleImgChange" accept="image/*">
       </div>
       <div class="update-submit-box">
-        <input class="update-profile-item" type="submit" value="회원 정보 수정">
+        <input class="button" type="submit" value="회원 정보 수정">
       </div>
     </form>
   </div>
@@ -31,7 +34,8 @@ export default {
       user: {
         nickname: null,
         profile_img: null,
-      }
+      },
+      fileName: '프로필 사진',
     }
   },
   methods: {
@@ -62,32 +66,31 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
   #update_profile {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100vw;
-    margin-top: 300px;
-    margin-left: 50px;
+    width: 900px;
+    margin: 200px auto auto;
+    box-shadow: 8px 8px 20px #626464;
+    padding: 40px
   }
 
   #update-profile-form {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
     width: 400px;
   }
 
   h1.update-profile-item {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+    text-align: center;
   }
 
   .update-profile-underbar {
-    width: 250px;
-    height: 5px;
+    align-self: center;
+    width: 400px;
+    height: 2px;
     border: none;
     background-color: #e8aa23;
     margin-bottom: 50px;
@@ -107,6 +110,10 @@ export default {
     padding-right: 0px;
     font-size: 20px;
     border-bottom: solid 1px black;
+    margin-bottom: 40px;
+  }
+  input.nickname:focus{
+    outline: none;
   }
 
   .update-profile-filebox{
@@ -114,6 +121,7 @@ export default {
     justify-content: space-between;
     width: 400px;
     margin-bottom: 20px;
+    margin-top:20px;
   }
 
   .update-profile-filebox label {
@@ -167,5 +175,12 @@ export default {
     margin-top: 10px;
     width: 130px;
     height: 50px;
+  }
+  .button {
+    background-color :#e8aa23;
+    border: 0;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: 600;
   }
 </style>

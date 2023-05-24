@@ -1,7 +1,7 @@
 <template>
   <div id="community-section">
     <div class="header-section">
-      <h1 class="part-title">TODAY'S ARTICLES</h1>
+      <h1 class="part-title">| TODAY'S ARTICLES</h1>
     </div>
     <div class="content-section">
       <div class="editor-article-section">
