@@ -4,7 +4,7 @@
       <div class="profile-left">
         <div id="profile-img">
           <router-link :to="{ name: 'profile_update', params: { id: this.$route.params.id } }">
-            <button id="edit-profile"></button>
+            <button id="edit-profile"><font-awesome-icon :icon="['fas', 'user-pen']" /></button>
           </router-link>
           <img :src="`http://127.0.0.1:8000${user.profile_img}`" alt="img">
         </div>
@@ -12,12 +12,12 @@
         <div class="follow-info">
           <router-link :to="{ name: 'follow', params: {  id: this.$route.params.id } }">
             <div class="follow-number">
-              팔로워 : {{ followers.length }}
+              팔로워  {{ followers.length }}
             </div>
           </router-link>
           <router-link :to="{ name: 'follow', params: {  id: this.$route.params.id } }">
             <div class="follow-number">
-              팔로잉 : {{ followings.length }}
+              팔로잉  {{ followings.length }}
             </div>
           </router-link>
         </div>
@@ -35,7 +35,8 @@
         <p class="liked-movie-title">{{ user.nickname }}님이 좋아하는 영화 목록</p>
         <div class="liked-items" v-if="liked_movies.length">
           <router-link :to="{ name: 'moviedetail', params: { id: liked_movie.id } }" v-for="liked_movie in liked_movies" :key="liked_movie.id" class="liked-item">
-            {{liked_movie.title}}
+            ○ {{liked_movie.title}}
+            <!-- <img id="poster-img" :src="`https://image.tmdb.org/t/p/w92${liked_movie.poster_path}`" alt="poster"> -->
           </router-link>
         </div>
         <p v-else class="no-liked">아직 좋아요한 영화가 없습니다.</p>
@@ -231,8 +232,8 @@ export default {
   font-size: 25px;
 }
 
-.liked-item:hover{
-  background-color: #ffc10785;
+.img {
+  width: 100px;
 }
 
 .my-articles{
@@ -286,14 +287,13 @@ export default {
 
 #edit-profile {
   position: absolute;
-  left: 5%;
+  left: 80%;
   bottom: 78%;
   z-index: 100;
   border: none;
   border-radius: 100px;
   width: 30px;
   height: 30px;
-  background-color: #ffc107;
   cursor: pointer;
 }
 
@@ -414,7 +414,7 @@ export default {
   display: flex;
   justify-content: center;
   flex-direction: row;
-  width: 100%;
+  /* width: 100%; */
   margin-top: 20px;
 }
 

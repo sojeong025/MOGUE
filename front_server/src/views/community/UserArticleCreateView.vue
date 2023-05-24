@@ -16,7 +16,7 @@
       <div id="article-form-right" >
         <div class="content">
           <h3>Content</h3><br>
-          <textarea id="content" cols="60" rows="15" v-model="content" placeholder="기사 내용을 작성하세요"></textarea><br>
+          <textarea id="content" cols="50" rows="11" v-model="content" placeholder="기사 내용을 작성하세요"></textarea><br>
         </div>
           <input type="submit" id="submit" value="SUBMIT">
       </div>
@@ -114,74 +114,75 @@ export default {
 <style scoped>
 .write-page {
   padding: 0px;
-  margin: 100px auto;
+  margin: 70px auto;
   margin-top: 100px;
-  width: 1600px;
-  height: 680px;
+  width: 1200px;
+  height: 530px;
   display: flex;
   flex-direction: row;
   box-shadow: 8px 8px 20px #62646469;
 }
 #article-form-left {
-  margin: 50px;
+  margin: 40px;
   width: 40%;
 }
 #article-form-left h1 {
-  margin: 50px 50px 20px;
+  margin: 30px 20px 10px;
+  font-size: 30px;
 }
 #article-form-left hr{
   width: 50%;
   background-color:#e8aa23;
-  height: 5px;
+  height: 4px;
   border: 0;
-  margin-left: 50px;
+  margin-left: 20px;
 }
 #article-form-left input#title{
-  margin: 0px 50px 20px;
+  margin: 0px 20px 20px;
   border: 0;
   width: 400px;
   height: 30px;
   padding: 5px;
   border-bottom:1px solid black;
-  font-size: 25px;
+  font-size: 20px;
 }
 #article-form-left input#img{
-  margin: 10px 50px 20px;
+  margin: 10px 30px 20px;
 }
 .filebox .upload-name {
-    display: inline-block;
-    height: 40px;
-    padding: 0 10px;
-    vertical-align: middle;
-    border: 1px solid #dddddd;
-    margin-left: 50px;
-    width: 50%;
-    color: #999999;
+  display: inline-block;
+  height: 40px;
+  padding: 0 10px;
+  vertical-align: middle;
+  border: 1px solid #dddddd;
+  margin-left: 20px;
+  width: 60%;
+  color: #999999;
 }
 .filebox label {
-    display: inline-block;
-    padding: 10px 20px;
-    color: #fff;
-    vertical-align: middle;
-    background-color: #999999;
-    cursor: pointer;
-    height: 22px;
-    margin-left: 10px;
+  display: inline-block;
+  padding: 10px 20px;
+  color: #fff;
+  vertical-align: middle;
+  background-color: #999999;
+  cursor: pointer;
+  height: 22px;
+  margin-left: 10px;
 }
 .filebox input[type="file"] {
-    position: absolute;
-    width: 0;
-    height: 0;
-    padding: 0;
-    overflow: hidden;
-    border: 0;
+  position: absolute;
+  width: 0;
+  height: 0;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
 }
 
 #article-form-left input:focus {
   outline: none;
 }
 #article-form-left h3 {
-  margin-left: 50px;
+  margin-left: 20px;
   margin-top: 50px
 }
 .hr2{
@@ -196,7 +197,7 @@ export default {
     justify-content: space-between;
 }
 #article-form-right h3{
-  margin: 50px 70px 10px;
+  margin: 50px 70px 0px;
 }
 #article-form-right textarea{
   margin-left: 70px;
@@ -216,6 +217,6 @@ export default {
   width: 100%;
   border: 0;
   background-color :#e8aa23;
-  font-size: 25px;
+  font-size: 20px;
 } 
 </style>

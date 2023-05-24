@@ -3,7 +3,8 @@
     <div class="editor-article-left">
       <h3>영화 기사</h3>
       <h5>number. {{editor_article.id}}</h5>
-      <font-awesome-icon :icon="['fas', 'heart']" />
+      <span class="icon"><font-awesome-icon :icon="['far', 'copy']" style="color: #8a8c8f;" /></span>
+      <span class="icon"><font-awesome-icon :icon="['far', 'heart']" style="color: #8a8c8f;" /></span>
     </div>
     <div class="editor-article-center">
 
@@ -23,7 +24,7 @@
       <h3>더 볼만한 기사</h3>
       <div v-for="article in editor_articles" :key="article.id" @click="getEditorArticleDetail">
         <router-link class="thumbnail-title" :to="{ name: 'editorarticledetail', params: { id: article.id, article: article } }">
-            <img :src="article.thumbnail" width="130px" height="120px" alt="thumbnail">
+            <img :src="article.thumbnail" width="120px" height="110px" alt="thumbnail">
             <h4 class="title">{{ article.title }}</h4>
         </router-link>
       </div>
@@ -73,20 +74,20 @@ export default {
         console.log(res)
       })
       .catch(err => console.log(err))
-    }
+    },
   }
 }
 </script>
 
 <style scoped>
 #editor-article-detail {
-  margin: 100px 300px;
+  margin: 80px 80px;
   display: flex;
   flex-direction: row;
 }
 .editor-article-left{
   flex:0.5;
-  margin-right: 40px;
+  margin-right: 30px;
   /* border: 1px solid black; */
 }
 .editor-article-left h3{
@@ -97,6 +98,7 @@ export default {
   color: #626464;
   font-size: 12px;
   font-weight: 300;
+  margin-bottom: 20px;
 }
 .editor-article-center {
   flex:2;
@@ -113,7 +115,7 @@ export default {
 }
 .editor-article-right{
   flex:1.5;
-  margin-left: 40px;
+  margin-left: 20px;
   /* border: 1px solid black; */
 }
 .editor-article-right h3{
@@ -126,13 +128,17 @@ export default {
 .thumbnail-title{
   margin-bottom: 20px ;
   display: flex;
+  margin-left: -15px
 }
 .title{
-  font-size: 17px;
+  font-size: 15px;
   font-weight: 400;
   margin-left:10px;
   align-self: center;
   line-height: 30px;
   word-break: keep-all;
+}
+.icon{
+  margin-right: 20px;
 }
 </style>

@@ -43,7 +43,7 @@ export default {
       editor_articles: [],
       swiperOption: { 
       slidesPerView: 5, 
-      spaceBetween: 15, 
+      spaceBetween: 16, 
       centerInsufficientSlides: true, 
 
       navigation: { 
