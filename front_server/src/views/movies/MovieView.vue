@@ -4,7 +4,7 @@
       <img id="movie-main-image" :src="`http://127.0.0.1:8000/자전거배너.jpg`" alt="">
     </div>
     <div id="movie-body">
-      <div class="box1"></div>
+      <!-- <div class="box1"></div> -->
       <div id="recommend-section">
         <h1 class="today">| TODAY'S MOVIE</h1>
         <RecommendList/>
@@ -50,36 +50,13 @@ export default {
     height: 300px;
     background-color:#dededc77;
     position:absolute;
-    top:32.5%;
-    left:-10%
-  }
-
-  .video {
-    width: 100%;
+    top:23.5%;
+    left:-10%;
+    z-index: -1;
   }
 
   h1{
     font-size: 28px;
-  }
-
-  #home-video {
-    position: relative;
-  }
-
-  #home-video .top {
-    position: absolute;
-    top: 0%;
-    width: 100%;
-    height: 60px;
-    background: linear-gradient(to top, transparent, #ffffff);
-  }
-
-  #home-video .bottom {
-    position: absolute;
-    bottom: 0%;
-    width: 100%;
-    height: 60px;
-    background: linear-gradient(to bottom, transparent, #ffffff);
   }
 
   #movie-body{

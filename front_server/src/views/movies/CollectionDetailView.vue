@@ -105,4 +105,5 @@ export default {
   .collection-runtime {
     font-size: 12px;
   }
+
 </style>
