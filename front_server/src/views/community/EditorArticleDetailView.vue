@@ -3,6 +3,7 @@
     <div class="editor-article-left">
       <h3>영화 기사</h3>
       <h5>number. {{editor_article.id}}</h5>
+      <font-awesome-icon :icon="['fas', 'heart']" />
     </div>
     <div class="editor-article-center">
 
@@ -79,7 +80,7 @@ export default {
 
 <style scoped>
 #editor-article-detail {
-  margin: 200px 300px;
+  margin: 100px 300px;
   display: flex;
   flex-direction: row;
 }

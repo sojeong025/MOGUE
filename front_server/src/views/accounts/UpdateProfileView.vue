@@ -72,7 +72,7 @@ export default {
     flex-direction: column;
     align-items: center;
     width: 900px;
-    margin: 200px auto auto;
+    margin: 130px auto auto;
     box-shadow: 8px 8px 20px #626464;
     padding: 40px
   }

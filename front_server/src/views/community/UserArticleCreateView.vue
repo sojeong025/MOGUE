@@ -115,7 +115,7 @@ export default {
 .write-page {
   padding: 0px;
   margin: 100px auto;
-  margin-top: 180px;
+  margin-top: 100px;
   width: 1600px;
   height: 680px;
   display: flex;

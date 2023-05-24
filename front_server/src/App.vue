@@ -19,15 +19,15 @@
 
         <div class="navright">
           <div v-if="this.$store.state.isLogin" class="login-part">
-            <router-link :to="{ name: 'profile', params: { id: user_id } }" :class="{ 'textWhite': this.$store.state.textWhite }"> Profile </router-link>
-            <span id="logout" :class="{ 'textWhite': this.$store.state.textWhite }" @click="logout">Logout</span>
+            <router-link :to="{ name: 'profile', params: { id: user_id } }" :class="{ 'textWhite': this.$store.state.textWhite }"> PROFILE </router-link>
+            <span id="logout" :class="{ 'textWhite': this.$store.state.textWhite }" @click="logout">LOGOUT</span>
           </div>
           <div class="login-form" v-else>
             <span class="nav-item">
-              <router-link :to="{ name: 'signup' }" :class="{ 'textWhite': this.$store.state.textWhite }"> Signup </router-link>
+              <router-link :to="{ name: 'signup' }" :class="{ 'textWhite': this.$store.state.textWhite }"> SIGNUP </router-link>
             </span>
             <span class="nav-item">
-              <router-link id="login" :to="{ name: 'login' }" :class="{ 'textWhite': this.$store.state.textWhite }"> Login </router-link>
+              <router-link id="login" :to="{ name: 'login' }" :class="{ 'textWhite': this.$store.state.textWhite }"> LOGIN </router-link>
             </span>
           </div>
         </div>
@@ -147,6 +147,7 @@ nav{
   cursor: pointer;
   font-size: 20px;
 }
+
 
 /* #nav-container{
   display: flex;
