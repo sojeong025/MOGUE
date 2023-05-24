@@ -5,7 +5,7 @@
         <img id="poster-img" :src="`https://image.tmdb.org/t/p/w780/${movie.poster_path}`" alt="poster">
         <div id="detail-info">
           <h1 id="detail-title">{{ movie.title }} <span id="movie-runtime">{{ movie.runtime }}분</span></h1>
-          <p id="detail-overview">{{ movie.overview.slice(0, 150) }}...</p>
+          <p id="detail-overview">{{ movie.overview }}...</p>
         </div>
       </div>
       <div class="detail-right">
@@ -186,6 +186,7 @@ export default {
   #detail-overview {
     width: 500px;
     margin-top: 30px;
+    text-overflow : ellipsis;
   }
 
   #detail-info {

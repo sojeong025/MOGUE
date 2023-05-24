@@ -1,6 +1,6 @@
 <template>
   <div id="recommend-container">
-    <div id="recommend-list">
+    <div class="recommend-list">
       <RecommendListItem
       id="recommend-list-item"
       v-for="movie in movies" 
@@ -48,19 +48,21 @@ export default {
 
 <style>
   #recommend-container{
-    height: 450px;
-  }
-
-  #recommend-list{
-    /* border: 1px red solid; */
-    display: flex;
-    align-items: center;
-    height: 450px;
+    height: 400px;
+    padding-bottom: -50px;
     overflow: auto;
     white-space: nowrap;
   }
 
-  #recommend-list::-webkit-scrollbar{
+  .recommend-list{
+    display: flex;
+    position: relative;
+    align-items: flex-start;
+    height: 400px;
+    
+  }
+
+  .recommend-list::-webkit-scrollbar{
     display: none; 
   }
 </style>

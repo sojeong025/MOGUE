@@ -4,7 +4,7 @@
         <div id="movie-title">
           <h5>{{ movie.title }} </h5>
           <p id="runtime">{{ movie.runtime }}분</p>
-          <p id="recommend_overview">{{ movie.overview.slice(0, 66) }}...</p>
+          <p id="recommend_overview">{{ movie.overview.slice(0,80) }}...</p>
         </div>
         <img id="poster-img" :src="`https://image.tmdb.org/t/p/w500/${movie.poster_path}`" alt="poster">
       </div>
@@ -27,7 +27,8 @@ export default {
     flex-direction: column;
     align-items: center;
     text-decoration: none;
-    margin-right: 30px;
+    padding: 0px;
+    margin: 0px 25px;
     box-shadow: 8px 8px 10px 0px rgba(128, 128, 128, 0.432);
   }
 
@@ -47,7 +48,6 @@ export default {
 
   #movie-title:hover{
     position: absolute;
-    bottom: 15%;
     transition-duration: 0.2s;
     color: white;
     background-color: rgba(0, 0, 0, 0.795);
@@ -59,17 +59,13 @@ export default {
     width: 230px;
   }
 
-  #poster:hover {
-    height: 410px;
-  }
-
   #poster-img {
     width: 230px;
     height: 350px;
   }
 
-
   #recommend_overview {
+    margin-top: 30px;
     font-size: 16px;
   }
 

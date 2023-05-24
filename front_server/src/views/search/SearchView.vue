@@ -144,7 +144,7 @@ export default {
     display: flex;
     flex-direction: column;
     align-content: space-between;
-    width: 100%px;
+    width: 100%;
     margin-top: 50px;
   }
 

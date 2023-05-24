@@ -5,16 +5,24 @@
     </div>
     <div id="movie-body">
       <!-- <div class="box1"></div> -->
-      <div id="recommend-section">
-        <h1 class="today">| TODAY'S MOVIE</h1>
-        <RecommendList/>
-      </div>
-      <div class="box2"></div>
-      <div class="yellow recommend-section">
-        <h1 class="today">| HOW ABOUT THIS?</h1>
-        <RecommendList/>
-      </div>
+        <div class="recommend-section">
+        <div>
+          <h1 class="today">| TODAY'S<br>&nbsp; MOVIE</h1>
+        </div>
+          <RecommendList/>
+        </div>
+
+        <div class="recommend-section">
+        <div class="box2"></div>
+        <div>
+          <h1 class="today">| HOW<br>&nbsp; ABOUT<br>&nbsp; THIS?</h1>
+        </div>
+          <RecommendList/>
+        </div>
       <div id="collection-section">
+        <div class="collection-section-title">
+          <h1>COLLECTIONS</h1>
+        </div>
         <CollectionList/>
       </div>
     </div>
@@ -36,27 +44,29 @@ export default {
 </script>
 
 <style scoped>
-  .box1{
-    width: 109.9vw;
-    height: 300px;
-    background-color:#dededc77;
-    position:absolute;
-    top: 7%;
-    left:-10%
+  .collection-section-title{
+    display: flex;
+    width: 1260px;
+    margin-bottom: 20px;
   }
 
+  .collection-section-title h1{
+    font-size: 40px;
+    font-weight: 100;
+  }
+
+  .recommend-section-box{
+    display: flex;
+  }
+  
   .box2{
     width: 109.9vw;
     height: 300px;
     background-color:#dededc77;
     position:absolute;
-    top:23.5%;
+    top:30%;
     left:-10%;
     z-index: -1;
-  }
-
-  h1{
-    font-size: 28px;
   }
 
   #movie-body{
@@ -74,14 +84,11 @@ export default {
     height: 1000px;
   }
 
-  #recommend-section {
-    margin-top: 50px;
-    margin-left: 50px;
-  }
-
   .recommend-section {
+    display: flex;
+    position: relative;
     margin-top: 50px;
-    margin-left: 50px;
+    margin-left: 40px;
   }
 
   #movie-main-image {
@@ -90,8 +97,10 @@ export default {
   }
 
   .today{
-    margin-left: 15px;
-    margin-bottom: -20px;
+    word-wrap : brek-word;
+    width: 140px;
+    font-weight: 100;
+    font-size: 28px;
   }
 
 </style>
