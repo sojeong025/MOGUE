@@ -1,14 +1,15 @@
 <template>
   <div id="collection-detail">
     <h1>{{ collection.title }}</h1>
+    <hr class="collection-hr">
     <div id="collection-movie-list">
       <div id="collection-movie-item" v-for="movie in movies" :key="movie.id" :movie="movie">
         <router-link class="collection-detail-item" :to="{ name:'moviedetail', params: { id: movie.id } }">
-          <div id="poster">
+          <div class="poster">
             <div id="collection-movie-title">
               <h2>{{ movie.title }}</h2>
-              <p>{{ movie.runtime }}분</p>
-              <p>{{ movie.overview }}</p>
+              <p class="collection-runtime">{{ movie.runtime }}분</p>
+              <p class="collection-overview">{{ movie.overview.slice(0, 66) }}</p>
             </div>
             <img id="poster-img" :src="`https://image.tmdb.org/t/p/w500/${movie.poster_path}`" alt="poster">
           </div>
@@ -45,9 +46,15 @@ export default {
 </script>
 
 <style>
+  .collection-hr {
+    margin-top: 18px;
+    margin-bottom: 20px;
+    width: 600px;
+  }
+
   #collection-detail {
     margin-top: 100px;
-    margin-left: 50px;
+    margin-left: 80px;
   }
 
   .collection-detail-item {
@@ -55,11 +62,14 @@ export default {
   }
   #collection-movie-list {
     display: flex;
+    flex-wrap: wrap;
   }
 
   #collection-movie-item {
     margin-top: 30px;
-    margin-right: 20px;
+    margin-right: 60px;
+    margin-bottom: 20px;
+    box-shadow: 8px 8px 10px 0px rgba(128, 128, 128, 0.253);
   }
 
   #collection-movie-title{
@@ -67,24 +77,32 @@ export default {
     flex-direction: column;
     justify-content: space-between;
     white-space: normal;
-    padding: 15px;
+    padding: 28px;
     position: absolute;
-    width: 200px;
-    height: 320px;
+    width: 174px;
+    height: 294px;
     color: rgba(255, 255, 255, 0);
     background-color: rgba(0, 0, 0, 0);
   }
 
   #collection-movie-title:hover{
     position: absolute;
-    bottom: 38%;
     transition-duration: 0.2s;
     color: white;
     background-color: rgba(0, 0, 0, 0.795);
   }
 
-  #poster {
+  .poster {
     display: flex;
+    position: relative;
     width: 230px;
+  }
+
+  .collection-overview {
+    font-size: 16px;
+  }
+
+  .collection-runtime {
+    font-size: 12px;
   }
 </style>
