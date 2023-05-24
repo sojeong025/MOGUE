@@ -33,12 +33,14 @@ export default {
 #video-container{
   position:relative;
 }
+
 .main {
   top: 30%;
   position: absolute;
   /* z-index: 100; */
   text-align: center;
 }
+
 .mogue {
   color: #fff;
   font-size: 200px;
@@ -46,10 +48,12 @@ export default {
   transition: 0.5s;
   font-family: 'DM Serif Display', serif;
 }
+
 .mogue:hover {
   -webkit-text-stroke: 2px #fff;
   color: transparent;
 }
+
 .magazine{
   color: #fff;
   display: inline-block;
@@ -60,6 +64,7 @@ export default {
   margin: 20px 10px;
   font-family: 'DM Serif Display', serif;
 }
+
 #home-video {
   width: 100%;
   position: absolute;

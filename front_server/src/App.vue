@@ -100,7 +100,7 @@ router-view {
     display: none;
 }
 
-/* .yellow {
+.yellow {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -108,7 +108,7 @@ router-view {
   padding-top: 40px;
   padding-left: 50px;
   background-color: #e8aa23;
-} */
+}
 
 #app {
   font-size: 18px;

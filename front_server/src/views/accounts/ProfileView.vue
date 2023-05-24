@@ -53,12 +53,10 @@
           </div>
         </div>
 
-        <div class="my-ott">
-          <p>
-            <span>{{ user.nickname }}님이 구독중인 서비스</span> <button>수정</button>
-          </p>
-          <div class="my-ott-items">
-          <div>1card</div> <div>2card</div> <div>3card</div> <div>4card</div> <div>5card</div> 
+        <div class="my-comment">
+          <p>{{ user.nickname }}님이 작성한 댓글</p>
+          <div class="my-comment-items">
+            <div class="my-comment-item"></div>
           </div>
         </div>
 
@@ -180,7 +178,7 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 180px;
+  margin-top: 100px;
 }
 
 #profile-headers {
@@ -223,6 +221,10 @@ export default {
 }
 
 .my-articles{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 300px;
   font-size: 25px;
 }
 .my-article{
@@ -315,16 +317,18 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-left: 60px;
   width: 1000px;
-  height: 390px;
-  padding: 40px 800px 0px 800px;
-  background-color: #ffc107;
+  height: 387px;
+  padding: 60px 460px 0px 460px;
+  background-color: #ffde7a;
 }
 
 
-.my-ott{
-  border: 1px solid white;
+.my-comment{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 25px;
   width: 300px;
 }
 

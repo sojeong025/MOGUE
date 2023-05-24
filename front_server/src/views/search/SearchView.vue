@@ -139,22 +139,21 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
   #search-headers{
     display: flex;
     flex-direction: column;
     align-content: space-between;
     width: 100%px;
     margin-top: 50px;
-    margin-left: 50px;
   }
 
   #search {
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     position: relative;
-    width: 800px;
+    width: 100vw;
   }
 
   #search-body {
@@ -169,8 +168,8 @@ export default {
     padding: 10px;
     width: 300px;
     height: 20px;
-    border: 1px solid #bbb;
-    border-radius: 8px;
+    border: none;
+    border-bottom: 1px solid black;
     font-size: 14px;
   }
 
@@ -205,6 +204,7 @@ export default {
     height: 450px;
     display: flex;
     margin-top: 20px;
+    margin-left: 50px;
     overflow: auto;
     white-space: nowrap;
   }
