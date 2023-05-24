@@ -50,10 +50,10 @@ export default {
 }
 .header-section {
   display: flex;
-  padding: 20px 50px 10px;
+  padding: 20px 120px 10px;
 }
 .content-section {
-  margin: 0px 50px 20px;
+  margin: 0px 100px 20px;
 }
 .editor-article-section {
   width: 100%;

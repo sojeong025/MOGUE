@@ -42,8 +42,8 @@ export default {
     return {
       editor_articles: [],
       swiperOption: { 
-      slidesPerView: 4, 
-      spaceBetween: 15, 
+      slidesPerView: 5, 
+      spaceBetween: 10, 
       centerInsufficientSlides: true, 
 
       navigation: { 
@@ -110,7 +110,7 @@ li {
   word-break: keep-all;
 }
 .card-img:hover {
-  transform: scale(1.03);
+  transform: scale(1.04);
   transition: .3s ease-in-out;
 }
 </style>

@@ -10,12 +10,12 @@
         </div>
         <p class="profile-name">{{user.nickname}}님의 프로필</p>
         <div class="follow-info">
-          <router-link :to="{ name: 'follow', params: {  id: this.$route.params.id } }">
+          <router-link :to="{ name: 'follow', params: {  id: this.$route.params.id, user: user } }">
             <div class="follow-number">
               팔로워 : {{ followers.length }}
             </div>
           </router-link>
-          <router-link :to="{ name: 'follow', params: {  id: this.$route.params.id } }">
+          <router-link :to="{ name: 'follow', params: {  id: this.$route.params.id, user: user} }">
             <div class="follow-number">
               팔로잉 : {{ followings.length }}
             </div>
@@ -176,7 +176,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 
 #profile-section {
   display: flex;
