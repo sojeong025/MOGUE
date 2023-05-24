@@ -3,14 +3,18 @@
     <h1>{{ collection.title }}</h1>
     <div id="collection-movie-list">
       <div id="collection-movie-item" v-for="movie in movies" :key="movie.id" :movie="movie">
-        <router-link :to="{ name:'moviedetail', params: { id: movie.id } }">
+        <router-link class="collection-detail-item" :to="{ name:'moviedetail', params: { id: movie.id } }">
           <div id="poster">
-            <div id="collection-movie-title"><h2>{{ movie.title }}</h2></div>
+            <div id="collection-movie-title">
+              <h2>{{ movie.title }}</h2>
+              <p>{{ movie.runtime }}분</p>
+              <p>{{ movie.overview }}</p>
+            </div>
             <img id="poster-img" :src="`https://image.tmdb.org/t/p/w500/${movie.poster_path}`" alt="poster">
           </div>
         </router-link>
       </div>
-    </div>s
+    </div>
   </div>
 </template>
 
@@ -42,14 +46,19 @@ export default {
 
 <style>
   #collection-detail {
-    margin-top: 130px;
+    margin-top: 100px;
+    margin-left: 50px;
   }
 
+  .collection-detail-item {
+    padding: 0px;
+  }
   #collection-movie-list {
     display: flex;
   }
 
   #collection-movie-item {
+    margin-top: 30px;
     margin-right: 20px;
   }
 
@@ -68,7 +77,7 @@ export default {
 
   #collection-movie-title:hover{
     position: absolute;
-    bottom: 5%;
+    bottom: 38%;
     transition-duration: 0.2s;
     color: white;
     background-color: rgba(0, 0, 0, 0.795);
@@ -76,7 +85,6 @@ export default {
 
   #poster {
     display: flex;
-    align-items: flex-start;
     width: 230px;
   }
 </style>
