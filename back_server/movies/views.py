@@ -5,8 +5,8 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework.decorators import api_view, permission_classes, authentication_classes
 from rest_framework.permissions import AllowAny, IsAuthenticated
-from .serializers import MovieSerializer, ReviewSerializer, CollectionSerializer
-from .models import Movie, Review, Collection
+from .serializers import MovieSerializer, ReviewSerializer, CollectionSerializer, OttSerializer
+from .models import Movie, Review, Collection, Ott
 # Create your views here.
 
 @api_view(['GET'])
@@ -110,3 +110,10 @@ def like_movie(request, movie_pk):
         'liked': liked
         }
     return JsonResponse(like_status)
+
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def get_otts(request):
+    otts = get_list_or_404(Ott)
+    serializer = OttSerializer(otts, many=True)
+    return Response(serializer.data)

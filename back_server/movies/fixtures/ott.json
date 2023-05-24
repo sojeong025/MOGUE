@@ -1,0 +1,50 @@
+[
+  {
+    "model": "movies.ott",
+    "pk": 2,
+    "fields": {
+      "name": "Apple TV",
+      "logo_path": "/peURlLlr8jggOwK53fJ5wdQl05y.jpg"
+    }
+  },
+  {
+    "model": "movies.ott",
+    "pk": 3,
+    "fields": {
+      "name": "Google Play Movies",
+      "logo_path": "/tbEdFQDwx5LEVr8WpSeXQSIirVq.jpg"
+    }
+  },
+  {
+    "model": "movies.ott",
+    "pk": 8,
+    "fields": {
+      "name": "Netflix",
+      "logo_path": "/cDzkhgvozSr4GW2aRdV22uDuFpw.jpg"
+    }
+  },
+  {
+    "model": "movies.ott",
+    "pk": 97,
+    "fields": {
+      "name": "Watcha",
+      "logo_path": "/vXXZx0aWQtDv2klvObNugm4dQMN.jpg"
+    }
+  },
+  {
+    "model": "movies.ott",
+    "pk": 192,
+    "fields": {
+      "name": "YouTube",
+      "logo_path": "/oIkQkEkwfmcG7IGpRR1NB8frZZM.jpg"
+    }
+  },
+  {
+    "model": "movies.ott",
+    "pk": 337,
+    "fields": {
+      "name": "Disney Plus",
+      "logo_path": "/7rwgEs15tFwyR9NPQ5vpzxTj19Q.jpg"
+    }
+  }
+]

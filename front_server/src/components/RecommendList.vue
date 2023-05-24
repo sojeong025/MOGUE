@@ -38,7 +38,6 @@ export default {
         url: `${API_URL}/movies/recommends/${this.page}`
       })
       .then((res) => {
-        console.log(res)
         this.movies = res.data
       })
       .catch(err => console.log(err))

@@ -1,14 +1,16 @@
 <template>
   <div id="movie-detail-section">
     <div id="movie-section">
-      <img id="poster-img" :src="`https://image.tmdb.org/t/p/w780/${movie.poster_path}`" alt="poster">
-      <div id="detail-info">
-        <h1 id="detail-title">{{ movie.title }} <span id="movie-runtime">{{ movie.runtime }}분</span></h1>
-        <p id="detail-overview">{{ movie.overview.slice(0, 150) }}...</p>
+      <div class="detail-left">
+        <img id="poster-img" :src="`https://image.tmdb.org/t/p/w780/${movie.poster_path}`" alt="poster">
+        <div id="detail-info">
+          <h1 id="detail-title">{{ movie.title }} <span id="movie-runtime">{{ movie.runtime }}분</span></h1>
+          <p id="detail-overview">{{ movie.overview.slice(0, 150) }}...</p>
+        </div>
       </div>
-      <div class="likeBtn">
-        <button v-if="liked" @click="likeMovie">UnLike</button>
-        <button v-else @click="likeMovie">Like</button>
+      <div class="detail-right">
+        <button class="likeBtn" v-if="liked" @click="likeMovie">UnLike</button>
+        <button class="likeBtn" v-else @click="likeMovie">Like</button>
       </div>
     </div>
 
@@ -67,7 +69,7 @@ export default {
     getMovieDetail() {
       axios({
         method: 'get',
-        url: `${API_URL}/movies/${this.$route.params.id}`,
+        url: `${API_URL}/movies/${this.$route.params.id}/`,
       })
       .then((res) => {
         this.movie = res.data.movie
@@ -144,7 +146,7 @@ export default {
 
 <style scoped>
   #movie-detail-section {
-    margin-top: 140px;
+    margin-top: 200px;
     font-size: 20px;
   }
 
@@ -156,9 +158,11 @@ export default {
 
   #movie-section {
     display: flex;
+    justify-content: space-between;
     align-items: flex-end;
     margin-top: 130px;
     margin-left: 35px;
+    margin-right: 35px;
   }
 
   #movie-runtime {
@@ -265,5 +269,19 @@ export default {
 
   #deleteBtn {
     cursor: pointer;
+  }
+
+  .likeBtn {
+    width: 80px;
+    height: 80px;
+    border: none;
+    border-radius: 100px;
+    font-size: 20px;
+    cursor: pointer;
+  }
+
+  .detail-left {
+    display: flex;
+    align-items: flex-end;
   }
 </style>

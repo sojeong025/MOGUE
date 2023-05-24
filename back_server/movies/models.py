@@ -21,3 +21,10 @@ class Collection(models.Model):
     title = models.CharField(max_length=50)
     thumbnail = models.ImageField(null=True, blank=True, upload_to='collection_thumbnails/')
     movies = models.ManyToManyField(Movie, verbose_name='collections')
+
+
+class Ott(models.Model):
+    name = models.CharField(max_length=50)
+    logo_path = models.ImageField()
+    movies = models.ManyToManyField(Movie, related_name='otts')
+    users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='otts')

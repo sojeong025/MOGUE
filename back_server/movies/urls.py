@@ -11,4 +11,5 @@ urlpatterns = [
     path('reviews/<int:review_pk>/', views.manage_review),
     path('collections/', views.collection_list),
     path('collections/<int:collection_id>/', views.collection_detail),
+    path('otts/', views.get_otts),
 ]

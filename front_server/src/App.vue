@@ -116,7 +116,7 @@ export default {
     color: white;
     padding-top: 40px;
     padding-left: 50px;
-    background-color: #ffca1c;
+    background-color: #e8aa23;
   }
 
   #app {

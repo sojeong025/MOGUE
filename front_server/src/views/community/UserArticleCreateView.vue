@@ -176,6 +176,7 @@ export default {
     overflow: hidden;
     border: 0;
 }
+
 #article-form-left input:focus {
   outline: none;
 }

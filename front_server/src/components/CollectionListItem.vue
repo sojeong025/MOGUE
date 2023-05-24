@@ -4,7 +4,7 @@
         <div id="collection-title">
           <h2 id="collection-title-text">{{ collection.title }}</h2>
         </div>
-        <img id="collection-thumbnail" :src="`http://127.0.0.1:8000${collection.thumbnail}`" alt="thumbnail">
+        <img id="collection-thumbnail" :src="`http://127.0.0.1:8000/media${collection.thumbnail}`" alt="thumbnail">
       </router-link>
 </template>
 

@@ -1,6 +1,6 @@
 <template>
   <div id="search-section">
-      <img id="movie-main-image" :src="`http://127.0.0.1:8000/media/버스.jpg`" alt="">
+      <img id="movie-main-image" :src="`http://127.0.0.1:8000/버스.jpg`" alt="">
     <div id="search-headers">
       <div id="search">
         <input id="search-input" 
@@ -8,6 +8,11 @@
         v-model="searchInput" 
         @input="search(searchInput, movies)"
         >
+        <div class="otts">
+          <div v-for="ott in otts" :key="ott.id">
+            <img :src="`https://image.tmdb.org/t/p/w45${ott.logo_path}`" alt="">
+          </div>
+        </div>
       </div>
       <div id="search-body">
         <div id = "search-result">
@@ -49,6 +54,7 @@ export default {
     return {
       movies: [],
       searchResult: [],
+      otts: [],
       searchInput: "",
       focus: null,
     }
@@ -68,7 +74,7 @@ export default {
     },
     selectResult(title) {
       this.searchInput = title
-    }
+    },
   },
     created() {
     axios({
@@ -79,6 +85,14 @@ export default {
       this.movies = res.data
     })
     .catch(err => console.log(err))
+
+    axios({
+      method: 'get',
+      url: 'http://127.0.0.1:8000/movies/otts/',
+    })
+    .then((res) => {
+      this.otts = res.data
+    })
   }
 }
 </script>
@@ -95,11 +109,10 @@ export default {
 
   #search {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     position: relative;
-    width: 300px;
+    width: 100%;
   }
 
   #search-body {
@@ -194,5 +207,10 @@ export default {
     transition-duration: 0.2s;
     color: white;
     background-color: rgba(0, 0, 0, 0.795);
+  }
+
+  .otts {
+    display: flex;
+    justify-content: space-between;
   }
 </style>

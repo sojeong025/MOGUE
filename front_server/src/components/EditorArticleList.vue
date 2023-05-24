@@ -9,7 +9,7 @@
       <!-- <li class="editor-article" v-for="editor_article in editor_articles" :key="editor_article.id"> -->
         <div class="card">
           <router-link :to="{ name: 'editorarticledetail', params: { id: editor_article.id, editor_article: editor_article } }">
-            <img :src="editor_article.thumbnail" width="300px" height="300px" class="card-img" alt="thumbnail">
+            <img :src="`${editor_article.thumbnail}`" width="300px" height="300px" class="card-img" alt="thumbnail">
             <div class="card-content">
               <h5 class="card-title"><span>{{ editor_article.title }}</span></h5>
             </div>
