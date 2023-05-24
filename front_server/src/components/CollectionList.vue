@@ -45,7 +45,7 @@ export default {
     justify-content: center;
     align-items: flex-start;
     margin-top: 0px;
-    width: 1800px;
+    width: 800px;
     display: flex;
     flex-wrap: wrap;
   }

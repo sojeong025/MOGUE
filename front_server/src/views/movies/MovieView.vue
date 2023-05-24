@@ -6,12 +6,12 @@
     <div id="movie-body">
       <div class="box1"></div>
       <div id="recommend-section">
-        <h1>| TODAY'S MOVIE</h1>
+        <h1 class="today">| TODAY'S MOVIE</h1>
         <RecommendList/>
       </div>
       <div class="box2"></div>
       <div class="yellow recommend-section">
-        <h1>| HOW ABOUT THIS?</h1>
+        <h1 class="today">| HOW ABOUT THIS?</h1>
         <RecommendList/>
       </div>
       <div id="collection-section">
@@ -41,7 +41,7 @@ export default {
     height: 300px;
     background-color:#dededc77;
     position:absolute;
-    top:10%;
+    top: 7%;
     left:-10%
   }
 
@@ -50,7 +50,7 @@ export default {
     height: 300px;
     background-color:#dededc77;
     position:absolute;
-    top:35.5%;
+    top:32.5%;
     left:-10%
   }
 
@@ -112,5 +112,9 @@ export default {
     height: 100%;
   }
 
+  .today{
+    margin-left: 15px;
+    margin-bottom: -20px;
+  }
 
 </style>

@@ -18,6 +18,12 @@ export default {
 </script>
 
 <style>
+@font-face {
+    font-family: 'ghanachoco';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@1.0/ghanachoco.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
   #collection-item {
     border-radius: 8px;
     position: relative;
@@ -29,11 +35,14 @@ export default {
   }
 
   #color-box {
-    border-radius: 8px;
+    /* border-radius: 8px; */
     position:absolute;
     width: 320px;
     height: 320px;
     background-color: rgba(0, 0, 0, 0.37);
+  }
+  #collection-item:hover {
+    filter: brightness(0.5);
   }
 
   #collection-title {
@@ -45,19 +54,22 @@ export default {
     width: 300px;
     height: 250px;
     letter-spacing: 4px;
-    word-spacing: 8px;
-    line-height: 70px;
+    /* word-spacing: 8px; */
+    line-height: 50px;
   }
 
   #collection-title-text {
     display: flex;
     justify-content: center;
+    word-break: keep-all;
+    text-align: center;
     align-items: center;
+    font-family: 'ghanachoco';
   }
 
 
   #collection-thumbnail {
-    border-radius: 8px;
+    /* border-radius: 8px; */
     width: 320px;
     height: 320px;
   }
