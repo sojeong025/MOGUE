@@ -148,6 +148,11 @@ export default {
     margin-top: 50px;
   }
 
+  #movie-main-image {
+    width: 100%;
+    height: 100%;
+  }
+
   #search {
     display: flex;
     justify-content: center;
