@@ -182,5 +182,269 @@
       "collection_id": 5,
       "movie_id": 222935
     }
+  },
+  {
+    "model": "movies.collection_movies",
+    "pk": 23,
+    "fields": {
+      "collection_id": 6,
+      "movie_id": 804095
+    }
+  },
+  {
+    "model": "movies.collection_movies",
+    "pk": 24,
+    "fields": {
+      "collection_id": 6,
+      "movie_id": 965150
+    }
+  },
+  {
+    "model": "movies.collection_movies",
+    "pk": 25,
+    "fields": {
+      "collection_id": 6,
+      "movie_id": 615952
+    }
+  },
+  {
+    "model": "movies.collection_movies",
+    "pk": 26,
+    "fields": {
+      "collection_id": 6,
+      "movie_id": 500664
+    }
+  },
+  {
+    "model": "movies.collection_movies",
+    "pk": 27,
+    "fields": {
+      "collection_id": 6,
+      "movie_id": 157350
+    }
+  },
+  {
+    "model": "movies.collection_movies",
+    "pk": 28,
+    "fields": {
+      "collection_id": 7,
+      "movie_id": 531428
+    }
+  },
+  {
+    "model": "movies.collection_movies",
+    "pk": 29,
+    "fields": {
+      "collection_id": 7,
+      "movie_id": 398978
+    }
+  },
+  {
+    "model": "movies.collection_movies",
+    "pk": 30,
+    "fields": {
+      "collection_id": 7,
+      "movie_id": 399057
+    }
+  },
+  {
+    "model": "movies.collection_movies",
+    "pk": 31,
+    "fields": {
+      "collection_id": 7,
+      "movie_id": 340676
+    }
+  },
+  {
+    "model": "movies.collection_movies",
+    "pk": 32,
+    "fields": {
+      "collection_id": 7,
+      "movie_id": 313369
+    }
+  },
+  {
+    "model": "movies.collection_movies",
+    "pk": 33,
+    "fields": {
+      "collection_id": 7,
+      "movie_id": 120467
+    }
+  },
+  {
+    "model": "movies.collection_movies",
+    "pk": 34,
+    "fields": {
+      "collection_id": 7,
+      "movie_id": 49047
+    }
+  },
+  {
+    "model": "movies.collection_movies",
+    "pk": 35,
+    "fields": {
+      "collection_id": 7,
+      "movie_id": 110420
+    }
+  },
+  {
+    "model": "movies.collection_movies",
+    "pk": 37,
+    "fields": {
+      "collection_id": 7,
+      "movie_id": 38
+    }
+  },
+  {
+    "model": "movies.collection_movies",
+    "pk": 38,
+    "fields": {
+      "collection_id": 8,
+      "movie_id": 37799
+    }
+  },
+  {
+    "model": "movies.collection_movies",
+    "pk": 39,
+    "fields": {
+      "collection_id": 8,
+      "movie_id": 310307
+    }
+  },
+  {
+    "model": "movies.collection_movies",
+    "pk": 40,
+    "fields": {
+      "collection_id": 8,
+      "movie_id": 212778
+    }
+  },
+  {
+    "model": "movies.collection_movies",
+    "pk": 41,
+    "fields": {
+      "collection_id": 8,
+      "movie_id": 257211
+    }
+  },
+  {
+    "model": "movies.collection_movies",
+    "pk": 42,
+    "fields": {
+      "collection_id": 1,
+      "movie_id": 81188
+    }
+  },
+  {
+    "model": "movies.collection_movies",
+    "pk": 43,
+    "fields": {
+      "collection_id": 1,
+      "movie_id": 10140
+    }
+  },
+  {
+    "model": "movies.collection_movies",
+    "pk": 44,
+    "fields": {
+      "collection_id": 1,
+      "movie_id": 321612
+    }
+  },
+  {
+    "model": "movies.collection_movies",
+    "pk": 45,
+    "fields": {
+      "collection_id": 2,
+      "movie_id": 296096
+    }
+  },
+  {
+    "model": "movies.collection_movies",
+    "pk": 46,
+    "fields": {
+      "collection_id": 2,
+      "movie_id": 332562
+    }
+  },
+  {
+    "model": "movies.collection_movies",
+    "pk": 47,
+    "fields": {
+      "collection_id": 2,
+      "movie_id": 51828
+    }
+  },
+  {
+    "model": "movies.collection_movies",
+    "pk": 48,
+    "fields": {
+      "collection_id": 2,
+      "movie_id": 200727
+    }
+  },
+  {
+    "model": "movies.collection_movies",
+    "pk": 49,
+    "fields": {
+      "collection_id": 2,
+      "movie_id": 11036
+    }
+  },
+  {
+    "model": "movies.collection_movies",
+    "pk": 50,
+    "fields": {
+      "collection_id": 4,
+      "movie_id": 601
+    }
+  },
+  {
+    "model": "movies.collection_movies",
+    "pk": 51,
+    "fields": {
+      "collection_id": 4,
+      "movie_id": 70981
+    }
+  },
+  {
+    "model": "movies.collection_movies",
+    "pk": 52,
+    "fields": {
+      "collection_id": 4,
+      "movie_id": 19995
+    }
+  },
+  {
+    "model": "movies.collection_movies",
+    "pk": 53,
+    "fields": {
+      "collection_id": 4,
+      "movie_id": 76600
+    }
+  },
+  {
+    "model": "movies.collection_movies",
+    "pk": 54,
+    "fields": {
+      "collection_id": 4,
+      "movie_id": 126889
+    }
+  },
+  {
+    "model": "movies.collection_movies",
+    "pk": 55,
+    "fields": {
+      "collection_id": 5,
+      "movie_id": 614409
+    }
+  },
+  {
+    "model": "movies.collection_movies",
+    "pk": 56,
+    "fields": {
+      "collection_id": 5,
+      "movie_id": 41233
+    }
   }
 ]

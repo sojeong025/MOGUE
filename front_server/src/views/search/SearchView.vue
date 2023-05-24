@@ -10,7 +10,8 @@
         >
         <div class="otts">
           <div v-for="ott in otts" :key="ott.id">
-            <img :src="`https://image.tmdb.org/t/p/w45${ott.logo_path}`" alt="">
+            <div class="light-box" @click="filterOtt(ott.id)"></div>
+            <img class="ott-item" :src="`https://image.tmdb.org/t/p/w45${ott.logo_path}`" alt="">
           </div>
         </div>
       </div>
@@ -75,6 +76,9 @@ export default {
     selectResult(title) {
       this.searchInput = title
     },
+    filterOtt(ott_id) {
+      console.log(ott_id)
+    }
   },
     created() {
     axios({
@@ -109,10 +113,10 @@ export default {
 
   #search {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
     position: relative;
-    width: 100%;
+    width: 800px;
   }
 
   #search-body {
@@ -125,6 +129,7 @@ export default {
     display: flex;
     align-items: center;
     padding: 10px;
+    width: 300px;
     height: 20px;
     border: 1px solid #bbb;
     border-radius: 8px;
@@ -212,5 +217,26 @@ export default {
   .otts {
     display: flex;
     justify-content: space-between;
+    margin-left: 20px;
+  }
+
+  .ott-item {
+    border-radius: 10px;
+    margin-right: 15px;
+    box-shadow: 4px 4px 10px 0px rgba(128, 128, 128, 0.411);
+    cursor: pointer;
+  }
+
+  .light-box {
+    position: absolute;
+    width: 45px;
+    height: 45px;
+    background-color: transparent;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+
+  .light-box:hover {
+    background-color: rgba(255, 255, 255, 0.301);
   }
 </style>
