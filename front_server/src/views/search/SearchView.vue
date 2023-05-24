@@ -6,7 +6,7 @@
         <input id="search-input" 
         type="text" placeholder="작품명을 검색해보세요." 
         v-model="searchInput" 
-        @input="search(searchInput, movies)"
+        @keydown="search(searchInput, movies)"
         >
         <div class="otts">
           <div v-for="ott in otts" :key="ott.id">

@@ -11,22 +11,26 @@
       <div class="detail-right">
         <button class="likeBtn" v-if="liked" @click="likeMovie">UnLike</button>
         <button class="likeBtn" v-else @click="likeMovie">Like</button>
+        <div class="ott-items">
+          <div class="ott-item" v-for="ott in otts" :key="ott.id">
+            <img class="ott-item" :src="`https://image.tmdb.org/t/p/w45${ott.logo_path}`" alt="">
+          </div>
+        </div>
       </div>
     </div>
-
+    <hr class="review-hr">
     <div id="review-section" class="yellow">
       <form @submit.prevent="createReview" id="review-input-section">
         <input id="review-input" type="text" placeholder="리뷰를 작성해보세요" v-model="content">
         <div class="rating">
           <star-rating
             :show-rating="false"
-            inactive-color="#21f1ff"
-            active-color="#ffffff"
+            inactive-color="#00000"
+            active-color="#ffc107"
             :star-size=35
             v-model="rating"
           ></star-rating>
         </div>
-        <input id="submit-btn" type="submit" value="작성">
       </form>
       <div id="review-box">
         <div v-for="review in reviews" :key="review.id">
@@ -60,6 +64,7 @@ export default {
     return {
       movie: Object,
       reviews: [],
+      otts: [],
       content: null,
       rating: 0,
       liked: false,
@@ -70,11 +75,15 @@ export default {
       axios({
         method: 'get',
         url: `${API_URL}/movies/${this.$route.params.id}/`,
+        headers: {
+          Authorization: `JWT ${token}`
+        }
       })
       .then((res) => {
         this.movie = res.data.movie
         this.reviews = res.data.reviews
-        console.log(res.data.movie)
+        console.log(res)
+        this.otts = res.data.otts
         if (res.data.movie.users.includes(jwtDecode(token).user_id)) {
           this.liked = true
         } else {
@@ -146,23 +155,24 @@ export default {
 
 <style scoped>
   #movie-detail-section {
-    margin-top: 200px;
+    margin-top: 0px;
     font-size: 20px;
   }
 
   #poster-img {
     display: flex;
-    width: 300px;
-    height: 480px;
+    width: 380px;
+    height: 600px;
   }
 
   #movie-section {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    margin-top: 130px;
+    margin-top: 50px;
     margin-left: 35px;
     margin-right: 35px;
+    margin-bottom: 50px;
   }
 
   #movie-runtime {
@@ -186,7 +196,9 @@ export default {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    align-items: flex-start;
     margin-top: 30px;
+    margin-left: 20px;
     height: 500px;
   }
 
@@ -198,6 +210,7 @@ export default {
   #reviews {
     display: flex;
     justify-content: space-between;
+    font-size: 24px;
     width: 500px;
     margin-top: 14px;
   }
@@ -208,12 +221,28 @@ export default {
   }
 
   #review-input {
-    margin-right: 10px;
+    font-size: 20px;
+    margin-right: 40px;
     width: 400px;
     height: 35px;
-    padding-left: 10px;
+    padding: 6px;
+    padding-left: 14px;
     border-radius: 5px;
     border: none;
+  }
+
+  #review-input:hover {
+    outline: none;
+    border: none;
+    border-radius: 0px;
+    border-bottom: solid 1px;
+  }
+
+  #review-input:focus {
+    outline: none;
+    border: none;
+    border-radius: 0px;
+    border-bottom: solid 1px;
   }
 
   .rating_box {
@@ -283,5 +312,30 @@ export default {
   .detail-left {
     display: flex;
     align-items: flex-end;
+  }
+
+  .detail-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-right: 25px;
+  }
+
+  .ott-items {
+    display: flex;
+    margin-top: 20px;
+  }
+
+  .ott-item {
+    margin-left: 10px;
+  }
+
+  .review-hr {
+    background-color: black;
+    border: none;
+    height: 1px;
+    margin-top: 20px;
+    margin-left: 35px;
+    width: 1230px;
   }
 </style>
