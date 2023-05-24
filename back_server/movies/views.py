@@ -117,3 +117,11 @@ def get_otts(request):
     otts = get_list_or_404(Ott)
     serializer = OttSerializer(otts, many=True)
     return Response(serializer.data)
+
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def movies_by_ott(request, ott_id):
+    ott = get_object_or_404(Ott, pk=ott_id)
+    movies = ott.movies.all()
+    serializer = MovieSerializer(movies, many=True)
+    return Response(serializer.data)

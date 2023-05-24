@@ -10,12 +10,12 @@
         </div>
         <p class="profile-name">{{user.nickname}}님의 프로필</p>
         <div class="follow-info">
-          <router-link :to="{ name: 'follow', params: {  id: this.$route.params.id, user: user } }">
+          <router-link :to="{ name: 'follow', params: {  id: this.$route.params.id } }">
             <div class="follow-number">
               팔로워 : {{ followers.length }}
             </div>
           </router-link>
-          <router-link :to="{ name: 'follow', params: {  id: this.$route.params.id, user: user} }">
+          <router-link :to="{ name: 'follow', params: {  id: this.$route.params.id } }">
             <div class="follow-number">
               팔로잉 : {{ followings.length }}
             </div>
@@ -78,12 +78,9 @@ const API_URL = 'http://127.0.0.1:8000'
 export default {
   name: 'ProfileView',
   created() {
+    console.log(1)
     this.getFollowData()
-    if (localStorage.getItem('token')) {
-      this.getUserProfile()
-    } else {
-      this.$router.push({ name: 'login' })
-    }
+    this.getUserProfile()
   },
   data(){
     return{

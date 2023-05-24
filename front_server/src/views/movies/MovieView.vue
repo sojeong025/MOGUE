@@ -1,7 +1,7 @@
 <template>
   <div id="movie">
     <div id="movie-headers">
-      <img id="movie-main-image" :src="`http://127.0.0.1:8000/media/자전거배너.jpg`" alt="">
+      <img id="movie-main-image" :src="`http://127.0.0.1:8000/자전거배너.jpg`" alt="">
     </div>
     <div id="movie-body">
       <div id="recommend-section">
