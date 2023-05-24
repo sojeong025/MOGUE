@@ -4,11 +4,13 @@
       <img id="movie-main-image" :src="`http://127.0.0.1:8000/자전거배너.jpg`" alt="">
     </div>
     <div id="movie-body">
+      <div class="box1"></div>
       <div id="recommend-section">
         <h1>| TODAY'S MOVIE</h1>
         <RecommendList/>
       </div>
-      <div class="yellow">
+      <div class="box2"></div>
+      <div class="yellow recommend-section">
         <h1>| HOW ABOUT THIS?</h1>
         <RecommendList/>
       </div>
@@ -34,6 +36,24 @@ export default {
 </script>
 
 <style scoped>
+  .box1{
+    width: 109.9vw;
+    height: 300px;
+    background-color:#dededc77;
+    position:absolute;
+    top:10%;
+    left:-10%
+  }
+
+  .box2{
+    width: 109.9vw;
+    height: 300px;
+    background-color:#dededc77;
+    position:absolute;
+    top:35.5%;
+    left:-10%
+  }
+
   .video {
     width: 100%;
   }
@@ -64,19 +84,25 @@ export default {
 
   #movie-body{
     margin-top: 90px;
+    position: relative;
   }
 
   #collection-section {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    margin-top: 50px;
+    margin-top: 80px;
     width: 100%;
     height: 1000px;
   }
 
   #recommend-section {
+    margin-top: 50px;
+    margin-left: 50px;
+  }
+
+  .recommend-section {
     margin-top: 50px;
     margin-left: 50px;
   }

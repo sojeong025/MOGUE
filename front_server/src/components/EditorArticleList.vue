@@ -122,8 +122,8 @@ li {
   display: flex;
   flex-direction: column;
   position: relative;
-  width: 270px;
-  height: 270px;
+  width: 17rem;
+  height: 17rem;
 }
 
 .card-img {

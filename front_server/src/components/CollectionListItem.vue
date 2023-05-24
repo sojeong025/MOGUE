@@ -24,15 +24,15 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 400px;
-    margin: 40px;
+    width: 320px;
+    margin: 20px;
   }
 
   #color-box {
     border-radius: 8px;
     position:absolute;
-    width: 360px;
-    height: 360px;
+    width: 320px;
+    height: 320px;
     background-color: rgba(0, 0, 0, 0.37);
   }
 
@@ -58,7 +58,7 @@ export default {
 
   #collection-thumbnail {
     border-radius: 8px;
-    width: 360px;
-    height: 360px;
+    width: 320px;
+    height: 320px;
   }
 </style>
