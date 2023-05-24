@@ -35,16 +35,19 @@
 
 
           <div class="comment">
-            <span>comment</span>
-            <form id="comment-form" @submit.prevent="createComment">
-              <label for="content"></label>
-              <input id="text" v-model="content" placeholder="댓글을 작성하세요">
-              <input id="submit" type="submit" value="작성">
-            </form>
-              
+            <div class="comment-left">
+              <span>comment</span>
+              <form id="comment-form" @submit.prevent="createComment">
+                <label for="content"></label>
+                <input id="text" v-model="content" placeholder="댓글을 작성하세요">
+                <input id="submit" type="submit" value="작성">
+              </form>
+            </div><hr class="hr">
+            <div class="comment-right">
               <div class="comment-content" v-for="comment in comments" :key="comment.id">
                 {{comment.content}} <button class="delete-button" @click="deleteComment(comment.id)">X</button>
               </div> 
+            </div>
           </div>
 
 </div>
@@ -152,7 +155,6 @@ export default {
 .main-container{
   margin: 200px auto;
   width: 1600px;
-  height: 700px;
   /* text-align: center; */
   align-items: center;
   justify-content: center;
@@ -199,10 +201,12 @@ export default {
 .user-article-right{
   display: flex;
   flex: 3;
+  margin: 50px;
 }
 .user-article-right img {
   width: 500px;
   height: 100%;
+  margin-right: 20px
   /* outline: none; */
 }
 .user-article-right img:hover {
@@ -217,7 +221,7 @@ export default {
   word-break: keep-all;
 }
 .comment {
-  margin: 20px;
+  margin: 80px 20px;
 }
 #text{
   margin-top: 10px;
@@ -258,6 +262,17 @@ export default {
   width:50px;
   height: 30px;
   margin-left: 20px;
-  background-color: #3f3e3e;
+  background-color: #e8aa23;
+  border: none;
+  color: #fff
+}
+.comment{
+  display: flex;
+  justify-content: space-between;
+}
+.comment-right{
+  display: flex;
+  flex-direction: column;
+  align-items: end;
 }
 </style>

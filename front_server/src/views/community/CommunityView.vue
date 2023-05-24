@@ -16,7 +16,9 @@
           <router-link :to="{ name: 'login' }" v-else>Write Your Article</router-link>
         </div>
       <div class="user-article-section">
-        <UserArticleList/>
+        <UserArticleList :page="page"
+        />
+
       </div>
     </div>
   </div>
@@ -30,7 +32,8 @@ export default {
   name: 'CommunityView',
   data() {
     return{
-      token: localStorage.getItem('token')
+      token: localStorage.getItem('token'),
+      page: 0,
     }
   },
   components: {
@@ -75,6 +78,8 @@ export default {
 }
 .user-article-section {
   padding: 10px;
+  width: 100%;
+
 }
 .write-article{
   width: 100%;
