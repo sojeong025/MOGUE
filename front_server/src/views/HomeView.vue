@@ -6,7 +6,7 @@
         <router-link class="magazine" :to="{ name: 'movie' }">MOVIE MAGAGINE</router-link>
       </div>
     </div>
-    <video id="home-video" src="/notebook.mp4" class="video" type="video/mp4" autoplay muted loop></video>
+    <video id="home-video" src="/final.mp4" class="video" type="video/mp4" autoplay muted loop></video>
   </div>
 </template>
 
@@ -65,13 +65,18 @@ export default {
   font-family: 'DM Serif Display', serif;
 }
 
+.magazine:hover{
+  background: rgba(255, 255, 255, 0.509);
+}
+
 #home-video {
-  width: 100%;
   position: absolute;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  /* display: flex; */
+  /* align-items: center;
+  justify-content: center; */
   z-index: -1;
+  height: 904px;
+  width: 1800px;
 }
 
 </style>
