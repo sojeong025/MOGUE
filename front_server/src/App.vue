@@ -1,42 +1,38 @@
 <template>
   <div id="app">
     <!-- nav바 구현 -->
+    <nav>
     <div id="nav-container">
-      <nav>
-        <div id="nav1">
+        <div id="nav-left">
           <div id="logo-container">
-            <div class="nav-item">
               <router-link :to="{ name: 'home' }" >
-                <p> <img src="/LOGO_remove.png"  width="110px" height="70px" alt="logo"></p>
+                <p class="logo" >MOGUE</p>
               </router-link>
-            </div>
           </div>
+        </div>
+
+        <div class="nav-center">
+            <router-link :to="{ name: 'community' }" :class="{ 'textWhite': this.$store.state.textWhite }"> COMMUNITY </router-link>
+            <router-link :to="{ name: 'movie' }" :class="{ 'textWhite': this.$store.state.textWhite }"> MOVIE </router-link>
+            <router-link :to="{ name: 'search' }" :class="{ 'textWhite': this.$store.state.textWhite }">SEARCH</router-link>
+        </div>
+
+        <div class="navright">
           <div v-if="this.$store.state.isLogin" class="login-part">
             <router-link :to="{ name: 'profile', params: { id: user_id } }" :class="{ 'textWhite': this.$store.state.textWhite }"> Profile </router-link>
             <span id="logout" :class="{ 'textWhite': this.$store.state.textWhite }" @click="logout">Logout</span>
           </div>
           <div class="login-form" v-else>
             <span class="nav-item">
-              <router-link :to="{ name: 'login' }" :class="{ 'textWhite': this.$store.state.textWhite }"> Login </router-link>
+              <router-link :to="{ name: 'signup' }" :class="{ 'textWhite': this.$store.state.textWhite }"> Signup </router-link>
             </span>
             <span class="nav-item">
-              <router-link :to="{ name: 'signup' }" :class="{ 'textWhite': this.$store.state.textWhite }"> Signup </router-link>
+              <router-link id="login" :to="{ name: 'login' }" :class="{ 'textWhite': this.$store.state.textWhite }"> Login </router-link>
             </span>
           </div>
         </div>
-      </nav>
-      <div id="nav2">
-        <div class="nav-item">
-          <router-link :to="{ name: 'community' }" :class="{ 'textWhite': this.$store.state.textWhite }"> COMMUNITY </router-link>
-        </div>
-        <div class="nav-item">
-          <router-link :to="{ name: 'movie' }" :class="{ 'textWhite': this.$store.state.textWhite }"> MOVIE </router-link>
-        </div>
-        <div class="nav-item">
-          <router-link :to="{ name: 'search' }" :class="{ 'textWhite': this.$store.state.textWhite }">SEARCH</router-link>
-        </div>
       </div>
-    </div>
+      </nav>
     <router-view/>
   </div>
 </template>
@@ -51,10 +47,9 @@ export default {
     return {
       user_id: jwtDecode(token).user_id,
       textWhite: false,
-      showNav: true,
       scrollDirection: '',
       prevScrollPos: window.pageYOffset,
-      navTop: 0
+      navTop: 0,
     }
   },
   methods: {
@@ -78,105 +73,128 @@ export default {
   destroyed() {
     this.logout()
   },
+  computed: {
+    // computed 속성을 사용하여 네비게이션 바의 표시 여부를 반환합니다.
+    showNav() {
+      return this.$store.state.showNav;
+    }
+  },
 }
 </script>
 
 
 <style>
-  router-view {
-    transition-duration: 3s;
-  }
+router-view {
+  transition-duration: 3s;
+}
 
-  @font-face {
-    font-family: 'SUITE-Regular';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2') format('woff2');
-    font-weight: 400;
-    font-style: normal;
-  }
+@font-face {
+  font-family: 'SUITE-Regular';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+}
 
-  * {
-    margin: 0px;
-    padding: 0px;
-    word-break: break-all;
-    font-family: 'Montserrat', 'sans-serif', 'SUITE-Regular';
-  }
+* {
+  margin: 0px;
+  padding: 0px;
+  word-break: break-all;
+  font-family: 'Montserrat', 'sans-serif', 'SUITE-Regular';
+}
 
-  h1 {
-    font-size: 40px;
-  }
+*::-webkit-scrollbar{
+    display: none;
+}
 
-  *::-webkit-scrollbar{
-      display: none;
-  }
+/* .yellow {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: white;
+  padding-top: 40px;
+  padding-left: 50px;
+  background-color: #e8aa23;
+} */
 
-  .yellow {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    color: white;
-    padding-top: 40px;
-    padding-left: 50px;
-    background-color: #e8aa23;
-  }
+#app {
+  font-size: 18px;
+  text-decoration: none;
+}
+a {
+  font-size: 20px;
+  text-decoration: none;
+  color: black;
+  padding: 0 20px 0;
+}
+nav{
+  height: 50px;
+  position: sticky;
+  border-bottom: 2px solid black;
+}
+#nav-container{
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 30px 0;
+}
+.logo{
+  font-family: 'DM Serif Display', serif;
+  font-size: 35px;
+  margin-top: -35px
+}
+.nav-left{
+  display: flex;
+}
+#login{
+  background-color: #e8aa23;
+  border-radius: 10px;
+  padding: 8px 8px; 
+}
+#logout {
+  cursor: pointer;
+  font-size: 20px;
+}
 
-  #app {
-    font-size: 18px;
-    text-decoration: none;
-  }
+/* #nav-container{
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  padding: 20px;
+  top: 0%;
+  width: 100%;
+  z-index: 1000;
+}
 
-  a {
-    font-size: 24px;
-    text-decoration: none;
-    color: black;
-  }
+#nav1 {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  font-weight: 600;
+}
 
-  #logout {
-    cursor: pointer;
-    background-color: black;
-    padding: 3px;
-    color: white;
-    font-size: 24px;
-  }
+#nav2 {
+  display: flex;
+  justify-content: space-between;
+  font-size: 18px;
+  font-weight: 600;
+  margin: 10px 30px 0px;
+}
 
-  #nav-container{
-    position: fixed;
-    padding: 20px;
-    top: 0%;
-    width: 100%;
-    z-index: 1000;
-  }
+.textWhite {
+  color: #ffffff;
+}
 
-  #nav1 {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    font-weight: 600;
-  }
+.nav-item {
+  display: flex;
+  justify-content: center;
+  width: 150px;
+}
 
-  #nav2 {
-    display: flex;
-    justify-content: space-between;
-    font-size: 18px;
-    font-weight: 600;
-    margin: 10px 30px 0px;
-  }
+.login-form {
+  display: flex;
+  width: 302px;
+}
 
-  .textWhite {
-    color: #ffffff;
-  }
-
-  .nav-item {
-    display: flex;
-    justify-content: center;
-    width: 150px;
-  }
-
-  .login-form {
-    display: flex;
-    width: 302px;
-  }
-
-  .login-part {
-    padding-right: 50px;
-  }
+.login-part {
+  padding-right: 50px;
+} */
 </style>
