@@ -79,12 +79,13 @@ export default {
 
 <style scoped>
 #editor-article-detail {
-  margin: 200px 100px;
+  margin: 200px 300px;
   display: flex;
   flex-direction: row;
 }
 .editor-article-left{
   flex:0.5;
+  margin-right: 40px;
   /* border: 1px solid black; */
 }
 .editor-article-left h3{
@@ -97,7 +98,7 @@ export default {
   font-weight: 300;
 }
 .editor-article-center {
-  flex:2.5;
+  flex:2;
   /* border: 1px solid black; */
   margin: 0 50px 0;
 }
@@ -111,6 +112,7 @@ export default {
 }
 .editor-article-right{
   flex:1.5;
+  margin-left: 40px;
   /* border: 1px solid black; */
 }
 .editor-article-right h3{

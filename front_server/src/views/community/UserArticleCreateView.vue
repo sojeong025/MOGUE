@@ -115,9 +115,9 @@ export default {
 .write-page {
   padding: 0px;
   margin: 100px auto;
-  margin-top: 150px;
+  margin-top: 180px;
   width: 1600px;
-  height: 700px;
+  height: 680px;
   display: flex;
   flex-direction: row;
   box-shadow: 8px 8px 20px #626464;
