@@ -30,12 +30,15 @@ def all_movies(request):
 @permission_classes([AllowAny])
 def movie_detail(request, movie_pk):
     movie = get_object_or_404(Movie, id=movie_pk)
+    otts = movie.otts.filter(movies=movie_pk)
     reviews = Review.objects.filter(movie_id=movie_pk)
     movie_serializer = MovieSerializer(movie)
     review_serializer = ReviewSerializer(reviews, many=True)
+    ott_serializer = OttSerializer(otts, many=True)
     context = {
         'movie': movie_serializer.data,
         'reviews': review_serializer.data,
+        'otts': ott_serializer.data
     }
     return Response(context)
 
@@ -111,12 +114,14 @@ def like_movie(request, movie_pk):
         }
     return JsonResponse(like_status)
 
+
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def get_otts(request):
     otts = get_list_or_404(Ott)
     serializer = OttSerializer(otts, many=True)
     return Response(serializer.data)
+
 
 @api_view(['GET'])
 @permission_classes([AllowAny])
