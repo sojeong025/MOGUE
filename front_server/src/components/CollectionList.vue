@@ -2,7 +2,7 @@
   <div class="collection-list">
     <div class="left">
       <div class="collection1">
-        <router-link :to="{ name: 'collectiondetail' }">
+        <router-link :to="{ name: 'collectiondetail', params: {id: collections[0].id, collection: collections[0]} }">
           <div class="collection1-title">
             <h1>{{collections[0].title}}</h1>
           </div>
@@ -12,7 +12,7 @@
     </div>
     <div class="right">
       <div class="collection2">
-        <router-link :to="{ name: 'collectiondetail' }">
+        <router-link :to="{ name: 'collectiondetail', params: {id: collections[1].id, collection: collections[1]} }">
           <div class="collection-right-thumbnail">
             <img :src="`http://127.0.0.1:8000/${collections[1].thumbnail}`" alt="">
           </div>
@@ -22,7 +22,7 @@
         </router-link>
       </div>
       <div class="collection3">
-        <router-link :to="{ name: 'collectiondetail' }">
+        <router-link :to="{ name: 'collectiondetail', params: {id: collections[2].id, collection: collections[2]} }">
           <div class="collection-right-thumbnail">
             <img :src="`http://127.0.0.1:8000/${collections[2].thumbnail}`" alt="">
           </div>
@@ -32,7 +32,7 @@
         </router-link>
       </div>
       <div class="collection4">
-        <router-link :to="{ name: 'collectiondetail' }">
+        <router-link :to="{ name: 'collectiondetail', params: {id: collections[3].id, collection: collections[3]} }">
           <div class="collection-right-thumbnail">
             <img :src="`http://127.0.0.1:8000/${collections[3].thumbnail}`" alt="">
           </div>
@@ -42,7 +42,7 @@
         </router-link>
       </div>
       <div class="collection5">
-        <router-link :to="{ name: 'collectiondetail' }">
+        <router-link :to="{ name: 'collectiondetail', params: {id: collections[4].id, collection: collections[4]} }">
           <div class="collection-right-thumbnail">
             <img :src="`http://127.0.0.1:8000/${collections[4].thumbnail}`" alt="">
           </div>
@@ -191,7 +191,7 @@ export default {
   }
 
   .collection-right-title {
-    font-size: 20px;
+    font-size: 22px;
     margin-top: 20px;
   }
 </style>

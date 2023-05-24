@@ -4,7 +4,7 @@
       <div class="profile-left">
         <div id="profile-img">
           <router-link :to="{ name: 'profile_update', params: { id: this.$route.params.id } }">
-            <button id="edit-profile"><font-awesome-icon :icon="['fas', 'user-pen']" /></button>
+            <button id="edit-profile"><font-awesome-icon class="edit-icon" :icon="['fas', 'user-pen']" /></button>
           </router-link>
           <img :src="`http://127.0.0.1:8000${user.profile_img}`" alt="img">
         </div>
@@ -52,14 +52,24 @@
               {{user_article.title}}
             </router-link>
           </div>
+          <div v-else  class="no-my">
+          <p>
+            아직 작성한 게시글이 없습니다.
+          </p>
+          </div>
         </div>
 
         <div class="my-comment">
           <p>{{ user.nickname }}님이 작성한 댓글</p>
-          <div class="my-comment-items">
+          <div class="my-comment-items" v-if="user_comments.length">
             <div class="my-comment-item" v-for="comment in user_comments" :key="comment.id">
               {{ comment.content }}
             </div>
+          </div>
+          <div v-else class="no-my">
+            <p>
+              아직 작성한 댓글이 없습니다.
+            </p>
           </div>
         </div>
 
@@ -295,6 +305,7 @@ export default {
   width: 30px;
   height: 30px;
   cursor: pointer;
+  background-color: white;
 }
 
 .liked-items {
@@ -423,5 +434,18 @@ export default {
   margin-bottom: -10px;
 }
 
+.edit-icon {
+  color: rgba(0, 0, 0, 0.63);
+  margin-left: 5px;
+}
 
+.no-my {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-end;
+  margin-top: 20px;
+  margin-left: 8px;
+  font-size: 17px;
+}
 </style>

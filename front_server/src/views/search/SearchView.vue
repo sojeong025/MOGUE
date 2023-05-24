@@ -10,13 +10,17 @@
         >
         <div class="otts">
           <div v-for="ott in otts" :key="ott.id">
-            <div class="light-box" @click="filterOtt(ott.id)" :class="{ 'selected': isSelected[ott.id]}"></div>
+            <div class="light-box" @click="filterOtt(ott.id)" :class="{ 'selected': isSelected[ott.id] }"></div>
             <img class="ott-item" :src="`https://image.tmdb.org/t/p/w45${ott.logo_path}`" alt="">
           </div>
         </div>
       </div>
+      
       <div id="search-body">
-        <div id = "search-result">
+        <div id="search-result">
+          <div class="search-results-title">
+            <h1 class="today">| RESULTS</h1>
+          </div>
           <div id="search-recommend-section" v-if="!searchResult.length">
             <RecommendList/>
           </div>
@@ -36,7 +40,9 @@
         </div>
       </div>
     <div id="search-collection-section">
-      <h1>COLLECTIONS</h1>
+      <div class="section-title">
+        <h1>COLLECTIONS</h1>
+      </div>
       <CollectionList/>
     </div>
   </div>
@@ -96,16 +102,20 @@ export default {
       this.searchInput = title
     },
     filterOtt(ott_id) {
-      const isSelected = {
-        '2': false,
-        '3': false,
-        '8': false,
-        '97': false,
-        '192': false,
-        '337': false,
+      if (this.isSelected[ott_id] === true) {
+        this.isSelected[ott_id] = false
+      } else {
+        const isSelected = {
+          '2': false,
+          '3': false,
+          '8': false,
+          '97': false,
+          '192': false,
+          '337': false,
+        }
+        this.isSelected = isSelected
+        this.isSelected[ott_id] = true
       }
-      this.isSelected = isSelected
-      this.isSelected[ott_id] = !this.isSelected[ott_id]
       axios({
         method: 'get',
         url: `${API_URL}/movies/otts/${ott_id}/`,
@@ -171,23 +181,23 @@ export default {
     display: flex;
     align-items: center;
     padding: 10px;
-    width: 300px;
-    height: 20px;
+    width: 400px;
+    height: 30px;
     border: none;
     border-bottom: 1px solid black;
-    font-size: 14px;
+    font-size: 20px;
   }
 
-  #search-input:hover {
-    border: 1px solid #008cff;
-    transition-duration: 0.3s;
+  #search-input:focus {
+    outline: none;
   }
 
   #search-result{
     display: flex;
     align-items: flex-start;
     width: 100vw;
-    height: 450px;
+    margin-top: 80px;
+    height: 400px;
   }
 
   #search-result-item{
@@ -205,11 +215,9 @@ export default {
 
   #search-recommend-section {
     display: flex;
-    align-items: flex-end;
+    align-items: flex-start;
     height: 450px;
     display: flex;
-    margin-top: 20px;
-    margin-left: 50px;
     overflow: auto;
     white-space: nowrap;
   }
@@ -264,9 +272,8 @@ export default {
   }
 
   .ott-item {
-    border-radius: 10px;
+    border-radius: 5px;
     margin-right: 15px;
-    box-shadow: 4px 4px 10px 0px rgba(128, 128, 128, 0.411);
     cursor: pointer;
   }
 
@@ -274,17 +281,40 @@ export default {
     position: absolute;
     width: 45px;
     height: 45px;
-    background-color: transparent;
-    border-radius: 8px;
+    background-color: rgba(128, 128, 128, 0.219);
+    border-radius: 5px;
     cursor: pointer;
   }
 
   .light-box:hover {
-    background-color: rgba(255, 255, 255, 0.301);
+    background-color: rgba(255, 255, 255, 0.144);
   }
 
   .selected {
-    background-color: #ffc1074f;
+    background-color: transparent;
+    box-shadow: 0px 4px 5px 0px rgba(109, 109, 109, 0.267);
+  }
+
+  .today{
+    word-wrap : brek-word;
+    width: 145px;
+    font-weight: 100;
+    font-size: 28px;
+  }
+
+  .search-results-title {
+    margin-left: 40px;
+  }
+
+  #search-collection-section h1{
+    font-size: 40px;
+    font-weight: 100;
+  }
+
+  #search-collection-section div.section-title{
+    width: 1250px;
+    margin-top: 80px;
+    margin-bottom: 30px;
   }
 
 </style>
