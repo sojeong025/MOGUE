@@ -139,9 +139,9 @@ nav{
   display: flex;
 }
 #login{
-  background-color: #e8aa23;
+  /* background-color: #e8cd4a; */
   border-radius: 10px;
-  padding: 8px 8px; 
+  padding: 8px 8px;
 }
 #logout {
   cursor: pointer;

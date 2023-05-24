@@ -35,7 +35,7 @@ export default {
 }
 
 .main {
-  top: 30%;
+  margin-top: 1000px;
   position: absolute;
   /* z-index: 100; */
   text-align: center;
@@ -59,7 +59,7 @@ export default {
   display: inline-block;
   font-size: 23px;
   border: 2px solid #fff;
-  padding: 14px 7px;
+  padding: 14px 25px;
   border-radius: 50px;
   margin: 20px 10px;
   font-family: 'DM Serif Display', serif;

@@ -5,11 +5,11 @@
     </div>
     <div id="movie-body">
       <div id="recommend-section">
-        <h1>TODAY'S MOVIE</h1>
+        <h1>| TODAY'S MOVIE</h1>
         <RecommendList/>
       </div>
       <div class="yellow">
-        <h1>HOW ABOUT THIS?</h1>
+        <h1>| HOW ABOUT THIS?</h1>
         <RecommendList/>
       </div>
       <div id="collection-section">
@@ -33,9 +33,13 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
   .video {
     width: 100%;
+  }
+
+  h1{
+    font-size: 28px;
   }
 
   #home-video {
