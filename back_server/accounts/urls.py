@@ -5,7 +5,7 @@ from . import views
 app_name = 'accounts'
 
 urlpatterns = [
-    path('signup/', views.signup, name='signup'),
+    path('signup/', views.signup),
     path('login/', obtain_jwt_token),
     # path('profile/', views.profile),
     path('profile/<int:user_pk>/', views.profile),

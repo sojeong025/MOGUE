@@ -19,6 +19,13 @@
       </div>
     </div>
     <hr class="review-hr">
+    <h1 class="trailer-section-title">{{movie.title}} Trailer</h1>
+    <div class="trailer-section">
+      <div v-for="trailer in movieTrailer" :key="trailer.id">
+        <iframe class="trailer-item" width="560" height="315" :src="`https://www.youtube.com/embed/${trailer.key}`" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
+        </iframe>
+      </div>
+    </div>
     <div id="review-section" class="yellow">
       <form @submit.prevent="createReview" id="review-input-section">
         <input id="review-input" type="text" placeholder="리뷰를 작성해보세요" v-model="content">
@@ -63,6 +70,7 @@ export default {
   data() {
     return {
       movie: Object,
+      movieTrailer: [],
       reviews: [],
       otts: [],
       content: null,
@@ -144,10 +152,25 @@ export default {
       .then((res) => {
         this.liked = res.data.liked
       })
+    },
+    getYoutubeTrailer(){
+      axios({
+        url: `https://api.themoviedb.org/3/movie/${this.$route.params.id}/videos?language=ko-KR`,
+        method: 'GET',
+        headers: {
+          accept: 'application/json',
+          Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5OTc1NzVjZGE4MzFkY2VhZWM3ZWY2ZDMxZDZjNjc5NCIsInN1YiI6IjYzZDMzOTU4NjZhZTRkMDA4YzkyYTM4OCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.ZUxmsj6U1koqcc3GGoYrAUoSO3uh6PVngcT3O0zMxpI'
+        }
+      })
+      .then((res) => {
+        console.log(res.data.results)
+        this.movieTrailer = res.data.results
+      })
     }
   },
   created() {
     this.getMovieDetail()
+    this.getYoutubeTrailer()
   }
 }
     
@@ -199,7 +222,7 @@ export default {
     justify-content: flex-start;
     align-items: flex-start;
     margin-top: 30px;
-    margin-left: 20px;
+    margin-left: 30px;
     height: 500px;
   }
 
@@ -338,5 +361,25 @@ export default {
     margin-top: 20px;
     margin-left: 35px;
     width: 1230px;
+  }
+
+  .trailer-section-title{
+    margin-top: 60px;
+    margin-left: 40px;
+  }
+
+  .trailer-section {
+    width: 1840px;
+    height: 350px;
+    margin-top: 40px;
+    margin-left: 40px;
+    padding-right: 40px;
+    display: flex;
+    overflow: auto;
+    white-space: nowrap;
+  }
+
+  .trailer-item {
+    margin-right: 40px;
   }
 </style>

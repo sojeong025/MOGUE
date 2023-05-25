@@ -3,31 +3,29 @@
     <!-- nav바 구현 -->
     <nav>
     <div id="nav-container">
-        <div id="nav-left">
-          <div id="logo-container">
-              <router-link :to="{ name: 'home' }" >
-                <p class="logo" >MOGUE</p>
-              </router-link>
-          </div>
+        <div class="nav-left">
+          <router-link :to="{ name: 'home' }" :class="{ 'textWhite': this.$store.state.textWhite }">
+            <p class="logo" >MOGUE</p>
+          </router-link>
         </div>
 
         <div class="nav-center">
-            <router-link :to="{ name: 'community' }" :class="{ 'textWhite': this.$store.state.textWhite }"> COMMUNITY </router-link>
-            <router-link :to="{ name: 'movie' }" :class="{ 'textWhite': this.$store.state.textWhite }"> MOVIE </router-link>
-            <router-link :to="{ name: 'search' }" :class="{ 'textWhite': this.$store.state.textWhite }">SEARCH</router-link>
+            <router-link class="nav-font-size" :to="{ name: 'community' }" :class="{ 'textWhite': this.$store.state.textWhite }"> COMMUNITY </router-link>
+            <router-link class="nav-font-size" :to="{ name: 'movie' }" :class="{ 'textWhite': this.$store.state.textWhite }"> MOVIE </router-link>
+            <router-link class="nav-font-size" :to="{ name: 'search' }" :class="{ 'textWhite': this.$store.state.textWhite }">SEARCH</router-link>
         </div>
 
-        <div class="navright">
+        <div class="nav-right">
           <div v-if="this.$store.state.isLogin" class="login-part">
-            <router-link :to="{ name: 'profile', params: { id: user_id } }" :class="{ 'textWhite': this.$store.state.textWhite }"> PROFILE </router-link>
+            <router-link class="nav-font-size" :to="{ name: 'profile', params: { id: user_id } }" :class="{ 'textWhite': this.$store.state.textWhite }"> PROFILE </router-link>
             <span id="logout" :class="{ 'textWhite': this.$store.state.textWhite }" @click="logout">LOGOUT</span>
           </div>
-          <div class="login-form" v-else>
+          <div class="login-form nav-right" v-else>
             <span class="nav-item">
-              <router-link :to="{ name: 'signup' }" :class="{ 'textWhite': this.$store.state.textWhite }"> SIGNUP </router-link>
+              <router-link class="nav-font-size" :to="{ name: 'signup' }" :class="{ 'textWhite': this.$store.state.textWhite }"> SIGNUP </router-link>
             </span>
             <span class="nav-item">
-              <router-link id="login" :to="{ name: 'login' }" :class="{ 'textWhite': this.$store.state.textWhite }"> LOGIN </router-link>
+              <router-link class="nav-font-size" :to="{ name: 'login' }" :class="{ 'textWhite': this.$store.state.textWhite }"> LOGIN </router-link>
             </span>
           </div>
         </div>
@@ -125,32 +123,63 @@ a {
   color: black;
   padding: 0 20px 0;
 }
+
 nav{
-  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100vw;
+  height: 90px;
   position: sticky;
   border-bottom: 2px solid black;
 }
+
 #nav-container{
   display: flex;
   justify-content: space-between;
-  margin: 20px 30px 0;
+  width: 100%;
 }
 .logo{
   font-family: 'DM Serif Display', serif;
-  font-size: 35px;
-  margin-top: -35px
+  font-size: 50px;
 }
+
 .nav-left{
   display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 500px;
+  margin-left: 30px;
 }
+
+.nav-center{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 500px;
+}
+
+.nav-right{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 500px;
+  margin-right: 30px;
+}
+
 #login{
   background-color: #e8aa23;
   border-radius: 10px;
   padding: 8px 8px; 
 }
+
 #logout {
   cursor: pointer;
-  font-size: 20px;
+  font-size: 26px;
+}
+
+.nav-font-size{
+  font-size: 26px;
 }
 
 
@@ -193,8 +222,9 @@ nav{
   display: flex;
   width: 302px;
 }
+*/
 
 .login-part {
-  padding-right: 50px;
-} */
+  margin-right: 30px;
+}
 </style>
