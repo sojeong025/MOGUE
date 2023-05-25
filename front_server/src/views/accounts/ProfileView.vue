@@ -72,15 +72,16 @@
             </p>
           </div>
         </div>
-
       </div>
     </div>
+    <FooterSection/>
   </div>
 </template>
 
 <script>
 import axios from 'axios'
 import jwtDecode from 'jwt-decode'
+import FooterSection from '../../components/FooterSection'
 const token = localStorage.getItem('token')
 
 
@@ -88,6 +89,9 @@ const API_URL = 'http://127.0.0.1:8000'
 
 export default {
   name: 'ProfileView',
+  components: {
+    FooterSection,
+  },
   created() {
     this.getFollowData()
     this.getUserProfile()
@@ -330,19 +334,8 @@ export default {
   font-size: 20px;
 }
 
-.wish-movie {
-  width: 1000px;
-  border: 2px solid fuchsia;
-  margin-bottom: 20px;
-}
-
-.watched-movie{
-  width: 1000px;
-  border: 2px solid orange;
-  margin-bottom: 20px;
-}
-
 .profile-body {
+  border: solid 1px red;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -350,7 +343,6 @@ export default {
   height: 378px;
   margin-top:60px;
   padding: 60px 300px 0px 620px;
-  background-color: #ffde7a;
 }
 
 .my-comment{

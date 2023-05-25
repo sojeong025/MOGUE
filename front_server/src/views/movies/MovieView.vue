@@ -26,6 +26,7 @@
         <CollectionList/>
       </div>
     </div>
+    <FooterSection/>
   </div>
 </template>
 
@@ -33,6 +34,7 @@
 import RecommendList from '@/components/RecommendList'
 import CollectionList from '@/components/CollectionList'
 import LatestList from '../../components/LatestList'
+import FooterSection from '../../components/FooterSection'
 
 
 export default {
@@ -41,6 +43,7 @@ export default {
     RecommendList,
     CollectionList,
     LatestList,
+    FooterSection,
   }
 }
 </script>

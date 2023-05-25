@@ -38,19 +38,23 @@
           </li>
         </ul>
       </div>
-
     </div>
+    <FooterSection/>
   </div>
 </template>
 
 <script>
 import axios from 'axios'
+import FooterSection from '../../components/FooterSection'
 const token = localStorage.getItem('token')
 import jwtDecode from 'jwt-decode'
 const API_URL = 'http://127.0.0.1:8000'
 
 export default {
   name: 'FollowView',
+  components: {
+    FooterSection,
+  },
   data(){
     return{
       followers: [],
@@ -127,7 +131,7 @@ export default {
 
 <style scoped>
 #follow-section {
-  margin-top: 180px;
+  margin-top: 60px;
   text-align: center;
 }
 .user{

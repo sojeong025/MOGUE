@@ -45,6 +45,7 @@
       </div>
       <CollectionList/>
     </div>
+    <FooterSection/>
   </div>
 </template>
 
@@ -52,6 +53,7 @@
 import CollectionList from '@/components/CollectionList'
 import RecommendList from '@/components/RecommendList'
 import axios from 'axios'
+import FooterSection from '../../components/FooterSection'
 const API_URL = 'http://127.0.0.1:8000'
 const token = localStorage.getItem('token')
 
@@ -79,6 +81,7 @@ export default {
   components: {
     RecommendList,
     CollectionList,
+    FooterSection,
   },
   methods: {
     Back(){
