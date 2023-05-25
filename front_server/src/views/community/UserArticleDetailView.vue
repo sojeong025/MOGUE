@@ -50,7 +50,7 @@
             </div>
           </div>
 
-</div>
+    </div>
   </div>
 </template>
 
@@ -78,7 +78,7 @@ export default {
     getUserArticleDetail() {
       axios({
         method: 'get',
-        url: `${API_URL}/community/user_articles/${this.$route.params.id}`,
+        url: `${API_URL}/community/user_articles/${this.$route.params.id}/`,
         headers: {
           Authorization: `JWT ${token}`
         }

@@ -2,9 +2,9 @@
   <div class="collection-list">
     <div class="right">
       <div class="collection2">
-        <router-link :to="{ name: 'userarticledetail', params: {id: user_articles[1].id, user_article: user_articles[1]} }">
+        <router-link :to="{ name: 'userarticledetail', params: {id: user_articles[1].id, user_article: user_articles[1] } }">
           <div class="collection-right-thumbnail">
-            <img class="user-article-img" v-if="user_articles[1]?.img" :src="`http://127.0.0.1:8000${user_article?.img}`" alt="img" width="300px" height="300px">
+            <img class="user-article-img" v-if="user_articles[1]?.img" :src="`http://127.0.0.1:8000${user_articles[1]?.img}/`" alt="img" width="300px" height="300px">
           </div>
           <div class="coq-right-title">
             {{ user_articles[1].title }}
@@ -14,7 +14,7 @@
       <div class="collection3">
         <router-link :to="{ name: 'userarticledetail', params: {id: user_articles[2].id, user_article: user_articles[2]} }">
           <div class="collection-right-thumbnail">
-            <img class="user-article-img" v-if="user_articles[2]?.img" :src="`http://127.0.0.1:8000${user_article?.img}`" alt="img" width="300px" height="300px">
+            <img class="user-article-img" v-if="user_articles[2]?.img" :src="`http://127.0.0.1:8000${user_articles[2]?.img}/`" alt="img" width="300px" height="300px">
           </div>
           <div class="coq-right-title">
             {{ user_articles[2].title }}
@@ -24,7 +24,7 @@
       <div class="collection4">
         <router-link :to="{ name: 'userarticledetail', params: {id: user_articles[3].id, user_article: user_articles[3]} }">
           <div class="collection-right-thumbnail">
-            <img class="user-article-img" v-if="user_articles[3]?.img" :src="`http://127.0.0.1:8000${user_article?.img}`" alt="img" width="300px" height="300px">
+            <img class="user-article-img" v-if="user_articles[3]?.img" :src="`http://127.0.0.1:8000${user_articles[3]?.img}/`" alt="img" width="300px" height="300px">
           </div>
           <div class="coq-right-title">
             {{ user_articles[3].title }}
@@ -34,7 +34,7 @@
       <div class="collection5">
         <router-link :to="{ name: 'userarticledetail', params: {id: user_articles[4].id, user_article: user_articles[4]} }">
           <div class="collection-right-thumbnail">
-            <img class="user-article-img" v-if="user_articles[4]?.img" :src="`http://127.0.0.1:8000${user_article?.img}`" alt="img" width="300px" height="300px">
+            <img class="user-article-img" v-if="user_articles[4]?.img" :src="`http://127.0.0.1:8000${user_articles[4]?.img}/`" alt="img" width="300px" height="300px">
           </div>
           <div class="coq-right-title">
             {{ user_articles[4].title }}
@@ -48,7 +48,7 @@
           <div class="collection1-title">
             <h1>{{ user_articles[0].title }}</h1>
           </div>
-          <img class="collection-left-thumbnail" v-if="user_articles[0]?.img" :src="`http://127.0.0.1:8000${user_article?.img}`" alt="img">
+          <img class="collection-left-thumbnail" v-if="user_articles[0]?.img" :src="`http://127.0.0.1:8000${user_articles[0]?.img}/`" alt="img">
         </router-link>
       </div>
     </div>
@@ -76,9 +76,10 @@ export default {
     getUserArticles() {
       axios({
         method: 'get',
-        url: `${API_URL}/community/user_articles/${this.page}/`
+        url: `${API_URL}/community/user_articles/pages/${this.page}/`
       })
       .then((res) => {
+        console.log(res.data)
         this.user_articles = res.data
       })
       .catch(err => console.log(err))

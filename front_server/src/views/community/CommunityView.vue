@@ -9,14 +9,16 @@
     <div class="content-section">
       <div class="editor-article-section">
         <EditorArticleList/>
-        <div class="box"></div>
+      <div class="box"></div>
       </div>
+      <div class="write-section">
         <div class="write-article">
           <router-link :to="{ name: 'articlecreate', params: { method: 'post'} }" v-if="token">Write Your Article</router-link>
           <router-link :to="{ name: 'login' }" v-else>Write Your Article</router-link>
         </div>
+      </div>
       <div class="user-article-section">
-        <UserArticleList :page="page-1+page_index_plus" v-for="page in total_page" :key="page" @page_plus="pagePlus"/>
+        <UserArticleList class="user-articles" :page="page-1+page_index_plus" v-for="page in total_page" :key="page" @page_plus="pagePlus"/>
       </div>
     </div>
   </div>
@@ -96,7 +98,7 @@ export default {
   width: 100%;
 }
 .write-article{
-  width: 100%;
+  width: 300px;
   height: 50px;
   background-color: #e8aa23;
   text-align: center;
@@ -107,5 +109,16 @@ export default {
 
 .community-header-img {
   width: 100vw;
+}
+
+.user-articles {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.write-section {
+  display: flex;
+  justify-content: center;
+  width: 100%px;
 }
 </style>
