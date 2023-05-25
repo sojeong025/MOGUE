@@ -153,7 +153,7 @@ export default {
 
 <style scoped>
 .main-container{
-  margin: 200px auto;
+  margin: 100px auto;
   width: 1600px;
   /* text-align: center; */
   align-items: center;

@@ -6,7 +6,7 @@
         <router-link class="magazine" :to="{ name: 'movie' }">MOVIE MAGAGINE</router-link>
       </div>
     </div>
-    <video id="home-video" src="/cut.mp4" class="video" type="video/mp4" autoplay muted loop></video>
+    <video id="home-video" src="/background.mp4" class="video" type="video/mp4" autoplay muted loop></video>
   </div>
 </template>
 
@@ -35,7 +35,7 @@ export default {
 }
 
 .main {
-  margin-top: 720px;
+  margin-top: 850px;
   position: absolute;
   /* z-index: 100; */
   text-align: center;
@@ -75,8 +75,7 @@ export default {
   /* align-items: center;
   justify-content: center; */
   z-index: -1;
-  /* height: 710px; */
-  width: 1440px;
+  width: 1950px;
 }
 
 </style>

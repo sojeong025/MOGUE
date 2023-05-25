@@ -116,8 +116,8 @@ export default {
   padding: 0px;
   margin: 70px auto;
   margin-top: 100px;
-  width: 1200px;
-  height: 530px;
+  width: 1400px;
+  height: 700px;
   display: flex;
   flex-direction: row;
   box-shadow: 8px 8px 20px #62646469;

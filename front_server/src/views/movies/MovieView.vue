@@ -52,7 +52,7 @@ export default {
 
   .collection-section-title h1{
     font-size: 40px;
-    font-weight: 100;
+    font-weight: 800;
   }
 
   .recommend-section-box{
@@ -64,7 +64,7 @@ export default {
     height: 300px;
     background-color:#dededc77;
     position:absolute;
-    top:30%;
+    top:-10%;
     left:-10%;
     z-index: -1;
   }
@@ -84,6 +84,10 @@ export default {
     height: 1000px;
   }
 
+  .collection-section-title h1{
+    font-size: 25px;
+  }
+
   .recommend-section {
     display: flex;
     position: relative;
@@ -97,10 +101,10 @@ export default {
   }
 
   .today{
-    word-wrap : brek-word;
+    word-wrap : break-word;
     width: 140px;
     font-weight: 100;
-    font-size: 28px;
+    font-size: 25px;
   }
 
 </style>

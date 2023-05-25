@@ -24,7 +24,7 @@
       <h3>더 볼만한 기사</h3>
       <div v-for="article in editor_articles" :key="article.id" @click="getEditorArticleDetail">
         <router-link class="thumbnail-title" :to="{ name: 'editorarticledetail', params: { id: article.id, article: article } }">
-            <img :src="article.thumbnail" width="120px" height="110px" alt="thumbnail">
+            <img :src="article.thumbnail" width="140px" height="130px" alt="thumbnail">
             <h4 class="title">{{ article.title }}</h4>
         </router-link>
       </div>
@@ -81,13 +81,14 @@ export default {
 
 <style scoped>
 #editor-article-detail {
-  margin: 80px 80px;
+  margin: 100px 190px;
   display: flex;
   flex-direction: row;
 }
 .editor-article-left{
   flex:0.5;
   margin-right: 30px;
+  margin-left : 30px;
   /* border: 1px solid black; */
 }
 .editor-article-left h3{
@@ -101,13 +102,13 @@ export default {
   margin-bottom: 20px;
 }
 .editor-article-center {
-  flex:2;
+  flex:2.3;
   /* border: 1px solid black; */
-  margin: 0 50px 0;
+  margin: 0 80px 0;
 }
 .editor-article-center h1{
   font-weight:900;
-  font-size: 35px;
+  font-size: 38px;
   margin-bottom: 30px;
 }
 .article-content {
@@ -123,6 +124,7 @@ export default {
   border-bottom: 1px solid black ;
   padding: 10px 0;
   font-size: 18px;
+  margin-left: 5px;
   margin-bottom: 20px;
 }
 .thumbnail-title{
@@ -131,7 +133,7 @@ export default {
   margin-left: -15px
 }
 .title{
-  font-size: 15px;
+  font-size: 18px;
   font-weight: 400;
   margin-left:10px;
   align-self: center;
