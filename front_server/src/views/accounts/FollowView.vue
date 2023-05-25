@@ -10,17 +10,38 @@
           {{ followings.length }} FOLLOWING
         </div>
       </div>
+      <input id="search-input" 
+        type="text" placeholder="검색" 
+        v-model="searchInput" 
+        @keydown="search(searchInput)"
+      >
       <div class="follow-list-box" v-if="isFollower">
-        <router-link class="follow-list-item" :to="{ name: 'profile', params: {id: follower.pk } }" v-for="follower in followers" :key="follower.pk">
-          <img class="img" :src="`http://127.0.0.1:8000${follower.profile_img}`" alt="follower-profile">
-          <span>{{ follower.nickname }}</span>
-        </router-link>
+        <div v-if="!searchResult.length">
+          <router-link class="follow-list-item" :to="{ name: 'profile', params: {id: follower.pk } }" v-for="follower in followers" :key="follower.pk">
+            <img class="img" :src="`http://127.0.0.1:8000${follower.profile_img}`" alt="follower-profile">
+            <span>{{ follower.nickname }}</span>
+          </router-link>
+        </div>
+        <div v-else>
+          <router-link class="follow-list-item" :to="{ name: 'profile', params: {id: follower.pk } }" v-for="follower in searchResult" :key="follower.pk">
+            <img class="img" :src="`http://127.0.0.1:8000${follower.profile_img}`" alt="follower-profile">
+            <span>{{ follower.nickname }}</span>
+          </router-link>
+        </div>
       </div>
       <div class="follow-list-box" v-else>
-        <router-link class="follow-list-item" :to="{ name: 'profile', params: {id: following.pk } }" v-for="following in followings" :key="following.pk">
-          <img class="img" :src="`http://127.0.0.1:8000${following.profile_img}`" alt="following-profile">
-          <span>{{ following.nickname }}</span>
-        </router-link>
+        <div v-if="!searchResult.length">
+          <router-link class="follow-list-item" :to="{ name: 'profile', params: {id: following.pk } }" v-for="following in followings" :key="following.pk">
+            <img class="img" :src="`http://127.0.0.1:8000${following.profile_img}`" alt="following-profile">
+            <span>{{ following.nickname }}</span>
+          </router-link>
+        </div>
+        <div v-else>
+          <router-link class="follow-list-item" :to="{ name: 'profile', params: {id: following.pk } }" v-for="following in searchResult" :key="following.pk">
+            <img class="img" :src="`http://127.0.0.1:8000${following.profile_img}`" alt="following-profile">
+            <span>{{ following.nickname }}</span>
+          </router-link>
+        </div>
       </div>
     </div>
     <FooterSection/>
@@ -48,6 +69,8 @@ export default {
       itsMe: null,
       isFollower: true,
       isFollow: null,
+      searchInput: "",
+      searchResult: [],
     }
   },
   methods: {
@@ -94,6 +117,17 @@ export default {
     selectFollowing() {
       this.isFollower = false
     },
+    search(wordToMatch) {
+      let list = this.followers
+      if (this.isFollower) {
+        list = this.followers
+      } else {
+        list = this.followings
+      }
+      const value = wordToMatch.trim()
+      const movieMatchDataList = value ? list.filter(user => user.nickname.includes(value)) : []
+      this.searchResult = movieMatchDataList
+    },
   },
   created() {
     this.getFollowData()
@@ -117,24 +151,26 @@ export default {
   display: flex;
   justify-content: space-around;
   width: 700px;
-  margin-bottom: 30px;
+  margin-bottom: 6px;
 }
 
 .followToggle {
   display: flex;
   justify-content: center;
-  width: 400px;
+  width: 350px;
   font-size: 30px;
   padding-bottom: 12px;
+  margin-bottom: 20px;
   cursor: pointer;
+  border-bottom: 1px solid gray;
 }
 
 .underbar {
-  border-bottom: 2px black solid;
+  border-bottom: 3px #e8aa23 solid;
 }
 
 .follow-list-box {
-  width: 700px;
+  width: 600px;
   height: 100%;
   overflow: auto;
   white-space: nowrap;
@@ -166,5 +202,13 @@ export default {
   font-size: 32px;
   font-weight: 100;
   margin-bottom: 38px;
+}
+
+#search-input {
+  width: 530px;
+  height: 30px;
+  margin-bottom: 50px;
+  font-size: 22px;
+  padding: 12px;
 }
 </style>
