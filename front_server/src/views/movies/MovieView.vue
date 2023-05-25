@@ -62,7 +62,7 @@ export default {
   }
   
   .box2{
-    width: 109.9vw;
+    width: 107.7vw;
     height: 300px;
     background-color:#dededc77;
     position:absolute;
