@@ -4,7 +4,7 @@
       <img class="community-header-img" :src="`http://127.0.0.1:8000/잡지.jpg`" alt="">
     </div>
     <div class="header-section">
-      <h1 class="part-title">| TODAY'S ARTICLES</h1>
+      <h1 class="part-title">TODAY'S ARTICLES</h1>
     </div>
     <div class="content-section">
       <div class="editor-article-section">
@@ -55,6 +55,7 @@ export default {
 }
 .header-section {
   display: flex;
+  margin-top: 60px;
   padding: 20px 120px 10px;
 }
 .content-section {
@@ -79,7 +80,6 @@ export default {
 .user-article-section {
   padding: 10px;
   width: 100%;
-
 }
 .write-article{
   width: 100%;
@@ -88,6 +88,7 @@ export default {
   text-align: center;
   line-height : 50px;
   font-weight: 700;
+  margin-top: 80px;
 }
 
 .community-header-img {
