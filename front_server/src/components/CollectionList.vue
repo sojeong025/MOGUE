@@ -18,6 +18,9 @@
           </div>
           <div class="collection-right-title">
             <p>{{collections[1].title}}</p>
+            <span class="collection-item" v-for="(index, movie) in collections[1].movies.slice(0, 4)" :key="index"> 
+              #{{ collections[1].movies[movie] }}
+            </span>
           </div>
         </router-link>
       </div>
@@ -28,6 +31,9 @@
           </div>
           <div class="collection-right-title">
             <p>{{collections[2].title}}</p>
+            <span class="collection-item" v-for="(index, movie) in collections[2].movies.slice(0, 4)" :key="index"> 
+              #{{ collections[2].movies[movie] }}
+            </span>
           </div>
         </router-link>
       </div>
@@ -38,6 +44,9 @@
           </div>
           <div class="collection-right-title">
             <p>{{collections[3].title}}</p>
+            <span class="collection-item" v-for="(index, movie) in collections[3].movies.slice(0, 4)" :key="index"> 
+              #{{ collections[3].movies[movie] }}
+            </span>
           </div>
         </router-link>
       </div>
@@ -48,6 +57,9 @@
           </div>
           <div class="collection-right-title">
             <p>{{collections[4].title}}</p>
+            <span class="collection-item" v-for="(index, movie) in collections[4].movies.slice(0, 4)" :key="index"> 
+              #{{ collections[4].movies[movie] }}
+            </span>
           </div>
         </router-link>
       </div>
@@ -193,5 +205,11 @@ export default {
   .collection-right-title {
     font-size: 22px;
     margin-top: 20px;
+  }
+
+  .collection-item {
+    font-size: 14px;
+    color: rgb(61, 61, 61);
+    margin-right: 6px;
   }
 </style>

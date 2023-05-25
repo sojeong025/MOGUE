@@ -19,12 +19,17 @@
       </div>
     </div>
     <hr class="review-hr">
-    <h1 class="trailer-section-title">{{movie.title}} Trailer</h1>
-    <div class="trailer-section">
-      <div v-for="trailer in movieTrailer" :key="trailer.id">
-        <iframe class="trailer-item" width="560" height="315" :src="`https://www.youtube.com/embed/${trailer.key}`" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
-        </iframe>
+    <div v-if="movieTrailer.length">
+      <h1 class="trailer-section-title">{{movie.title}} Trailer</h1>
+      <div class="trailer-section">
+        <div v-for="trailer in movieTrailer" :key="trailer.id">
+          <iframe class="trailer-item" width="560" height="315" :src="`https://www.youtube.com/embed/${trailer.key}`" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
+          </iframe>
+        </div>
       </div>
+    </div>
+    <div class="no-trailer" v-else>
+      <p>{{movie.title}}의 예고편이 없어요</p>
     </div>
     <div id="review-section" class="yellow">
       <form @submit.prevent="createReview" id="review-input-section">
@@ -83,14 +88,10 @@ export default {
       axios({
         method: 'get',
         url: `${API_URL}/movies/${this.$route.params.id}/`,
-        headers: {
-          Authorization: `JWT ${token}`
-        }
       })
       .then((res) => {
         this.movie = res.data.movie
         this.reviews = res.data.reviews
-        console.log(res)
         this.otts = res.data.otts
         if (res.data.movie.users.includes(jwtDecode(token).user_id)) {
           this.liked = true
@@ -179,6 +180,7 @@ export default {
 <style scoped>
   #movie-detail-section {
     margin-top: 0px;
+    margin-left: 70px;
     font-size: 20px;
   }
 
@@ -190,7 +192,7 @@ export default {
 
   #movie-section {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: flex-end;
     margin-top: 50px;
     margin-left: 35px;
@@ -329,6 +331,7 @@ export default {
     height: 80px;
     border: none;
     border-radius: 100px;
+    background-color: transparent;
     font-size: 20px;
     cursor: pointer;
   }
@@ -340,9 +343,9 @@ export default {
 
   .detail-right {
     display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    margin-right: 25px;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-left: 100px;
   }
 
   .ott-items {
@@ -369,7 +372,7 @@ export default {
   }
 
   .trailer-section {
-    width: 1840px;
+    width: 1770px;
     height: 350px;
     margin-top: 40px;
     margin-left: 40px;
@@ -381,5 +384,10 @@ export default {
 
   .trailer-item {
     margin-right: 40px;
+  }
+
+  .no-trailer {
+    margin-top: 30px;
+    margin-left: 40px;
   }
 </style>
