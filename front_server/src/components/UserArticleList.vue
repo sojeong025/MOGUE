@@ -3,7 +3,7 @@
     <div class="collection" v-for="user_article in user_articles" :key="user_article.id">
       <router-link :to="{ name: 'userarticledetail', params: {id: user_article.id, user_article: user_article } }">
         <div class="collection-thumbnail">
-          <img class="user-article-img" v-if="user_articles[1]?.img" :src="`http://127.0.0.1:8000${user_article?.img}/`" onerror="this.src='http://127.0.0.1:8000/default_thumbnail.png/'">
+          <img class="user-article-img" v-if="user_article?.img" :src="`http://127.0.0.1:8000${user_article?.img}/`" onerror="this.src='http://127.0.0.1:8000/default_thumbnail.png/'">
         </div>
         <div class="title">
           <p>{{ user_article.title }}</p>
