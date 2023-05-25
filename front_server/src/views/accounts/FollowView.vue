@@ -1,24 +1,25 @@
 <template>
   <div class="follow-section">
     <div class="follow-container">
+      <div class="follow-nickname">{{user.nickname}}</div>
       <div class="toolbar">
         <div class="followToggle" :class="{ 'underbar': isFollower }" @click="selectFollow">
-          FOLLOWER
+          {{ followers.length }} FOLLOWER
         </div>
         <div class="followToggle" :class="{ 'underbar': !isFollower }" @click="selectFollowing">
-          FOLLOWING
+          {{ followings.length }} FOLLOWING
         </div>
       </div>
       <div class="follow-list-box" v-if="isFollower">
         <router-link class="follow-list-item" :to="{ name: 'profile', params: {id: follower.pk } }" v-for="follower in followers" :key="follower.pk">
           <img class="img" :src="`http://127.0.0.1:8000${follower.profile_img}`" alt="follower-profile">
-          {{ follower.nickname }}
+          <span>{{ follower.nickname }}</span>
         </router-link>
       </div>
       <div class="follow-list-box" v-else>
         <router-link class="follow-list-item" :to="{ name: 'profile', params: {id: following.pk } }" v-for="following in followings" :key="following.pk">
           <img class="img" :src="`http://127.0.0.1:8000${following.profile_img}`" alt="following-profile">
-          {{ following.nickname }}
+          <span>{{ following.nickname }}</span>
         </router-link>
       </div>
     </div>
@@ -62,8 +63,6 @@ export default {
       .then((res) => {
         this.followers = res.data.followers
         this.followings = res.data.followings
-        console.log(this.followings)
-        console.log(this.followers)
       })
     },
     getUserInfo(){
@@ -109,28 +108,33 @@ export default {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  margin-top: 30px;
+  margin-top: 60px;
   width: 100%;
-  height: 547px;
+  height: 820px;
 }
 
 .toolbar {
   display: flex;
   justify-content: space-around;
-  width: 500px;
-  margin-bottom: 20px;
+  width: 700px;
+  margin-bottom: 30px;
 }
 
 .followToggle {
+  display: flex;
+  justify-content: center;
+  width: 400px;
+  font-size: 30px;
+  padding-bottom: 12px;
   cursor: pointer;
 }
 
 .underbar {
-  border-bottom: 1px black solid;
+  border-bottom: 2px black solid;
 }
 
 .follow-list-box {
-  width: 500px;
+  width: 700px;
   height: 100%;
   overflow: auto;
   white-space: nowrap;
@@ -138,17 +142,29 @@ export default {
 }
 
 .follow-list-box img {
-  width: 50px;
-  height: 50px;
+  width: 70px;
+  height: 70px;
 }
 
 .follow-list-item {
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  margin-bottom: 36px;
+  font-size: 26px;
 }
 
 .follow-list-item img {
   margin-right: 16px;
+}
+
+.follow-list-item span {
+  margin-left: 12px;
+}
+
+.follow-nickname {
+  font-size: 32px;
+  font-weight: 100;
+  margin-bottom: 38px;
 }
 </style>
