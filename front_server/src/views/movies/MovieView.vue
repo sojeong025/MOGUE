@@ -7,7 +7,7 @@
       <!-- <div class="box1"></div> -->
         <div class="recommend-section">
         <div>
-          <h1 class="today">| TODAY'S<br>&nbsp; MOVIE</h1>
+          <h1 class="today">| TODAY'S<br>&nbsp; MOVIES</h1>
         </div>
           <RecommendList/>
         </div>
@@ -15,7 +15,7 @@
         <div class="recommend-section">
         <div class="box2"></div>
         <div>
-          <h1 class="today">| HOW<br>&nbsp; ABOUT<br>&nbsp; THIS?</h1>
+          <h1 class="today">| LATEST<br>&nbsp; MOVIES</h1>
         </div>
           <LatestList/>
         </div>
