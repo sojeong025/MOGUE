@@ -23,10 +23,10 @@
         </div>
         <div v-if="!itsMe">
           <div v-if="isFollow">
-            <span @click="follow" class="follow">언팔로우</span>
+            <div @click="follow" class="follow" style="background-color: #616264" >언팔로우</div>
           </div>
           <div v-else>
-            <span @click="follow" class="follow">팔로우</span>
+            <div @click="follow" class="follow" style="background-color: #448CCB">팔로우</div>
           </div>
         </div>
       </div>
@@ -204,7 +204,7 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 110px;
+  margin-top: 80px;
 }
 
 #profile-headers {
@@ -219,7 +219,7 @@ export default {
   align-items: center;
   /* border: 2px solid orange; */
   width: 380px;
-  height: 410px;
+  height: 380px;
 }
 
 .profile-right {
@@ -240,6 +240,7 @@ export default {
   margin-bottom: 20px;
   margin-left: 20px;
   font-size: 25px;
+  font-weight: 600;
 }
 
 .img {
@@ -347,6 +348,7 @@ export default {
   align-items: center;
   width: 1000px;
   height: 378px;
+  margin-top:60px;
   padding: 60px 300px 0px 620px;
   background-color: #ffde7a;
 }
@@ -447,5 +449,17 @@ export default {
   margin-top: 20px;
   margin-left: 8px;
   font-size: 17px;
+}
+
+.follow {
+  width: 200px;
+  height: 30px;
+  border-radius: 10px;
+  text-align: center;
+  padding-top: 6px;
+  border: none;
+}
+.follow-number{
+  margin: -10px -30px;
 }
 </style>

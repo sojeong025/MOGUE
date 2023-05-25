@@ -79,9 +79,9 @@ export default {
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    margin-top: 80px;
     width: 100%;
     height: 1000px;
+    margin-top: 80px;
   }
 
   .collection-section-title h1{

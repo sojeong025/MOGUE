@@ -4,7 +4,7 @@
       <div class="collection1">
         <router-link :to="{ name: 'collectiondetail', params: {id: collections[0].id, collection: collections[0]} }">
           <div class="collection1-title">
-            <h1>{{collections[0].title}}</h1>
+            <h1 class="font">{{collections[0].title}}</h1>
           </div>
           <img class="collection-left-thumbnail" :src="`http://127.0.0.1:8000/${collections[0].thumbnail}`" alt="">
         </router-link>
@@ -102,6 +102,10 @@ export default {
 </script>
 
 <style scoped>
+  .font{
+    font-size: 33px;
+    word-break: keep-all;
+  }
   a {
     padding: 0px;
     width: 100%;
@@ -127,13 +131,13 @@ export default {
     /* border: 1px solid blue; */
     display: flex;
     margin-top: 0px;
-    width: 1260px;
+    width: 1300px;
     height: 690px;
   }
 
   .left{
     display: flex;
-    margin-right: 25px;
+    margin-right: 50px;
     height: 100%;
   }
 
@@ -156,14 +160,14 @@ export default {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.219);
-    color: white;
+    /* color: #fff; */
     position: absolute;
   }
 
   .collection1-title h1 {
-    margin-top: 600px;
+    margin-top: 620px;
     margin-left: 40px;
-    font-weight: 100;
+    font-weight: 300;
   }
 
   .collection2 {
@@ -172,8 +176,8 @@ export default {
     margin-right: 25px;
     margin-bottom: 40px;
     /* border: solid 1px purple; */
-    width: 350px;
-    height: 320px;
+    width: 360px;
+    height: 330px;
   }
 
   .collection3 {
@@ -181,8 +185,8 @@ export default {
     flex-wrap: wrap;
     margin-bottom: 40px;
     /* border: solid 1px purple; */
-    width: 350px;
-    height: 320px;
+    width: 360px;
+    height: 330px;
   }
 
   .collection4 {
@@ -190,16 +194,16 @@ export default {
     flex-wrap: wrap;
     margin-right: 25px;
     /* border: solid 1px purple; */
-    width: 350px;
-    height: 320px;
+    width: 360px;
+    height: 330px;
   }
 
   .collection5 {
     display: flex;
     flex-wrap: wrap;
     /* border: solid 1px purple; */
-    width: 350px;
-    height: 320px;
+    width: 360px;
+    height: 330px;
   }
 
   .collection-right-title {

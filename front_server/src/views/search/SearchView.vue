@@ -211,6 +211,7 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-bottom: 200px;
   }
 
   #search-recommend-section {
