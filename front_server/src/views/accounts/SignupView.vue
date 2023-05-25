@@ -22,7 +22,7 @@
           <div class="intro-control__inner">
             <h2>Come join us!</h2>
             <p>
-              We are so excited to have you here.If you haven't already, create an account to get access to exclusive offers, rewards, and discounts.
+              We are so excited to have you here. If you haven't already, create an account to get access to exclusive offers, rewards, and discounts.
             </p>
             <router-link :to="{ name: 'login' }"><button id="signin-btn">Already have an account? Login.</button></router-link>
           </div>
@@ -112,11 +112,12 @@ input {
 button {
   width: 100%;
   padding: 10px;
-  background-color: #ecd76f;
+  background-color: #e8aa23;
   color: #fff;
   border: none;
   cursor: pointer;
   border-radius: 10px;
+  font-size: 17px;
 }
 button:hover {
   background-color: #e8cd4a;

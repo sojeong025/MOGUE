@@ -77,12 +77,12 @@ export default {
 .login-intro {
   flex: 1;
   background-color: #faf5db;
-  padding: 40px;
+  padding: 80px 40px;
 }
 .login-form {
   flex: 1;
   background-color: #fff;
-  padding: 40px;
+  padding: 80px 40px;
   margin-right: 20px;
 }
 .intro-control__inner {
@@ -110,14 +110,15 @@ input {
 button {
   width: 100%;
   padding: 10px;
-  background-color: #ecd76f;
+  background-color: #e8aa23;
   color: #fff;
+  font-size: 17px;
   border: none;
   cursor: pointer;
   border-radius: 10px;
 }
 button:hover {
-  background-color: #e8cd4a;
+  background-color: #f3b541;
 }
 .socials {
   display: flex;

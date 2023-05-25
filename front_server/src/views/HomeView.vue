@@ -48,16 +48,21 @@ export default {
   transition: 0.5s;
   font-family: 'DM Serif Display', serif;
 }
-
 .mogue:hover {
-  -webkit-text-stroke: 2px #fff;
+  -webkit-text-stroke: 1px #fff;
   color: transparent;
+}
+
+.magazine:hover{
+  background: rgba(255, 255, 255, 0.692);
+  color: #000;
+  /* border: 2px solid black */
 }
 
 .magazine{
   color: #fff;
   display: inline-block;
-  font-size: 18px;
+  font-size: 25px;
   border: 2px solid #fff;
   padding: 14px 25px;
   border-radius: 50px;
@@ -65,9 +70,7 @@ export default {
   font-family: 'DM Serif Display', serif;
 }
 
-.magazine:hover{
-  background: rgba(255, 255, 255, 0.509);
-}
+
 
 #home-video {
   position: absolute;
