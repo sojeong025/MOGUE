@@ -14,7 +14,7 @@
         <button class="likeBtn" v-else @click="likeMovie"><font-awesome-icon :icon="['far', 'heart']" size="lg" :style="{ color: 'red' }" /></button>
         <div class="ott-items">
           <div class="ott-item" v-for="ott in otts" :key="ott.id">
-            <img class="ott-item" :src="`https://image.tmdb.org/t/p/w45${ott.logo_path}`" alt="">
+            <img class="ott-item" :src="`http://127.0.0.1:8000/watchprovidericon${ott.logo_path}color.png`" alt="">
           </div>
         </div>
       </div>
@@ -373,6 +373,12 @@ export default {
   }
 
   .ott-item {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 45px;
+    height: 45px;
+    margin-bottom: 20px;
     margin-left: 10px;
   }
 

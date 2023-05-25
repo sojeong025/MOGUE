@@ -28,10 +28,10 @@
         </div>
         <div v-if="!itsMe">
           <div v-if="isFollow">
-            <div @click="follow" class="follow" style="background-color: #616264" > <font-awesome-icon :icon="['fas', 'user-minus']" /> 언팔로우</div>
+            <div @click="follow" class="follow" style="background-color: #616264; color: #fff; cursor: pointer;" > <font-awesome-icon :icon="['fas', 'user-minus']" /> 언팔로우</div>
           </div>
           <div v-else>
-            <div @click="follow" class="follow" style="background-color: #448CCB"> <font-awesome-icon :icon="['fas', 'user-plus']" /> 팔로우</div>
+            <div @click="follow" class="follow" style="background-color: #448CCB; color: #fff; cursor: pointer;"> <font-awesome-icon :icon="['fas', 'user-plus']" /> 팔로우</div>
           </div>
         </div>
       </div>
