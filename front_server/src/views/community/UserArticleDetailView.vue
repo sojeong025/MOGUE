@@ -1,4 +1,5 @@
 <template>
+<div>
 <div class="main-container">
   <h1>{{ user_article?.title }}</h1>
   <div class="user-article">
@@ -51,10 +52,13 @@
           </div>
 
     </div>
+    </div>
+    <FooterSection/>
   </div>
 </template>
 
 <script>
+import FooterSection from '../../components/FooterSection'
 
 import axios from 'axios'
 import jwtDecode from "jwt-decode"
@@ -70,6 +74,9 @@ export default {
       content : null,
       comments : [],
     }
+  },
+  components:{
+    FooterSection,
   },
   created(){
     this.getUserArticleDetail()

@@ -1,4 +1,5 @@
 <template>
+<div>
   <div id="collection-detail">
     <h1>{{ collection.title }}</h1>
     <hr class="collection-hr">
@@ -17,9 +18,12 @@
       </div>
     </div>
   </div>
+  <FooterSection/>
+</div>
 </template>
 
 <script>
+import FooterSection from '../../components/FooterSection'
 import axios from 'axios'
 const API_URL = 'http://127.0.0.1:8000'
 
@@ -30,6 +34,9 @@ export default {
       collection : Object,
       movies : [],
     }
+  },
+  components: {
+    FooterSection,
   },
   created() {
     axios({
@@ -53,8 +60,7 @@ export default {
   }
 
   #collection-detail {
-    margin-top: 100px;
-    margin-left: 80px;
+    margin: 100px 0 80px 130px;
   }
 
   .collection-detail-item {

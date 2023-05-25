@@ -2,24 +2,24 @@
   <div class="collection-list">
     <div class="left">
       <div class="collection1">
-        <router-link :to="{ name: 'collectiondetail', params: {id: collections[0].id, collection: collections[0]} }">
+        <router-link :to="{ name: 'collectiondetail', params: {id: collections[1].id, collection: collections[1]} }">
           <div class="collection1-title">
-            <h1 class="font">{{collections[0].title}}</h1>
+            <h1 class="font">{{collections[1].title}}</h1>
           </div>
-          <img class="collection-left-thumbnail" :src="`http://127.0.0.1:8000/${collections[0].thumbnail}`" alt="">
+          <img class="collection-left-thumbnail" :src="`http://127.0.0.1:8000/${collections[1].thumbnail}`" alt="">
         </router-link>
       </div>
     </div>
     <div class="right">
       <div class="collection2">
-        <router-link :to="{ name: 'collectiondetail', params: {id: collections[1].id, collection: collections[1]} }">
+        <router-link :to="{ name: 'collectiondetail', params: {id: collections[1].id, collection: collections[0]} }">
           <div class="collection-right-thumbnail">
-            <img :src="`http://127.0.0.1:8000/${collections[1].thumbnail}`" alt="">
+            <img :src="`http://127.0.0.1:8000/${collections[0].thumbnail}`" alt="">
           </div>
           <div class="collection-right-title">
-            <p>{{collections[1].title}}</p>
-            <span class="collection-item" v-for="(index, movie) in collections[1].movies.slice(0, 4)" :key="index"> 
-              #{{ collections[1].movies[movie] }}
+            <p class="collection-right-title-line">{{collections[0].title}}</p>
+            <span class="collection-item" v-for="(index, movie) in collections[0].movies.slice(0, 4)" :key="index"> 
+              #{{ collections[0].movies[movie] }}
             </span>
           </div>
         </router-link>
@@ -30,7 +30,7 @@
             <img :src="`http://127.0.0.1:8000/${collections[2].thumbnail}`" alt="">
           </div>
           <div class="collection-right-title">
-            <p>{{collections[2].title}}</p>
+            <p class="collection-right-title-line" >{{collections[2].title}}</p>
             <span class="collection-item" v-for="(index, movie) in collections[2].movies.slice(0, 4)" :key="index"> 
               #{{ collections[2].movies[movie] }}
             </span>
@@ -43,7 +43,7 @@
             <img :src="`http://127.0.0.1:8000/${collections[3].thumbnail}`" alt="">
           </div>
           <div class="collection-right-title">
-            <p>{{collections[3].title}}</p>
+            <p class="collection-right-title-line">{{collections[3].title}}</p>
             <span class="collection-item" v-for="(index, movie) in collections[3].movies.slice(0, 4)" :key="index"> 
               #{{ collections[3].movies[movie] }}
             </span>
@@ -56,7 +56,7 @@
             <img :src="`http://127.0.0.1:8000/${collections[4].thumbnail}`" alt="">
           </div>
           <div class="collection-right-title">
-            <p>{{collections[4].title}}</p>
+            <p class="collection-right-title-line">{{collections[4].title}}</p>
             <span class="collection-item" v-for="(index, movie) in collections[4].movies.slice(0, 4)" :key="index"> 
               #{{ collections[4].movies[movie] }}
             </span>
@@ -103,7 +103,7 @@ export default {
 
 <style scoped>
   .font{
-    font-size: 33px;
+    font-size: 28px;
     word-break: keep-all;
   }
   a {
@@ -165,9 +165,10 @@ export default {
   }
 
   .collection1-title h1 {
-    margin-top: 620px;
-    margin-left: 40px;
+    margin-top: 50px;
+    margin-left: 50px;
     font-weight: 300;
+    color: #fff;
   }
 
   .collection2 {
@@ -209,6 +210,14 @@ export default {
   .collection-right-title {
     font-size: 22px;
     margin-top: 20px;
+    margin-bottom: 2px;
+  }
+  .collection-right-title-line{
+    margin-bottom: 0px;
+  }
+  .collection-right-title-line:hover{
+    border-bottom: 1px solid black;
+    
   }
 
   .collection-item {

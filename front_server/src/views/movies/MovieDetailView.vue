@@ -1,4 +1,5 @@
 <template>
+<div>
   <div id="movie-detail-section">
     <div id="movie-section">
       <div class="detail-left">
@@ -57,6 +58,7 @@
         </div>
       </div>
     </div>
+    </div>
     <FooterSection/>
   </div>
 </template>
@@ -67,11 +69,14 @@ import axios from 'axios'
 import jwtDecode from "jwt-decode"
 const API_URL = 'http://127.0.0.1:8000'
 const token = localStorage.getItem('token')
+import FooterSection from '../../components/FooterSection'
+
 
 export default {
   name: 'MovieDetailView',
   components: {
-    StarRating
+    StarRating,
+    FooterSection,
   },
   data() {
     return {

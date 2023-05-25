@@ -1,7 +1,7 @@
 <template>
   <div id="community-section">
     <div class="community-headers">
-      <img class="community-header-img" :src="`http://127.0.0.1:8000/잡지.jpg`" alt="">
+      <img class="community-header-img" :src="`http://127.0.0.1:8000/에에엥.jpg`" alt="">
     </div>
     <div class="header-section">
       <h1 class="part-title">TODAY'S ARTICLES</h1>
@@ -108,7 +108,8 @@ export default {
 }
 
 .community-header-img {
-  width: 100vw;
+  width: 2133px;
+  height: 680px;
 }
 
 .user-articles {

@@ -1,4 +1,5 @@
 <template>
+<div>
   <div id="editor-article-detail">
     <div class="editor-article-left">
       <h3>영화 기사</h3>
@@ -29,12 +30,16 @@
         </router-link>
       </div>
     </div>
+    </div>
+    <FooterSection/>
   </div>
 </template>
 
 <script>
 import axios from 'axios'
 const API_URL = 'http://127.0.0.1:8000'
+import FooterSection from '../../components/FooterSection'
+
 
 export default {
   name: 'EditorArticleDetailView',
@@ -44,6 +49,9 @@ export default {
       editor_articles : [],
       id: this.$route.params.id,
     }
+  },
+  components: {
+    FooterSection,
   },
   created(){
     this.getEditorArticleDetail()

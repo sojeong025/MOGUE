@@ -116,6 +116,7 @@ li {
   line-height: 20px;
   font-size: 18px;
   word-break: keep-all;
+  font-weight: 300;
 }
 
 .thumbnail-box {

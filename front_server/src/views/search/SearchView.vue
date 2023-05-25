@@ -162,8 +162,8 @@ export default {
   }
 
   #movie-main-image {
-    width: 100%;
-    height: 100%;
+    width: 2133px;
+    height: 680px;
   }
 
   #search {

@@ -1,18 +1,18 @@
 [
   {
     "model": "movies.collection",
-    "id": 0,
+    "id": 1,
     "fields": {
       "title": "겨울에 보기 좋은 영화",
-      "thumbnail": "/겨울 영화.jpg"
+      "thumbnail": "/겨울.jpg"
     }
   },
   {
     "model": "movies.collection",
-    "id": 1,
+    "id": 0,
     "fields": {
       "title": "감성적인 분위기의 멜로영화",
-      "thumbnail": "/여명10년.jpg"
+      "thumbnail": "/멜로.jpg"
     }
   },
   {
@@ -20,7 +20,7 @@
     "id": 2,
     "fields": {
       "title": "재즈가 뭐라고 생각하세요?",
-      "thumbnail": "/빌.jpg"
+      "thumbnail": "/재즈.jpg"
     }
   },
   {
@@ -28,7 +28,7 @@
     "id": 3,
     "fields": {
       "title": "어느 별에서 왔니?",
-      "thumbnail": "/어느별.jpg"
+      "thumbnail": "/우주.jpg"
     }
   },
   {
@@ -36,7 +36,7 @@
     "id": 4,
     "fields": {
       "title": "청춘의 향기가 솔솔",
-      "thumbnail": "/플립.jpg"
+      "thumbnail": "/청춘.jpg"
     }
   },
   {
