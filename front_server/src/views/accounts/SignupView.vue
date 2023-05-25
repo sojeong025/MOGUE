@@ -1,15 +1,14 @@
 <template>
-  <div>
     <div class="container">
       <div class="forms-container">
         <div class="form-control signup-form">
-          <form id="signup-form" @submit.prevent="signUp">
+          <form class="signup-form" @submit.prevent="signUp">
             <h2>Signup</h2>
             <input type="text" placeholder="ID" v-model="user.username" required />
             <input type="text" placeholder="NickName" v-model="user.nickname" required />
             <input type="password" placeholder="Password" v-model="user.password" required />
             <input type="password" placeholder="Confirm password" v-model="user.passwordConfirmation" required />
-            <button>Signup</button>
+            <button class="signup-btn">Signup</button>
           </form>
           <div class="socials">
           <!-- <span>or signup with</span> -->
@@ -29,7 +28,6 @@
         </div>
       </div>
     </div>
-  </div>
 </template>
 
 <script>
@@ -67,26 +65,38 @@ export default {
 <style scoped>
 .container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 180px;
+  height: 90vh;
 }
+
 .forms-container {
   display: flex;
   max-width: 1000px;
   width: 100%;
 }
+
 .signup-intro {
-  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  height: 400px;
   background-color: #faf5db;
   padding: 40px;
 }
+
 .signup-form {
-  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 400px;
+  height: 400px;
+  padding: 40px;
   background-color: #fff;
-  padding: 20px;
-  margin-right: 20px;
 }
+
 .intro-control__inner {
   display: flex;
   flex-direction: column;
@@ -94,35 +104,44 @@ export default {
   align-items: center;
   height: 100%;
 }
+
 h2 {
-  font-size: 24px;
+  font-size: 36px;
   margin-bottom: 20px;
   text-align: center;
+  font-weight: 100;
 }
+
 p{
-  word-break: keep-all;
   margin-bottom: 20px;
+  word-break: keep-all;
   text-align: center;
+  line-height: 26px;
 }
 input {
   width: 94%;
   padding: 10px;
-  margin-bottom: 15px;
+  margin-bottom: 22px;
+  font-size: 16px;
 }
 button {
-  width: 100%;
+  width: 300px;
   padding: 10px;
   background-color: #e8aa23;
   color: #fff;
+  font-size: 17px;
   border: none;
   cursor: pointer;
-  border-radius: 10px;
-  font-size: 17px;
+  border-radius: 5px;
 }
 button:hover {
-  background-color: #e8cd4a;
+  background-color: rgb(255, 190, 48);
 }
 .socials {
   display: flex;
+}
+
+.signup-btn {
+  width: 120px;
 }
 </style>

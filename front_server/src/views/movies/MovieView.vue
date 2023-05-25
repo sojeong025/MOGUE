@@ -56,8 +56,8 @@ export default {
   }
 
   .collection-section-title h1{
-    font-size: 40px;
-    font-weight: 800;
+    font-size: 40px !important;
+    font-weight: 100;
   }
 
   .recommend-section-box{
@@ -110,7 +110,7 @@ export default {
     word-wrap : break-word;
     width: 140px;
     font-weight: 100;
-    font-size: 25px;
+    font-size: 28px;
   }
 
 </style>

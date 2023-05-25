@@ -12,10 +12,8 @@
       <div class="box"></div>
       </div>
       <div class="write-section">
-        <div class="write-article">
-          <router-link :to="{ name: 'articlecreate', params: { method: 'post'} }" v-if="token">Write Your Article</router-link>
-          <router-link :to="{ name: 'login' }" v-else>Write Your Article</router-link>
-        </div>
+        <router-link class="write-article" :to="{ name: 'articlecreate', params: { method: 'post'} }" v-if="token">Write Your Article</router-link>
+        <router-link class="write-article" :to="{ name: 'login' }" v-else>Write Your Article</router-link>
       </div>
       <div class="user-article-section">
         <UserArticleList class="user-articles" :page="page-1+page_index_plus" v-for="page in total_page" :key="page" @page_plus="pagePlus"/>
@@ -63,7 +61,9 @@ export default {
   word-break: keep-all;
 }
 .part-title{
-  font-size: 28px;
+  font-size: 32px;
+  font-weight: 100;
+  margin-left: 20px;
   text-align: end;
 }
 .header-section {
@@ -90,6 +90,7 @@ export default {
   top:20%;
   left:-10%
 }
+
 .user-article-section {
   display: flex;
   flex-direction: column;
@@ -97,14 +98,27 @@ export default {
   padding: 10px;
   width: 100%;
 }
+
 .write-article{
-  width: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 340px;
   height: 50px;
   background-color: #e8aa23;
-  text-align: center;
   line-height : 50px;
   font-weight: 700;
   margin-top: 80px;
+  border-radius: 6px;
+  cursor: pointer;
+  color: white;
+  text-align: center;
+  font-size: 30px;
+  font-weight: 100;
+}
+
+.write-article:hover {
+  background-color: rgb(255, 190, 48);
 }
 
 .community-header-img {

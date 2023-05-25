@@ -50,8 +50,7 @@
           <div id="reviews">
             <span>{{ review.content }}</span>
             <div>
-            <span>{{ review.star }}</span> |
-            <span id="deleteBtn" @click="deleteReview(review.id)">X</span>
+            <span>★{{ review.star }}&nbsp;</span> | <font-awesome-icon id="deleteBtn" :icon="['fas', 'trash']" @click="deleteReview(review.id)"/>
             </div>
           </div>
           <hr id="review-hr">
@@ -234,7 +233,7 @@ export default {
     justify-content: flex-start;
     align-items: flex-start;
     margin-top: 30px;
-    margin-left: 30px;
+    margin-left: 50px;
     height: 500px;
   }
 
@@ -246,9 +245,19 @@ export default {
   #reviews {
     display: flex;
     justify-content: space-between;
-    font-size: 24px;
+    font-size: 22px;
     width: 500px;
     margin-top: 14px;
+  }
+
+  #reviews div {
+    display: flex;
+    align-items: center;
+  }
+
+  #reviews span {
+    display: flex;
+    align-items: center;
   }
 
   #review-input-section{
@@ -257,7 +266,7 @@ export default {
   }
 
   #review-input {
-    font-size: 20px;
+    font-size: 24px;
     margin-right: 40px;
     width: 400px;
     height: 35px;
@@ -265,9 +274,6 @@ export default {
     padding-left: 14px;
     border-radius: 5px;
     border: none;
-  }
-
-  #review-input:hover {
     outline: none;
     border: none;
     border-radius: 0px;
@@ -333,6 +339,9 @@ export default {
   }
 
   #deleteBtn {
+    width: 22px;
+    height: 22px;
+    margin-left: 5px;
     cursor: pointer;
   }
 
@@ -367,13 +376,13 @@ export default {
     margin-left: 10px;
   }
 
-  .review-hr {
+  #review-hr {
     background-color: black;
     border: none;
     height: 1px;
-    margin-top: 20px;
-    margin-left: 35px;
-    width: 1230px;
+    margin-top: 10px;
+    margin-bottom: 25px;
+    width: 500px;
   }
 
   .trailer-section-title{

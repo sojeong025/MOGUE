@@ -230,7 +230,7 @@ export default {
 
   #search-recommend-list {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     height: 450px;
     overflow: auto;
     white-space: nowrap;
@@ -243,10 +243,6 @@ export default {
     align-items: center;
     text-decoration: none;
     margin-right: 30px;
-  }
-
-  #search-recommend-list-item:hover {
-    height: 420px;
   }
 
   #search-movie-title {
@@ -265,7 +261,6 @@ export default {
 
   #search-movie-title:hover{
     position: absolute;
-    bottom: 17%;
     transition-duration: 0.2s;
     color: white;
     background-color: rgba(0, 0, 0, 0.795);
@@ -306,9 +301,9 @@ export default {
 
   .today{
     word-wrap : brek-word;
-    width: 145px;
+    width: 155px;
     font-weight: 100;
-    font-size: 28px;
+    font-size: 30px;
   }
 
   .search-results-title {
