@@ -4,8 +4,10 @@
     <div class="profile-left">
       <div class="profile">
         <div class="profile-img">
-          <router-link :to="{ name: 'profile_update', params: { id: this.$route.params.id } }">
-            <button id="edit-profile"><font-awesome-icon class="edit-icon" :icon="['fas', 'user-pen']" /></button>
+          <router-link class="edit-btn" :to="{ name: 'profile_update', params: { id: this.$route.params.id } }">
+            <button id="edit-profile">
+              <font-awesome-icon class="edit-icon" :icon="['fas', 'user-pen']" />
+            </button>
           </router-link>
           <img :src="`http://127.0.0.1:8000${user.profile_img}`" alt="img">
         </div>
@@ -39,8 +41,8 @@
         <p class="liked-movie-title">{{ user.nickname }}'s PICK</p>
           <div class="liked-items" v-if="liked_movies.length">
             <router-link :to="{ name: 'moviedetail', params: { id: liked_movie.id } }" v-for="liked_movie in liked_movies" :key="liked_movie.id" class="liked-item">
-              {{liked_movie.title}}
-              <!-- <img id="poster-img" :src="`https://image.tmdb.org/t/p/w92${liked_movie.poster_path}`" alt="poster"> -->
+              <img :src="`https://image.tmdb.org/t/p/w154${liked_movie.poster_path}`" alt="">
+              <p id="liked-movie-title">{{liked_movie.title}}</p>
             </router-link>
           </div>
         <p v-else class="no-liked">아직 좋아요한 영화가 없습니다.</p>
@@ -64,7 +66,9 @@
           <p class="name">MY COMMENTS</p>
           <div class="my-comment-items" v-if="user_comments.length">
             <div class="my-comment-item" v-for="comment in user_comments" :key="comment.id">
-              {{ comment.content }}
+              <router-link :to="{ name:'userarticledetail', params: { id: comment.article.id } }">
+                {{ comment.content }}
+              </router-link>
             </div>
           </div>
           <div v-else class="no-my">
@@ -207,6 +211,7 @@ export default {
 .profile-section {
   display: flex;
   margin: 80px;
+  margin-right: 140px;
 }
 .profile-left {
   /* border: 1px solid black; */
@@ -218,13 +223,20 @@ export default {
   justify-content: center;
   /* align-items: center; */
 }
-#profile-img {
+
+.profile-img {
   display: flex;
   position: relative;
   width: 200px;
   height: 200px;
   margin-bottom: 20px;
   /* border-radius: 10px; */
+}
+
+.edit-btn{
+  top: 22%;
+  right: 12%;
+  position: absolute;
 }
 
 #profile-img > img {
@@ -265,18 +277,21 @@ export default {
 }
 
 .profile-right {
-  border: 1px solid black;
+  /* border: 1px solid black; */
+  width: 1500px;
   /* margin: 10px; */
   /* padding: 30px; */
   /* height: 700px; */
   flex: 6;
 }
 .follow {
-  width: 200px;
-  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 160px;
+  height: 42px;
   border-radius: 10px;
   text-align: center;
-  padding-top: 6px;
   border: none;
 }
 .follow-number{
@@ -285,25 +300,47 @@ export default {
 }
 
 .right-main-top{
-  border: 1px solid black;
+  /* border: 1px solid black; */
   flex:2;
-  height: 500px;
+  width: 1400px;
+  height: 420px;
   margin: 30px;
+  border-bottom: 1px solid black;
 }
+
 .liked-movie-title{
   margin: 30px;
   font-size: 25px;
   font-weight: 600;
 }
-.liked-items{
-  margin: 30px;
-  
+
+.liked-items {
+  display: flex;
+  width: 98%;
+  overflow: auto;
+  white-space: nowrap;
 }
+
+.liked-item{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px;
+}
+
 .my-article{
   display: flex;
   flex-direction: column;
-  
+  height: 300px;
+  overflow: auto;
+  white-space: nowrap;
 }
+
+.my-article-item {
+  padding: 0px;
+  margin-bottom: 8px;
+}
+
 .no-my {
   display: flex;
   flex-direction: column;
@@ -317,20 +354,60 @@ export default {
 
 .right-bottom{
   display: flex;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   /* flex:1; */
+  width: 1400px;
   margin: 30px;
   height: 350px;
 }
 
 .my-articles{
-  border: 1px solid black;
+  /* border: 1px solid black; */
+  margin-left: 20px;
+  margin-top: 20px;
   margin-right: 10px;
   flex:1;
 }
 .my-comments{
-  border: 1px solid black;
-  margin-left: 10px;
+  /* border: 1px solid black; */
+  margin-left: 20px;
+  margin-top: 20px;
+  margin-left: 20px;
   flex:1;
+}
+
+.profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.no-liked {
+  margin-left: 30px;
+  margin-bottom: 16px;
+}
+
+.name {
+  margin-bottom: 16px;
+}
+
+.my-comment-item {
+  margin-bottom: 8px;
+}
+
+.my-comment-items {
+  display: flex;
+  flex-direction: column;
+  height: 300px;
+  overflow: auto;
+  white-space: nowrap;
+}
+
+#liked-movie-title {
+  width: 126px;
+  font-size: 18px;
+  white-space: normal;
+  text-align: center;
 }
 </style>
