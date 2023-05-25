@@ -90,7 +90,6 @@ export default {
         }
       })
       .then((res) => {
-        console.log(res)
         this.user_article = res.data.user_article
         this.user = res.data.user_article.user
         this.comments = res.data.comments

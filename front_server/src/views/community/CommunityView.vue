@@ -17,7 +17,7 @@
       </div>
       <div class="user-article-section">
         <!-- <UserArticleList class="user-articles" :page="page-1+page_index_plus" v-for="page in total_page" :key="page" @page_plus="pagePlus"/> -->
-        <UserArticleList class="user-articles" />
+        <UserArticleList class="user-articles"/>
       </div>
     </div>
   </div>
