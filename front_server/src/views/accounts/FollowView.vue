@@ -1,42 +1,25 @@
 <template>
-  <div id="follow-section">
-    <h1 class="user">
-      {{user.nickname}}
-    </h1>
-    <div class="follow-information">
-      <div class="followers">
-        <h3>팔로워</h3>
-        <ul class="followers-content">
-          <li v-for="follower in followers" :key="follower.id">
-            <router-link :to="{ name: 'profile', params: {id: follower.pk } }">
-              <img class="img" :src="`http://127.0.0.1:8000${follower.profile_img}`" alt="follower-profile">
-              {{ follower.nickname }}
-            </router-link>
-            <div v-if="itsMe">
-              <span @click="follow" class="follow">삭제</span>
-            </div>
-          </li>
-        </ul>
+  <div class="follow-section">
+    <div class="follow-container">
+      <div class="toolbar">
+        <div class="followToggle" :class="{ 'underbar': isFollower }" @click="selectFollow">
+          FOLLOWER
+        </div>
+        <div class="followToggle" :class="{ 'underbar': !isFollower }" @click="selectFollowing">
+          FOLLOWING
+        </div>
       </div>
-      <hr>
-      <div class="follwings">
-        <h3>팔로잉</h3>
-        <ul class="follwings-content">
-          <li v-for="following in followings" :key="following.pk">
-            <router-link :to="{ name: 'profile', params: {id: following.pk } }">
-              <img class="img" :src="`http://127.0.0.1:8000${following.profile_img}`" alt="following-profile">
-              {{ following.nickname }}
-            </router-link>
-            <div v-if="!itsMe" :follow_id="following.id">
-              <div>
-                <span @click="follow(following.pk)" class="follow">팔로우</span>
-              </div>
-              <div>
-                <span @click="follow(following.pk)" class="follow">언팔로우</span>
-              </div>
-            </div>
-          </li>
-        </ul>
+      <div class="follow-list-box" v-if="isFollower">
+        <router-link class="follow-list-item" :to="{ name: 'profile', params: {id: follower.pk } }" v-for="follower in followers" :key="follower.pk">
+          <img class="img" :src="`http://127.0.0.1:8000${follower.profile_img}`" alt="follower-profile">
+          {{ follower.nickname }}
+        </router-link>
+      </div>
+      <div class="follow-list-box" v-else>
+        <router-link class="follow-list-item" :to="{ name: 'profile', params: {id: following.pk } }" v-for="following in followings" :key="following.pk">
+          <img class="img" :src="`http://127.0.0.1:8000${following.profile_img}`" alt="following-profile">
+          {{ following.nickname }}
+        </router-link>
       </div>
     </div>
     <FooterSection/>
@@ -62,7 +45,8 @@ export default {
       follow_id: null,
       user: Object,
       itsMe: null,
-      
+      isFollower: true,
+      isFollow: null,
     }
   },
   methods: {
@@ -78,13 +62,14 @@ export default {
       .then((res) => {
         this.followers = res.data.followers
         this.followings = res.data.followings
+        console.log(this.followings)
+        console.log(this.followers)
       })
     },
     getUserInfo(){
       const user_id = jwtDecode(token).user_id
       const profile_id = this.$route.params.id
       const checkId = parseInt(profile_id)
-
       if (user_id === checkId) {
         this.itsMe = true
       } else {
@@ -104,22 +89,11 @@ export default {
       })
       .catch(err => console.log(err))
     },
-    follow(user_id){
-      console.log(user_id)
-      axios({
-        method: 'post',
-        url: `${API_URL}/accounts/${user_id}/follow/`,
-        headers: {
-          Authorization: `JWT ${token}`
-        }
-      })
-      .then((res) => {
-        this.isFollow = res.data.follow
-        this.followers = res.data.followers
-        this.followings = res.data.followings
-        this.getFollowData()
-      })
-      .catch(err => console.log(err))
+    selectFollow() {
+      this.isFollower = true
+    },
+    selectFollowing() {
+      this.isFollower = false
     },
   },
   created() {
@@ -130,55 +104,51 @@ export default {
 </script>
 
 <style scoped>
-#follow-section {
-  margin-top: 60px;
-  text-align: center;
-}
-.user{
-  margin-bottom: 30px;
-  font-size: 30px;
-}
-.follow-information {
+.follow-container {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 30px;
+  width: 100%;
+  height: 547px;
 }
-.followers{
-  margin: 0 15px 0 30px;
+
+.toolbar {
+  display: flex;
+  justify-content: space-around;
   width: 500px;
-  height: 500px;
-  /* border:1px solid black; */
+  margin-bottom: 20px;
 }
-.follwings{
-  margin: 0 30px 0 15px;
+
+.followToggle {
+  cursor: pointer;
+}
+
+.underbar {
+  border-bottom: 1px black solid;
+}
+
+.follow-list-box {
   width: 500px;
-  height: 500px;
-  /* border:1px solid black; */
+  height: 100%;
+  overflow: auto;
+  white-space: nowrap;
+  /* border: 1px solid red; */
 }
-.img {
-  border-radius: 50%;
-  width: 35px;
-  height: 35px;
+
+.follow-list-box img {
+  width: 50px;
+  height: 50px;
 }
-li {
-  list-style-type: none;
-}
-h3 {
-  margin: 10px 0 30px;
-  background-color: #e8aa23;
-  padding: 8px
-}
-hr {
-  margin-top: 10px;
-  width: 2px;
-  background-color: #d1d1cf;
-  border: none;
-}
-.followers-content{
+
+.follow-list-item {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
+  align-items: center;
 }
-.follwings-content{
-  display: flex;
-  justify-content: center;
+
+.follow-list-item img {
+  margin-right: 16px;
 }
 </style>

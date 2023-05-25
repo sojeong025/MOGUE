@@ -8,7 +8,7 @@
           </router-link>
           <img :src="`http://127.0.0.1:8000${user.profile_img}`" alt="img">
         </div>
-        <p class="profile-name">{{user.nickname}}님의 프로필</p>
+        <p class="profile-name">{{user.nickname}}</p>
         <div class="follow-info">
           <router-link :to="{ name: 'follow', params: {  id: this.$route.params.id } }">
             <div class="follow-number">
@@ -32,10 +32,10 @@
       </div>
       <!-- 해야 함 -->
       <div class="profile-right">
-        <p class="liked-movie-title">{{ user.nickname }}님이 좋아하는 영화 목록</p>
+        <p class="liked-movie-title">{{ user.nickname }}'s PICK</p>
         <div class="liked-items" v-if="liked_movies.length">
           <router-link :to="{ name: 'moviedetail', params: { id: liked_movie.id } }" v-for="liked_movie in liked_movies" :key="liked_movie.id" class="liked-item">
-            ○ {{liked_movie.title}}
+            {{liked_movie.title}}
             <!-- <img id="poster-img" :src="`https://image.tmdb.org/t/p/w92${liked_movie.poster_path}`" alt="poster"> -->
           </router-link>
         </div>
@@ -46,7 +46,7 @@
     <div class="profile-body">
       <div class="profile-right-body">
         <div class="my-articles">
-          <p>{{ user.nickname }}님이 작성한 게시글</p>
+          <p>MY ARTICLES</p>
           <div class="my-article" v-if="user_articles.length">
             <router-link :to="{ name: 'userarticledetail', params: { id: user_article.id } }" v-for="user_article in user_articles" :key="user_article.id" class="my-article-item">
               {{user_article.title}}
@@ -60,7 +60,7 @@
         </div>
 
         <div class="my-comment">
-          <p>{{ user.nickname }}님이 작성한 댓글</p>
+          <p>MY COMMENTS</p>
           <div class="my-comment-items" v-if="user_comments.length">
             <div class="my-comment-item" v-for="comment in user_comments" :key="comment.id">
               {{ comment.content }}
@@ -196,7 +196,7 @@ export default {
       .then((res) => {
         this.user_comments = res.data
       })
-    }
+    },
   }
 }
 </script>
