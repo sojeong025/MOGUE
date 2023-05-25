@@ -45,9 +45,18 @@ def editor_article_detail(request, editor_article_pk):
 #USER_ARTICLE
 @api_view(['GET'])
 @permission_classes([AllowAny])
-def user_articles(request):
+def user_articles(request, page):
     user_articles = UserArticle.objects.all()
+    user_articles = user_articles[page:page+5]
+    serializer = UserArticleSerializer(user_articles, many=True)
 
+    return Response(serializer.data, status=status.HTTP_200_OK)
+
+#USER_ARTICLE
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def user_articles_length(request):
+    user_articles = UserArticle.objects.all()
     serializer = UserArticleSerializer(user_articles, many=True)
 
     return Response(serializer.data, status=status.HTTP_200_OK)

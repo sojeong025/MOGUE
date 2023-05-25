@@ -13,7 +13,15 @@ from .models import Movie, Review, Collection, Ott
 @permission_classes([AllowAny])
 def recommend_list(request, page):
     movies = get_list_or_404(Movie)
-    movies = sorted(movies, key=lambda x : x.popularity, reverse=True)[page:15+page]
+    movies = sorted(movies, key=lambda x : x.popularity, reverse=True)[page:20+page]
+    serializer = MovieSerializer(movies, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def latest_release(request, page):
+    movies = get_list_or_404(Movie)
+    movies = sorted(movies, key=lambda x : x.release_date, reverse=True)[page:20+page]
     serializer = MovieSerializer(movies, many=True)
     return Response(serializer.data)
 

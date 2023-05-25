@@ -17,7 +17,7 @@
         <div>
           <h1 class="today">| HOW<br>&nbsp; ABOUT<br>&nbsp; THIS?</h1>
         </div>
-          <RecommendList/>
+          <LatestList/>
         </div>
       <div id="collection-section">
         <div class="collection-section-title">
@@ -32,6 +32,7 @@
 <script>
 import RecommendList from '@/components/RecommendList'
 import CollectionList from '@/components/CollectionList'
+import LatestList from '../../components/LatestList'
 
 
 export default {
@@ -39,6 +40,7 @@ export default {
   components: {
     RecommendList,
     CollectionList,
+    LatestList,
   }
 }
 </script>
