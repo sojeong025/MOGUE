@@ -9,7 +9,8 @@
           <!-- <router-link :to="{ name :'community'}">[Community]</router-link> -->
           <p class="number">article number. {{ user_article?.id }}</p>
           <p class="writer">writer</p>
-            <p><router-link class="writer" :to="{ name: 'profile', params: {id: user.pk} }">{{ user.nickname }}</router-link></p>
+            <p><router-link class="writer" :to="{ name: 'profile', params: {id: user.pk} }"><font-awesome-icon :icon="['fas', 'hashtag']" /> {{ user.nickname }}</router-link></p>
+            
           <p class="date">date</p>
           <p> {{ user_article?.created_at }}</p>
           </div>
@@ -23,13 +24,11 @@
 
         <div class="user-article-right">
           <div class="article">
-            <div class="title">
-            <img v-if="user_article?.img" :src="`http://127.0.0.1:8000${user_article?.img}`" alt="img" width="300px" height="300px">
+            <div >
+              <img class="img" v-if="user_article?.img" :src="`http://127.0.0.1:8000${user_article?.img}`" alt="img" width="300px" height="300px">
+              <p>{{ user_article?.content }}</p>
             </div>
-            <div class="content">
-            <p>{{ user_article?.content }}</p>
-            <!-- <i class="fa-sharp fa-solid fa-trash"></i> -->
-            </div>
+
           </div>
         </div>
         </div>
@@ -200,7 +199,11 @@ export default {
 .user-article-left p .writer {
   font-size: 16px;
   color: #f3a806;
+  margin-left: -20px;
 }
+/* .user-article-left p .writer:hover {
+  border-bottom: 1px solid black;
+} */
 .article{
   display: flex;
   flex-direction: row;
@@ -211,8 +214,8 @@ export default {
   margin: 50px;
 }
 .user-article-right img {
-  width: 500px;
-  height: 100%;
+  width: 300px;
+  height: 300px;
   margin-right: 20px
   /* outline: none; */
 }
@@ -277,9 +280,17 @@ export default {
   display: flex;
   justify-content: space-between;
 }
+.comment-left{
+  flex: 1;
+}
 .comment-right{
   display: flex;
+  flex: 1;
   flex-direction: column;
   align-items: end;
+}
+.img{
+  float: left;
+  padding: 20px;
 }
 </style>
