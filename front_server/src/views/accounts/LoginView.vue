@@ -53,7 +53,7 @@ export default {
         this.$store.dispatch('login', token)
         this.$router.push({name: 'home'})
       })
-      .catch(err => console.log(err))
+      .catch(err => alert(err.response.data.non_field_errors))
     }
   }
 }

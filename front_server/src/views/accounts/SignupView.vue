@@ -56,7 +56,7 @@ export default {
       .then(() => {
         this.$router.push({ name: 'login'})
       })
-      .catch(err => console.log(err))
+      .catch(err => alert(err.response.data.error))
     }
   }
 }
