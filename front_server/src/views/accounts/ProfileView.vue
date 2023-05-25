@@ -1,8 +1,9 @@
 <template>
-  <div id="profile-section"> 
-    <div id="profile-headers">
-      <div class="profile-left">
-        <div id="profile-img">
+<div>
+  <div class="profile-section"> 
+    <div class="profile-left">
+      <div class="profile">
+        <div class="profile-img">
           <router-link :to="{ name: 'profile_update', params: { id: this.$route.params.id } }">
             <button id="edit-profile"><font-awesome-icon class="edit-icon" :icon="['fas', 'user-pen']" /></button>
           </router-link>
@@ -23,30 +24,30 @@
         </div>
         <div v-if="!itsMe">
           <div v-if="isFollow">
-            <div @click="follow" class="follow" style="background-color: #616264" >언팔로우</div>
+            <div @click="follow" class="follow" style="background-color: #616264" > <font-awesome-icon :icon="['fas', 'user-minus']" /> 언팔로우</div>
           </div>
           <div v-else>
-            <div @click="follow" class="follow" style="background-color: #448CCB">팔로우</div>
+            <div @click="follow" class="follow" style="background-color: #448CCB"> <font-awesome-icon :icon="['fas', 'user-plus']" /> 팔로우</div>
           </div>
         </div>
       </div>
-      <!-- 해야 함 -->
-      <div class="profile-right">
+    </div>
+    <hr>
+
+    <div class="profile-right">
+      <div class="right-main-top">
         <p class="liked-movie-title">{{ user.nickname }}'s PICK</p>
-        <div class="liked-items" v-if="liked_movies.length">
-          <router-link :to="{ name: 'moviedetail', params: { id: liked_movie.id } }" v-for="liked_movie in liked_movies" :key="liked_movie.id" class="liked-item">
-            {{liked_movie.title}}
-            <!-- <img id="poster-img" :src="`https://image.tmdb.org/t/p/w92${liked_movie.poster_path}`" alt="poster"> -->
-          </router-link>
-        </div>
+          <div class="liked-items" v-if="liked_movies.length">
+            <router-link :to="{ name: 'moviedetail', params: { id: liked_movie.id } }" v-for="liked_movie in liked_movies" :key="liked_movie.id" class="liked-item">
+              {{liked_movie.title}}
+              <!-- <img id="poster-img" :src="`https://image.tmdb.org/t/p/w92${liked_movie.poster_path}`" alt="poster"> -->
+            </router-link>
+          </div>
         <p v-else class="no-liked">아직 좋아요한 영화가 없습니다.</p>
       </div>
-    </div>
-
-    <div class="profile-body">
-      <div class="profile-right-body">
+      <div class="right-bottom">
         <div class="my-articles">
-          <p>MY ARTICLES</p>
+          <p class="name">MY ARTICLES</p>
           <div class="my-article" v-if="user_articles.length">
             <router-link :to="{ name: 'userarticledetail', params: { id: user_article.id } }" v-for="user_article in user_articles" :key="user_article.id" class="my-article-item">
               {{user_article.title}}
@@ -59,8 +60,8 @@
           </div>
         </div>
 
-        <div class="my-comment">
-          <p>MY COMMENTS</p>
+        <div class="my-comments">
+          <p class="name">MY COMMENTS</p>
           <div class="my-comment-items" v-if="user_comments.length">
             <div class="my-comment-item" v-for="comment in user_comments" :key="comment.id">
               {{ comment.content }}
@@ -73,7 +74,8 @@
           </div>
         </div>
       </div>
-    </div>
+      </div>
+  </div>
     <FooterSection/>
   </div>
 </template>
@@ -202,94 +204,27 @@ export default {
 </script>
 
 <style scoped>
-
-#profile-section {
+.profile-section {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin-top: 80px;
+  margin: 80px;
 }
-
-#profile-headers {
-  display: flex;
-  justify-content: flex-start;
-  height: 350px;
-}
-
 .profile-left {
+  /* border: 1px solid black; */
+  margin: 10px;
+  padding: 30px;
+  height: 700px;
+  flex: 1;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  /* border: 2px solid orange; */
-  width: 380px;
-  height: 380px;
+  justify-content: center;
+  /* align-items: center; */
 }
-
-.profile-right {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  width: 300px;
-  padding-left: 50px;
-  /* border: 2px solid blue; */
-  margin-bottom: 30px;
-  border-left: 1px solid black;
-}
-
-.liked-movie-title{
-  width: 600px;
-  margin-top: 10px;
-  margin-bottom: 20px;
-  margin-left: 20px;
-  font-size: 25px;
-  font-weight: 600;
-}
-
-.img {
-  width: 100px;
-}
-
-.my-articles{
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  width: 500px;
-  font-size: 25px;
-}
-
-.my-article{
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  height: 230px;
-  margin-top: 20px;
-  margin-left: 15px;
-  overflow: auto;
-  white-space: nowrap;
-}
-
-.my-article-item {
-  display: flex;
-  align-items: center;
-  height: 30px;
-  padding: 0px 5px;
-  font-size: 22px;
-  margin-bottom: 10px;
-}
-
-.my-article-item:hover {
-  background-color: white;
-}
-
 #profile-img {
   display: flex;
-  flex-direction: column;
   position: relative;
   width: 200px;
   height: 200px;
   margin-bottom: 20px;
+  /* border-radius: 10px; */
 }
 
 #profile-img > img {
@@ -302,8 +237,8 @@ export default {
 
 #edit-profile {
   position: absolute;
-  left: 80%;
-  bottom: 78%;
+  left: 14.5%;
+  bottom: 71%;
   z-index: 100;
   border: none;
   border-radius: 100px;
@@ -312,137 +247,30 @@ export default {
   cursor: pointer;
   background-color: white;
 }
-
-.liked-items {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  height: 230px;
-  margin-left: 25px;
-  overflow: auto;
-  white-space: nowrap;
-}
-
-.liked-item {
-  font-size: 22px;
-  padding: 0px 5px;
-  margin-bottom: 10px;
-}
-
-.no-liked {
-  margin-left: 25px;
-  font-size: 20px;
-}
-
-.profile-body {
-  border: solid 1px red;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 1000px;
-  height: 378px;
-  margin-top:60px;
-  padding: 60px 300px 0px 620px;
-}
-
-.my-comment{
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  font-size: 25px;
-  width: 500px;
-}
-
-.my-comment-items {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  font-size: 22px;
-  width: 300px;
-  margin-top: 20px;
-  margin-left: 16px;
-}
-
-.my-comment-item {
-  margin-bottom: 10px;
-  padding-left: 5px;
-  cursor: pointer;
-}
-
-.my-comment-item:hover {
-  background-color: white;
-}
-
-.follow{
-  width: 100px;
-  height: 50px;
-  border: 1px red solid;
-  margin: 10px;
-  cursor: pointer;
-  background-color: black;
-  color: white
-}
-
-.follow-number {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 120px;
-  height: 60px;
-  /* border: 2px solid blueviolet; */
-  border-radius: 20px;
-  margin: 0px -15px;
-}
-
-.itsme{
-  visibility: hidden;
-}
-
-.profile-right-headers {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100vw;
-  height: 100px;
-  margin-bottom: 30px;
-}
-
-.profile-right-body {
-  display: flex;
-  justify-content: space-around;
-  height: 300px;
-  width: 1000px;
-  /* border: 2px solid blue; */
-}
-
-.follow-info {
-  display: flex;
-  justify-content: center;
-  flex-direction: row;
-  /* width: 100%; */
-  margin-top: 20px;
-}
-
-.profile-name {
-  font-size: 30px;
-  margin-bottom: -10px;
-}
-
 .edit-icon {
   color: rgba(0, 0, 0, 0.63);
   margin-left: 5px;
 }
-
-.no-my {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  justify-content: flex-end;
-  margin-top: 20px;
-  margin-left: 8px;
-  font-size: 17px;
+.profile-name{
+  text-align: center;
+  margin: 20px 0;
+  font-size: 25px;
+  font-weight: 600;
 }
 
+.follow-info{
+  display: flex;
+  margin: 10px 30px 10px;
+  justify-content: space-between;
+}
+
+.profile-right {
+  border: 1px solid black;
+  /* margin: 10px; */
+  /* padding: 30px; */
+  /* height: 700px; */
+  flex: 6;
+}
 .follow {
   width: 200px;
   height: 30px;
@@ -452,6 +280,57 @@ export default {
   border: none;
 }
 .follow-number{
-  margin: -10px -30px;
+  margin: 0px -15px;
+  text-align: center;
+}
+
+.right-main-top{
+  border: 1px solid black;
+  flex:2;
+  height: 500px;
+  margin: 30px;
+}
+.liked-movie-title{
+  margin: 30px;
+  font-size: 25px;
+  font-weight: 600;
+}
+.liked-items{
+  margin: 30px;
+  
+}
+.my-article{
+  display: flex;
+  flex-direction: column;
+  
+}
+.no-my {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-end;
+  margin-top: 20px;
+  margin-left: 30px;
+  font-size: 17px;
+}
+
+
+.right-bottom{
+  display: flex;
+  border: 1px solid black;
+  /* flex:1; */
+  margin: 30px;
+  height: 350px;
+}
+
+.my-articles{
+  border: 1px solid black;
+  margin-right: 10px;
+  flex:1;
+}
+.my-comments{
+  border: 1px solid black;
+  margin-left: 10px;
+  flex:1;
 }
 </style>
