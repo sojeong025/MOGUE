@@ -161,3 +161,9 @@ def update_profile(request, user_pk):
         user.save()
         return Response(serializer.data)
     
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def get_all_user(request):
+    users = User.objects.all()
+    serializers = UserSerializer(users, many=True)
+    return Response(serializers.data)

@@ -1,13 +1,9 @@
 <template>
   <div id="search-section">
-      <img id="movie-main-image" :src="`http://127.0.0.1:8000/버스.jpg`" alt="">
+    <img id="movie-main-image" :src="`http://127.0.0.1:8000/버스.jpg`" alt="">
     <div id="search-headers">
       <div id="search">
-        <input id="search-input" 
-        type="text" placeholder="작품명을 검색해보세요." 
-        v-model="searchInput" 
-        @keydown="search(searchInput, movies)"
-        >
+        <input id="search-input" type="text" placeholder="작품명을 검색해보세요." v-model="searchInput" @keydown="search(searchInput, movies)">
         <div class="otts">
           <div v-for="ott in otts" :key="ott.id">
             <div class="light-box" @click="filterOtt(ott.id)"></div>
@@ -16,42 +12,51 @@
           </div>
         </div>
       </div>
-      
-      <div id="search-body">
-        <div id="search-result">
-          <div class="search-results-title">
-            <h1 class="today">| RESULTS</h1>
-          </div>
-          <div id="search-recommend-section" v-if="!searchResult.length">
-            <RecommendList/>
-          </div>
-          <div id="search-recommend-list" v-else>
-            <router-link id="search-recommend-list-item" :to="{ name : 'moviedetail', params : { id: movie.id, movie: movie } }" v-for="movie in searchResult.slice(0, 10)" :key="movie.id" @keyup.enter="selectResult(movie.title)">
-              <div id="poster">
-                <div id="search-movie-title">
-                  <h5>{{ movie.title }} </h5>
-                  <p id="runtime">{{ movie.runtime }}분</p>
-                  <p id="recommend_overview">{{ movie.overview.slice(0, 66) }}...</p>
-                </div>
-                <img id="poster-img" :src="`https://image.tmdb.org/t/p/w500/${movie.poster_path}`" alt="poster">
+    </div>
+    <div id="search-body">
+      <div id="search-result">
+        <div class="search-results-title">
+          <h1 class="today">| MOVIES</h1>
+        </div>
+        <div id="search-recommend-section" v-if="!searchResult.length">
+          <RecommendList/>
+        </div>
+        <div id="search-recommend-list" v-else>
+          <router-link id="search-recommend-list-item" :to="{ name : 'moviedetail', params : { id: movie.id, movie: movie } }" v-for="movie in searchResult.slice(0, 10)" :key="movie.id" @keyup.enter="selectResult(movie.title)">
+            <div id="poster">
+              <div id="search-movie-title">
+                <h5>{{ movie.title }} </h5>
+                <p id="runtime">{{ movie.runtime }}분</p>
+                <p id="recommend_overview">{{ movie.overview.slice(0, 66) }}...</p>
+              </div>
+              <img id="poster-img" :src="`https://image.tmdb.org/t/p/w500/${movie.poster_path}`" alt="poster">
               </div>
             </router-link>
           </div>
-          </div>
         </div>
       </div>
-    <div id="search-collection-section">
       <div class="section-title">
-        <h1>COLLECTIONS</h1>
+        <div id="user-search">
+          <input id="search-input" type="text" placeholder="닉네임을 검색해보세요." v-model="searchUserInput" @keydown="searchUser(searchUserInput, users)">
+          <div id="search-result">
+            <div class="search-results-title">
+              <h1 class="user-today">| USERS</h1>
+            </div>
+            <div id="search-user-list" v-if="userResult.length > 0">
+              <router-link class="user-search-item" v-for="user in userResult" :key="user.pk" :to="{ name: 'profile', params: { id: user.pk } }">
+                <img :src="`http://127.0.0.1:8000${user.profile_img}`" alt="img">
+                <p>{{user.nickname}}</p>
+              </router-link>
+            </div>
+          </div>  
+        </div>
       </div>
-      <CollectionList/>
-    </div>
     <FooterSection/>
-  </div>
+</div>
 </template>
 
 <script>
-import CollectionList from '@/components/CollectionList'
+// import CollectionList from '@/components/CollectionList'
 import RecommendList from '@/components/RecommendList'
 import axios from 'axios'
 import FooterSection from '../../components/FooterSection'
@@ -64,8 +69,10 @@ export default {
   data() {
     return {
       movies: [],
+      users: [],
       searchResult: [],
       ottResult: [],
+      userResult: [],
       otts: [],
       isSelected: {
         '2': false,
@@ -76,12 +83,13 @@ export default {
         '337': false,
       },
       searchInput: "",
+      searchUserInput: "",
       focus: null,
     }
   },
   components: {
     RecommendList,
-    CollectionList,
+    // CollectionList,
     FooterSection,
   },
   methods: {
@@ -101,6 +109,13 @@ export default {
       const value = wordToMatch.trim()
       const movieMatchDataList = value ? movies.filter(movie => movie.title.includes(value)) : []
       this.searchResult = movieMatchDataList
+    },
+    searchUser(wordToMatch, users) {
+      const value = wordToMatch.trim()
+      const userMatchDataList = value ? users.filter(user => user.nickname.includes(value)) : []
+      console.log(userMatchDataList)
+      this.userResult = userMatchDataList
+      console.log(this.userResult)
     },
     selectResult(title) {
       this.searchInput = title
@@ -133,7 +148,7 @@ export default {
       .catch((err) => {console.log(err)})
     }
   },
-    created() {
+  created() {
       axios({
         method: 'get',
         url: `${API_URL}/movies/all_movies`
@@ -150,11 +165,26 @@ export default {
       .then((res) => {
         this.otts = res.data
       })
+
+      axios({
+        methd: 'get',
+        url: `${API_URL}/accounts/all_users/`
+      })
+      .then((res) => {
+        this.users = res.data
+      })
+      .catch(err => console.log(err))
   }
 }
 </script>
 
 <style scoped>
+  #user-search {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
   #search-headers{
     display: flex;
     flex-direction: column;
@@ -321,4 +351,28 @@ export default {
     margin-bottom: 30px;
   }
 
+  .user-today {
+    font-weight: 100;
+    width: 130px;
+    font-size: 30px;
+  }
+
+  #search-user-list {
+    display: flex;
+    align-items: flex-start;
+    margin-left: 28px;
+    overflow: auto;
+    white-space: nowrap;
+  }
+
+  .user-search-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .user-search-item p {
+    margin-top: 12px;
+    font-size: 24px;
+  }
 </style>
