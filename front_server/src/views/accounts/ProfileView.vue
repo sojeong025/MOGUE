@@ -226,11 +226,12 @@ export default {
 
 .profile-img {
   display: flex;
+  flex-direction: column;
   position: relative;
   width: 200px;
   height: 200px;
   margin-bottom: 20px;
-  /* border-radius: 10px; */
+  /* border-radius: 100px; */
 }
 
 .edit-btn{
@@ -244,7 +245,7 @@ export default {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 10px;
+  /* border-radius: 10px; */
 }
 
 #edit-profile {
