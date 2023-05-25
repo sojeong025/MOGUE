@@ -123,6 +123,7 @@ export default {
         this.rating = 0
         this.content = null
       })
+      .catch(err => console.log(err))
     },
     deleteReview(review_id) {
       axios({
@@ -136,6 +137,7 @@ export default {
       .then(() => {
         this.getMovieDetail()
       })
+      .catch(err => console.log(err))
     },
     likeMovie() {
       const formData = {
@@ -154,6 +156,7 @@ export default {
       .then((res) => {
         this.liked = res.data.liked
       })
+      .catch(err => console.log(err))
     },
     getYoutubeTrailer(){
       axios({
@@ -168,6 +171,7 @@ export default {
         console.log(res.data.results)
         this.movieTrailer = res.data.results
       })
+      .catch(err => console.log(err))
     }
   },
   created() {

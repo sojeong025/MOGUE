@@ -10,8 +10,9 @@
         >
         <div class="otts">
           <div v-for="ott in otts" :key="ott.id">
-            <div class="light-box" @click="filterOtt(ott.id)" :class="{ 'selected': isSelected[ott.id] }"></div>
-            <img class="ott-item" :src="`https://image.tmdb.org/t/p/w45${ott.logo_path}`" alt="">
+            <div class="light-box" @click="filterOtt(ott.id)"></div>
+            <img v-if="isSelected[ott.id]" class="ott-item" :src="`http://127.0.0.1:8000/watchprovidericon${ott.logo_path}color.png`" alt="">
+            <img v-else class="ott-item" :src="`http://127.0.0.1:8000/watchprovidericon${ott.logo_path}mono.png`" alt="">
           </div>
         </div>
       </div>
@@ -129,6 +130,7 @@ export default {
       .then((res) => {
         this.searchResult=res.data
       })
+      .catch((err) => {console.log(err)})
     }
   },
     created() {
@@ -276,26 +278,29 @@ export default {
   }
 
   .ott-item {
+    width: 35px;
+    height: 35px;
+    padding: 5px;
     border-radius: 5px;
     margin-right: 15px;
-    cursor: pointer;
+    /* background-color: #e8ca23a8; */
+    box-shadow: 0px 4px 5px 0px rgba(109, 109, 109, 0.267);
   }
 
   .light-box {
     position: absolute;
     width: 45px;
     height: 45px;
-    background-color: rgba(128, 128, 128, 0.219);
+    background-color: rgba(255, 255, 255, 0.219);
     border-radius: 5px;
     cursor: pointer;
   }
 
   .light-box:hover {
-    background-color: rgba(255, 255, 255, 0.144);
+    background-color: #ffffff7a;
   }
 
   .selected {
-    background-color: transparent;
     box-shadow: 0px 4px 5px 0px rgba(109, 109, 109, 0.267);
   }
 
