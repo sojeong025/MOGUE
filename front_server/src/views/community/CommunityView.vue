@@ -16,7 +16,8 @@
         <router-link class="write-article" :to="{ name: 'login' }" v-else>Write Your Article</router-link>
       </div>
       <div class="user-article-section">
-        <UserArticleList class="user-articles" :page="page-1+page_index_plus" v-for="page in total_page" :key="page" @page_plus="pagePlus"/>
+        <!-- <UserArticleList class="user-articles" :page="page-1+page_index_plus" v-for="page in total_page" :key="page" @page_plus="pagePlus"/> -->
+        <UserArticleList class="user-articles" />
       </div>
     </div>
   </div>
@@ -25,32 +26,32 @@
 <script>
 import EditorArticleList from '@/components/EditorArticleList'
 import UserArticleList from '@/components/UserArticleList'
-import axios from 'axios'
+// import axios from 'axios'
 
 export default {
   name: 'CommunityView',
   data() {
     return{
       token: localStorage.getItem('token'),
-      total_page: null,
-      page_index_plus: 0,
+      // total_page: null,
+      // page_index_plus: 0,
     }
   },
   components: {
     EditorArticleList,
     UserArticleList,
   },
-  methods: {
-  },
-  created() {
-    axios({
-      method: 'get',
-      url: 'http://127.0.0.1:8000/community/user_articles/'
-    })
-    .then((res) => {
-      this.total_page = Math.floor(res.data.length/6)
-    })
-  }
+  // methods: {
+  // },
+  // created() {
+  //   axios({
+  //     method: 'get',
+  //     url: 'http://127.0.0.1:8000/community/user_articles/'
+  //   })
+  //   .then((res) => {
+  //     this.total_page = Math.floor(res.data.length/6)
+  //   })
+  // }
 }
 </script>
 
@@ -129,6 +130,7 @@ export default {
 .user-articles {
   margin-top: 30px;
   margin-bottom: 30px;
+  justify-content: center;
 }
 
 .write-section {
