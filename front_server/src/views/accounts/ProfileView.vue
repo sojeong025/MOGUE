@@ -56,9 +56,7 @@
             </router-link>
           </div>
           <div v-else  class="no-my">
-          <p>
-            아직 작성한 게시글이 없습니다.
-          </p>
+          <p>아직 작성한 게시글이 없습니다.</p>
           </div>
         </div>
 
@@ -72,9 +70,7 @@
             </div>
           </div>
           <div v-else class="no-my">
-            <p>
-              아직 작성한 댓글이 없습니다.
-            </p>
+            <p>아직 작성한 댓글이 없습니다.</p>
           </div>
         </div>
       </div>
@@ -345,10 +341,9 @@ export default {
 .no-my {
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
-  justify-content: flex-end;
+  align-items: flex-start;
+  justify-content: flex-start;
   margin-top: 20px;
-  margin-left: 30px;
   font-size: 17px;
 }
 
