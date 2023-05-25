@@ -26,7 +26,6 @@ def signup(request):
         return Response({'error': '비밀번호가 일치하지 않습니다.'}, status=status.HTTP_400_BAD_REQUEST)
 
     serializer = UserSerializer(data=request.data)
-    print(2)
     serializer.nickname = nickname
     if serializer.is_valid(raise_exception=True):
         user = serializer.save()
