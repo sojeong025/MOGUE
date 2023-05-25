@@ -44,7 +44,9 @@
             </div>
             <div id="search-user-list" v-if="userResult.length > 0">
               <router-link class="user-search-item" v-for="user in userResult" :key="user.pk" :to="{ name: 'profile', params: { id: user.pk } }">
-                <img :src="`http://127.0.0.1:8000${user.profile_img}`" alt="img">
+                <div class="search-profile-box">
+                  <img :src="`http://127.0.0.1:8000${user.profile_img}`" alt="img">
+                </div>
                 <p>{{user.nickname}}</p>
               </router-link>
             </div>
@@ -374,5 +376,14 @@ export default {
   .user-search-item p {
     margin-top: 12px;
     font-size: 24px;
+  }
+
+  .search-profile-box {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin-bottom: 20px;
   }
 </style>

@@ -4,11 +4,13 @@
     <div class="profile-left">
       <div class="profile">
         <div class="profile-img">
-          <router-link class="edit-btn" :to="{ name: 'profile_update', params: { id: this.$route.params.id } }">
-            <button id="edit-profile">
-              <font-awesome-icon class="edit-icon" :icon="['fas', 'user-pen']" />
-            </button>
-          </router-link>
+          <div v-if="itsMe">
+            <router-link class="edit-btn" :to="{ name: 'profile_update', params: { id: this.$route.params.id } }">
+              <button id="edit-profile">
+                <font-awesome-icon class="edit-icon" :icon="['fas', 'user-pen']" />
+              </button>
+            </router-link>
+          </div>
           <img :src="`http://127.0.0.1:8000${user.profile_img}`" alt="img">
         </div>
         <p class="profile-name">{{user.nickname}}</p>
@@ -232,7 +234,7 @@ export default {
 
 .edit-btn{
   top: 22%;
-  right: 12%;
+  right: 7%;
   position: absolute;
 }
 
@@ -386,6 +388,8 @@ export default {
 
 .name {
   margin-bottom: 16px;
+  font-weight: 600;
+  font-size: 25px;
 }
 
 .my-comment-item {
