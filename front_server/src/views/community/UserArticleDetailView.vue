@@ -1,22 +1,27 @@
 <template>
 <div>
 <div class="main-container">
-  <h1>{{ user_article?.title }}</h1>
+  <div class="main-title">
+    <router-link id="to-index" :to="{ name: 'community' }">목록으로</router-link>
+    <h1>{{ user_article?.title }}</h1>
+  </div>
   <div class="user-article">
       <div class="user-article-content">
         <div class="user-article-left">
           <div class="left-up">
-          <!-- <router-link :to="{ name :'community'}">[Community]</router-link> -->
-          <p class="number">article number. {{ user_article?.id }}</p>
-          <p class="writer">writer</p>
-            <p><router-link class="writer" :to="{ name: 'profile', params: {id: user.pk} }"><font-awesome-icon :icon="['fas', 'hashtag']" /> {{ user.nickname }}</router-link></p>
-            
-          <p class="date">date</p>
-          <p> {{ user_article?.created_at }}</p>
+          <p id="number">User Article No. {{ user_article?.id }}</p>
+          <p class="writer">
+            <span>작성자</span>
+            <router-link :to="{ name: 'profile', params: {id: user.pk} }">
+              <font-awesome-icon :icon="['fas', 'hashtag']" />
+              {{ user.nickname }}
+            </router-link>
+          </p>
+          <p class="date"><span id="date">{{ user_article?.created_at }}</span> </p>
           </div>
           <div class="left-down">
-            <button id="button" @click="updateUserArticle">수정</button>
-            <button id="button" @click="deleteUserArticle">삭제</button>
+            <button class="button" @click="updateUserArticle">수정</button>
+            <button class="button" @click="deleteUserArticle">삭제</button>
           </div>
         </div>
         
@@ -45,7 +50,7 @@
             </div><hr class="hr">
             <div class="comment-right">
               <div class="comment-content" v-for="comment in comments" :key="comment.id">
-                {{comment.content}} <button class="delete-button" @click="deleteComment(comment.id)">X</button>
+                <div>{{comment.content}}</div> <button class="delete-button" @click="deleteComment(comment.id)">X</button>
               </div> 
             </div>
           </div>
@@ -183,9 +188,8 @@ export default {
   border-bottom : 1px solid rgb(187, 184, 184);
 }
 .user-article-left{
-  margin: 50px;
+  margin: 40px;
   flex: 0.5;
-  margin: 30px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -195,10 +199,19 @@ export default {
   color: #3f3e3e;
   font-size: 16px
 }
-.user-article-left p .writer {
+.writer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  color: #f3a806;
+  padding: 0px;
+}
+
+.writer a {
   font-size: 16px;
   color: #f3a806;
-  margin-left: -20px;
+  padding: 0px;
 }
 /* .user-article-left p .writer:hover {
   border-bottom: 1px solid black;
@@ -210,7 +223,9 @@ export default {
 .user-article-right{
   display: flex;
   flex: 3;
-  margin: 50px;
+  margin-top: 20px;
+  margin-left: 30px;
+  margin-bottom: 20px;
 }
 .user-article-right img {
   width: 300px;
@@ -230,7 +245,8 @@ export default {
   word-break: keep-all;
 }
 .comment {
-  margin: 80px 20px;
+  margin-left: 20px;
+  margin-top: 40px;
 }
 #text{
   margin-top: 10px;
@@ -255,25 +271,32 @@ export default {
   color: white;
   cursor: pointer;
 }
-#button{
-  width: 47%;
-  height: 35px;
+
+.button{
+  width: 100px;
+  height: 38px;
   background-color: #e8aa23;
   border: none;
-  margin-right:5px;
+  font-size: 16px;
   color: white;
   cursor: pointer;
+  justify-content: space-between;
 }
 .comment-content{
-  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-left: 30px;
+  margin-top: 16px;
 }
-.comment-content button {
+.comment-content button { 
   width:50px;
   height: 30px;
   margin-left: 20px;
   background-color: #e8aa23;
   border: none;
-  color: #fff
+  color: #fff;
+  cursor: pointer;
 }
 .comment{
   display: flex;
@@ -284,12 +307,80 @@ export default {
 }
 .comment-right{
   display: flex;
+  justify-content: space-between;
   flex: 1;
   flex-direction: column;
   align-items: end;
+  margin-left: 30px;
+  margin-top: 14px;
 }
 .img{
   float: left;
   padding: 20px;
 }
+
+.left-up {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.left-up p{
+  font-size: 18px;
+}
+
+.date {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+#date {
+  font-size: 14px;
+}
+
+.left-down {
+  display: flex;
+  justify-content: space-between;
+  width: 220px;
+}
+
+#comment-form {
+  display: flex;
+  justify-content: space-between;
+  margin-right: 30px;
+  align-items: flex-end;
+}
+
+#comment-form input {
+  margin-right: 90px;
+}
+
+.delete-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 50px;
+  width: 60px;
+  height: 35px;
+}
+
+#number {
+  margin-bottom: 36px;
+}
+
+#to-index {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #e8aa23;
+  color: white;
+  margin-left: 30px;
+  font-weight: 100;
+  font-size: 16px;
+  width: 60px;
+  height: 38px;
+}
+
 </style>
